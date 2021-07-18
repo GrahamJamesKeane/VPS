@@ -114,8 +114,8 @@ void _entry(uint32_t platform, uint32_t api)
 2000008a:	f000 f80b 	bl	200000a4 <_hook_init>
 2000008e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
 20000092:	bf00      	nop
-20000094:	2000038f 	.word	0x2000038f
-20000098:	200003b3 	.word	0x200003b3
+20000094:	2000039f 	.word	0x2000039f
+20000098:	200003c7 	.word	0x200003c7
 2000009c:	20000040 	.word	0x20000040
 200000a0:	20000044 	.word	0x20000044
 
@@ -123,7 +123,7 @@ void _entry(uint32_t platform, uint32_t api)
 #include "userosc.h"
 #include "mvps.hpp"
 
-static VPS vps;
+static MVPS mvps;
 
 void OSC_INIT(uint32_t platform, uint32_t api) {
 200000a4:	4770      	bx	lr
@@ -131,7 +131,7 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 200000a6 <_hook_cycle>:
 	
 	// Local copy of the state object.
-	VPS::State &s = vps.state;
+	MVPS::State &s = mvps.state;
 	
 	// Current note being played.
 	uint8_t note = params->pitch>>8;
@@ -278,7 +278,7 @@ float fsel(const float a, const float b, const float c) {
 20000130:	d028      	beq.n	20000184 <_hook_cycle+0xde>
 		float sig = 0.f;
 		
-		sig = vps.MultiPhaseShaper(phi);
+		sig = mvps.MultiPhaseShaper(phi);
 20000132:	eeb0 0a48 	vmov.f32	s0, s16
 20000136:	4818      	ldr	r0, [pc, #96]	; (20000198 <_hook_cycle+0xf2>)
 		
@@ -288,7 +288,7 @@ float fsel(const float a, const float b, const float c) {
 	inline float updatePhase(float *phi, float w0) {
 		*phi += w0;
 20000138:	ee38 8a28 	vadd.f32	s16, s16, s17
-2000013c:	f000 f88e 	bl	2000025c <_ZN3VPS16MultiPhaseShaperEf>
+2000013c:	f000 f892 	bl	20000264 <_ZN4MVPS16MultiPhaseShaperEf>
 		*phi -= (uint32_t)*phi;
 20000140:	eefc 7ac8 	vcvt.u32.f32	s15, s16
 20000144:	eeb4 0aea 	vcmpe.f32	s0, s21
@@ -335,7 +335,7 @@ float fsel(const float a, const float b, const float c) {
 2000018e:	bf00      	nop
 20000190:	3b808081 	.word	0x3b808081
 20000194:	0800f100 	.word	0x0800f100
-20000198:	20000390 	.word	0x20000390
+20000198:	200003a0 	.word	0x200003a0
 2000019c:	3d4ccccd 	.word	0x3d4ccccd
 200001a0:	4f000000 	.word	0x4f000000
 200001a4:	46b8ff49 	.word	0x46b8ff49
@@ -357,313 +357,309 @@ void OSC_NOTEOFF(const user_osc_param_t *const params) {
 
 void OSC_PARAM(uint16_t index, uint16_t value) { 
 
-	VPS::Params &p = vps.params;
+	MVPS::Params &p = mvps.params;
 	
 	const float valf = param_val_to_f32(value);
 200001b0:	ee07 1a90 	vmov	s15, r1
-200001b4:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-	float step = 0.5f;
+200001b4:	ed9f 7a24 	vldr	s14, [pc, #144]	; 20000248 <_hook_param+0x98>
+200001b8:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+200001bc:	ee27 7a87 	vmul.f32	s14, s15, s14
 	switch (index) {
-200001b8:	2806      	cmp	r0, #6
-200001ba:	d840      	bhi.n	2000023e <_hook_param+0x8e>
-200001bc:	e8df f000 	tbb	[pc, r0]
-200001c0:	1e140c04 	.word	0x1e140c04
-200001c4:	3026      	.short	0x3026
-200001c6:	38          	.byte	0x38
-200001c7:	00          	.byte	0x00
+200001c0:	2807      	cmp	r0, #7
+200001c2:	d840      	bhi.n	20000246 <_hook_param+0x96>
+200001c4:	e8df f000 	tbb	[pc, r0]
+200001c8:	1e140c04 	.word	0x1e140c04
+200001cc:	3c383026 	.word	0x3c383026
 		case k_user_osc_param_id1:  				// User parameter 1
-			// Set Values for Inflection Point 1: x-axis
-			p.x0 = value * 0.003f; 					// scale in [0-0.3]
-200001c8:	ed9f 7a1d 	vldr	s14, [pc, #116]	; 20000240 <_hook_param+0x90>
-200001cc:	4b1d      	ldr	r3, [pc, #116]	; (20000244 <_hook_param+0x94>)
-200001ce:	ee67 7a87 	vmul.f32	s15, s15, s14
-200001d2:	edc3 7a03 	vstr	s15, [r3, #12]
+			// Set Values for Inflection Point 1: d0
+			p.d0 = value * 0.003f; 					// scale in [0-0.3]
+200001d0:	ed9f 7a1e 	vldr	s14, [pc, #120]	; 2000024c <_hook_param+0x9c>
+200001d4:	4b1e      	ldr	r3, [pc, #120]	; (20000250 <_hook_param+0xa0>)
+200001d6:	ee67 7a87 	vmul.f32	s15, s15, s14
+200001da:	edc3 7a04 	vstr	s15, [r3, #16]
 			break;
-200001d6:	4770      	bx	lr
+200001de:	4770      	bx	lr
 			
 		case k_user_osc_param_id2:					// User parameter 2
-			// Set Values for Inflection Point 1: y-axis
-			p.y0 = value * 0.01f;
-200001d8:	ed9f 7a1b 	vldr	s14, [pc, #108]	; 20000248 <_hook_param+0x98>
-200001dc:	4b19      	ldr	r3, [pc, #100]	; (20000244 <_hook_param+0x94>)
-200001de:	ee67 7a87 	vmul.f32	s15, s15, s14
-200001e2:	edc3 7a06 	vstr	s15, [r3, #24]
+			// Set Values for Inflection Point 1: v0
+			p.v0 = value * 0.01f;
+200001e0:	ed9f 7a1c 	vldr	s14, [pc, #112]	; 20000254 <_hook_param+0xa4>
+200001e4:	4b1a      	ldr	r3, [pc, #104]	; (20000250 <_hook_param+0xa0>)
+200001e6:	ee67 7a87 	vmul.f32	s15, s15, s14
+200001ea:	edc3 7a07 	vstr	s15, [r3, #28]
 			break;
-200001e6:	4770      	bx	lr
+200001ee:	4770      	bx	lr
 			
 		case k_user_osc_param_id3:  				// User parameter 3
-			// Set Values for Inflection Point 2: x-axis
-			p.x1 = 0.3f + (value * 0.003f); 		// scale in [0.3-0.6]
-200001e8:	ed9f 7a18 	vldr	s14, [pc, #96]	; 2000024c <_hook_param+0x9c>
-200001ec:	eddf 6a14 	vldr	s13, [pc, #80]	; 20000240 <_hook_param+0x90>
-200001f0:	4b14      	ldr	r3, [pc, #80]	; (20000244 <_hook_param+0x94>)
-200001f2:	eea7 7aa6 	vfma.f32	s14, s15, s13
-200001f6:	ed83 7a04 	vstr	s14, [r3, #16]
+			// Set Values for Inflection Point 2: d1
+			p.d1 = 0.3f + (value * 0.003f); 		// scale in [0.3-0.6]
+200001f0:	ed9f 7a19 	vldr	s14, [pc, #100]	; 20000258 <_hook_param+0xa8>
+200001f4:	eddf 6a15 	vldr	s13, [pc, #84]	; 2000024c <_hook_param+0x9c>
+200001f8:	4b15      	ldr	r3, [pc, #84]	; (20000250 <_hook_param+0xa0>)
+200001fa:	eea7 7aa6 	vfma.f32	s14, s15, s13
+200001fe:	ed83 7a05 	vstr	s14, [r3, #20]
 			break;
-200001fa:	4770      	bx	lr
+20000202:	4770      	bx	lr
 			
 		case k_user_osc_param_id4:					// User parameter 4
-			// Set Values for Inflection Point 2: y-axis
-			p.y1 = value * 0.01f;
-200001fc:	ed9f 7a12 	vldr	s14, [pc, #72]	; 20000248 <_hook_param+0x98>
-20000200:	4b10      	ldr	r3, [pc, #64]	; (20000244 <_hook_param+0x94>)
-20000202:	ee67 7a87 	vmul.f32	s15, s15, s14
-20000206:	edc3 7a07 	vstr	s15, [r3, #28]
+			// Set Values for Inflection Point 2: v1
+			p.v1 = value * 0.01f;
+20000204:	ed9f 7a13 	vldr	s14, [pc, #76]	; 20000254 <_hook_param+0xa4>
+20000208:	4b11      	ldr	r3, [pc, #68]	; (20000250 <_hook_param+0xa0>)
+2000020a:	ee67 7a87 	vmul.f32	s15, s15, s14
+2000020e:	edc3 7a08 	vstr	s15, [r3, #32]
 			break;
-2000020a:	4770      	bx	lr
+20000212:	4770      	bx	lr
 			
 		case k_user_osc_param_id5:  				// User parameter 5
-			// Set Values for Inflection Point 3: x-axis
-			p.x2 = 0.6f + (value * 0.004f);			// scale in [0.6-1.0]
-2000020c:	ed9f 7a10 	vldr	s14, [pc, #64]	; 20000250 <_hook_param+0xa0>
-20000210:	eddf 6a10 	vldr	s13, [pc, #64]	; 20000254 <_hook_param+0xa4>
-20000214:	4b0b      	ldr	r3, [pc, #44]	; (20000244 <_hook_param+0x94>)
-20000216:	eea7 7aa6 	vfma.f32	s14, s15, s13
-2000021a:	ed83 7a05 	vstr	s14, [r3, #20]
+			// Set Values for Inflection Point 3: d2
+			p.d2 = 0.6f + (value * 0.004f);			// scale in [0.6-1.0]
+20000214:	ed9f 7a11 	vldr	s14, [pc, #68]	; 2000025c <_hook_param+0xac>
+20000218:	eddf 6a11 	vldr	s13, [pc, #68]	; 20000260 <_hook_param+0xb0>
+2000021c:	4b0c      	ldr	r3, [pc, #48]	; (20000250 <_hook_param+0xa0>)
+2000021e:	eea7 7aa6 	vfma.f32	s14, s15, s13
+20000222:	ed83 7a06 	vstr	s14, [r3, #24]
 			break;
-2000021e:	4770      	bx	lr
+20000226:	4770      	bx	lr
 			
 		case k_user_osc_param_id6:					// User parameter 6
-			// Set Values for Inflection Point 3: y-axis
-			p.y2 = value * 0.01f;
-20000220:	ed9f 7a09 	vldr	s14, [pc, #36]	; 20000248 <_hook_param+0x98>
-20000224:	4b07      	ldr	r3, [pc, #28]	; (20000244 <_hook_param+0x94>)
-20000226:	ee67 7a87 	vmul.f32	s15, s15, s14
-2000022a:	edc3 7a08 	vstr	s15, [r3, #32]
+			// Set Values for Inflection Point 3: v2
+			p.v2 = value * 0.01f;
+20000228:	ed9f 7a0a 	vldr	s14, [pc, #40]	; 20000254 <_hook_param+0xa4>
+2000022c:	4b08      	ldr	r3, [pc, #32]	; (20000250 <_hook_param+0xa0>)
+2000022e:	ee67 7a87 	vmul.f32	s15, s15, s14
+20000232:	edc3 7a09 	vstr	s15, [r3, #36]	; 0x24
 			break;
-2000022e:	4770      	bx	lr
+20000236:	4770      	bx	lr
 			
 		case k_user_osc_param_shape: 				// A knob
-			// 10bit parameter
+			// Scaling for d values
 			p.shape = valf; 
-20000230:	ed9f 7a09 	vldr	s14, [pc, #36]	; 20000258 <_hook_param+0xa8>
-20000234:	4b03      	ldr	r3, [pc, #12]	; (20000244 <_hook_param+0x94>)
-20000236:	ee67 7a87 	vmul.f32	s15, s15, s14
-2000023a:	edc3 7a02 	vstr	s15, [r3, #8]
+20000238:	4b05      	ldr	r3, [pc, #20]	; (20000250 <_hook_param+0xa0>)
+2000023a:	ed83 7a02 	vstr	s14, [r3, #8]
+			break;
 2000023e:	4770      	bx	lr
-20000240:	3b449ba6 	.word	0x3b449ba6
-20000244:	20000390 	.word	0x20000390
-20000248:	3c23d70a 	.word	0x3c23d70a
-2000024c:	3e99999a 	.word	0x3e99999a
-20000250:	3f19999a 	.word	0x3f19999a
-20000254:	3b83126f 	.word	0x3b83126f
-20000258:	3a802008 	.word	0x3a802008
+			
+		case k_user_osc_param_shiftshape:			// B knob	
+			// Scaling for v values
+			p.shiftshape = valf; 
+20000240:	4b03      	ldr	r3, [pc, #12]	; (20000250 <_hook_param+0xa0>)
+20000242:	ed83 7a03 	vstr	s14, [r3, #12]
+20000246:	4770      	bx	lr
+20000248:	3a802008 	.word	0x3a802008
+2000024c:	3b449ba6 	.word	0x3b449ba6
+20000250:	200003a0 	.word	0x200003a0
+20000254:	3c23d70a 	.word	0x3c23d70a
+20000258:	3e99999a 	.word	0x3e99999a
+2000025c:	3f19999a 	.word	0x3f19999a
+20000260:	3b83126f 	.word	0x3b83126f
 
-2000025c <_ZN3VPS16MultiPhaseShaperEf>:
+20000264 <_ZN4MVPS16MultiPhaseShaperEf>:
 		state = State();
 		params = Params();
 	}
   
 	inline float MultiPhaseShaper(float phi) {
-		float x0 = params.x0 * params.shape;
-2000025c:	edd0 7a02 	vldr	s15, [r0, #8]
-20000260:	edd0 6a03 	vldr	s13, [r0, #12]
-		float y0 = params.y0 * params.shape;
-20000264:	ed90 7a06 	vldr	s14, [r0, #24]
-		float x1 = params.x1 * params.shape;
-		float y1 = params.y1 * params.shape;
-20000268:	ed90 5a07 	vldr	s10, [r0, #28]
-		float x2 = params.x2 * params.shape;
-2000026c:	ed90 6a05 	vldr	s12, [r0, #20]
-		float y2 = params.y2 * params.shape;
-20000270:	ed90 4a08 	vldr	s8, [r0, #32]
+		float d0 = params.d0 * params.shape;
+20000264:	ed90 6a02 	vldr	s12, [r0, #8]
+20000268:	edd0 6a04 	vldr	s13, [r0, #16]
+		float v0 = params.v0 * params.shiftshape;
+2000026c:	edd0 7a03 	vldr	s15, [r0, #12]
+20000270:	ed90 7a07 	vldr	s14, [r0, #28]
+		float d1 = params.d1 * params.shape;
+20000274:	ed90 5a05 	vldr	s10, [r0, #20]
+		float v1 = params.v1 * params.shiftshape;
+20000278:	edd0 4a08 	vldr	s9, [r0, #32]
+		float d2 = params.d2 * params.shape;
+2000027c:	edd0 3a06 	vldr	s7, [r0, #24]
+		float v2 = params.v2 * params.shiftshape;
+20000280:	ed90 4a09 	vldr	s8, [r0, #36]	; 0x24
 		state = State();
 		params = Params();
 	}
   
 	inline float MultiPhaseShaper(float phi) {
-		float x0 = params.x0 * params.shape;
-20000274:	ee67 4aa6 	vmul.f32	s9, s15, s13
-		float y0 = params.y0 * params.shape;
-20000278:	ee27 7a87 	vmul.f32	s14, s15, s14
-		float y1 = params.y1 * params.shape;
-		float x2 = params.x2 * params.shape;
-		float y2 = params.y2 * params.shape;
+		float d0 = params.d0 * params.shape;
+20000284:	ee66 6a26 	vmul.f32	s13, s12, s13
+		float v0 = params.v0 * params.shiftshape;
+20000288:	ee27 7a87 	vmul.f32	s14, s15, s14
+		float v1 = params.v1 * params.shiftshape;
+		float d2 = params.d2 * params.shape;
+		float v2 = params.v2 * params.shiftshape;
 		
 		float ps;
-		if(phi < x0) {
-2000027c:	eef4 4ac0 	vcmpe.f32	s9, s0
-20000280:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+		if(phi < d0) {
+2000028c:	eef4 6ac0 	vcmpe.f32	s13, s0
+20000290:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+20000294:	dd04      	ble.n	200002a0 <_ZN4MVPS16MultiPhaseShaperEf+0x3c>
+			float fraction = phi / d0;
+			ps = v0 * fraction;
+20000296:	eec0 7a26 	vdiv.f32	s15, s0, s13
+2000029a:	ee67 7a87 	vmul.f32	s15, s15, s14
+2000029e:	e037      	b.n	20000310 <_ZN4MVPS16MultiPhaseShaperEf+0xac>
 	}
   
 	inline float MultiPhaseShaper(float phi) {
-		float x0 = params.x0 * params.shape;
-		float y0 = params.y0 * params.shape;
-		float x1 = params.x1 * params.shape;
-20000284:	edd0 6a04 	vldr	s13, [r0, #16]
-		float y1 = params.y1 * params.shape;
-		float x2 = params.x2 * params.shape;
-		float y2 = params.y2 * params.shape;
+		float d0 = params.d0 * params.shape;
+		float v0 = params.v0 * params.shiftshape;
+		float d1 = params.d1 * params.shape;
+200002a0:	ee66 5a05 	vmul.f32	s11, s12, s10
+		float v1 = params.v1 * params.shiftshape;
+200002a4:	ee27 5aa4 	vmul.f32	s10, s15, s9
 		
 		float ps;
-		if(phi < x0) {
-20000288:	dd04      	ble.n	20000294 <_ZN3VPS16MultiPhaseShaperEf+0x38>
-			float fraction = phi / x0;
-			ps = y0 * fraction;
-2000028a:	eec0 7a24 	vdiv.f32	s15, s0, s9
-2000028e:	ee67 7a87 	vmul.f32	s15, s15, s14
-20000292:	e037      	b.n	20000304 <_ZN3VPS16MultiPhaseShaperEf+0xa8>
-	}
-  
+		if(phi < d0) {
+			float fraction = phi / d0;
+			ps = v0 * fraction;
+		} else if(phi < d1){
+200002a8:	eef4 5ac0 	vcmpe.f32	s11, s0
+200002ac:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200002b0:	dd0c      	ble.n	200002cc <_ZN4MVPS16MultiPhaseShaperEf+0x68>
+			float factor = v1 - v0;
+			float numerator = phi - d0;
+			float denominator = d1 - d0;
+			float fraction = numerator / denominator;
+			ps = factor * fraction + v0;
+200002b2:	ee30 0a66 	vsub.f32	s0, s0, s13
+200002b6:	ee75 6ae6 	vsub.f32	s13, s11, s13
+200002ba:	ee75 7a47 	vsub.f32	s15, s10, s14
+200002be:	ee80 6a26 	vdiv.f32	s12, s0, s13
+200002c2:	eea7 7a86 	vfma.f32	s14, s15, s12
+200002c6:	eef0 7a47 	vmov.f32	s15, s14
+200002ca:	e021      	b.n	20000310 <_ZN4MVPS16MultiPhaseShaperEf+0xac>
 	inline float MultiPhaseShaper(float phi) {
-		float x0 = params.x0 * params.shape;
-		float y0 = params.y0 * params.shape;
-		float x1 = params.x1 * params.shape;
-20000294:	ee67 5aa6 	vmul.f32	s11, s15, s13
-		float y1 = params.y1 * params.shape;
-20000298:	ee27 5a85 	vmul.f32	s10, s15, s10
-		
-		float ps;
-		if(phi < x0) {
-			float fraction = phi / x0;
-			ps = y0 * fraction;
-		} else if(phi < x1){
-2000029c:	eef4 5ac0 	vcmpe.f32	s11, s0
-200002a0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200002a4:	dd0c      	ble.n	200002c0 <_ZN3VPS16MultiPhaseShaperEf+0x64>
-			float factor = y1 - y0;
-			float numerator = phi - x0;
-			float denominator = x1 - x0;
+		float d0 = params.d0 * params.shape;
+		float v0 = params.v0 * params.shiftshape;
+		float d1 = params.d1 * params.shape;
+		float v1 = params.v1 * params.shiftshape;
+		float d2 = params.d2 * params.shape;
+200002cc:	ee66 6a23 	vmul.f32	s13, s12, s7
+		float v2 = params.v2 * params.shiftshape;
+200002d0:	ee67 7a84 	vmul.f32	s15, s15, s8
+			float factor = v1 - v0;
+			float numerator = phi - d0;
+			float denominator = d1 - d0;
 			float fraction = numerator / denominator;
-			ps = factor * fraction + y0;
-200002a6:	ee30 0a64 	vsub.f32	s0, s0, s9
-200002aa:	ee75 6ae4 	vsub.f32	s13, s11, s9
-200002ae:	ee75 7a47 	vsub.f32	s15, s10, s14
-200002b2:	ee80 6a26 	vdiv.f32	s12, s0, s13
-200002b6:	eea7 7a86 	vfma.f32	s14, s15, s12
-200002ba:	eef0 7a47 	vmov.f32	s15, s14
-200002be:	e021      	b.n	20000304 <_ZN3VPS16MultiPhaseShaperEf+0xa8>
-	inline float MultiPhaseShaper(float phi) {
-		float x0 = params.x0 * params.shape;
-		float y0 = params.y0 * params.shape;
-		float x1 = params.x1 * params.shape;
-		float y1 = params.y1 * params.shape;
-		float x2 = params.x2 * params.shape;
-200002c0:	ee67 6a86 	vmul.f32	s13, s15, s12
-		float y2 = params.y2 * params.shape;
-200002c4:	ee67 7a84 	vmul.f32	s15, s15, s8
-			float factor = y1 - y0;
-			float numerator = phi - x0;
-			float denominator = x1 - x0;
+			ps = factor * fraction + v0;
+		} else if(phi < d2) {
+200002d4:	eef4 6ac0 	vcmpe.f32	s13, s0
+200002d8:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200002dc:	dd0c      	ble.n	200002f8 <_ZN4MVPS16MultiPhaseShaperEf+0x94>
+			float factor = v2 - v1;
+			float numerator = phi - d1;
+			float denominator = d2 - d1;
 			float fraction = numerator / denominator;
-			ps = factor * fraction + y0;
-		} else if(phi < x2) {
-200002c8:	eef4 6ac0 	vcmpe.f32	s13, s0
-200002cc:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200002d0:	dd0c      	ble.n	200002ec <_ZN3VPS16MultiPhaseShaperEf+0x90>
-			float factor = y2 - y1;
-			float numerator = phi - x1;
-			float denominator = x2 - x1;
-			float fraction = numerator / denominator;
-			ps = factor * fraction + y1;
-200002d2:	ee30 0a65 	vsub.f32	s0, s0, s11
-200002d6:	ee76 6ae5 	vsub.f32	s13, s13, s11
-200002da:	ee37 7ac5 	vsub.f32	s14, s15, s10
-200002de:	eec0 7a26 	vdiv.f32	s15, s0, s13
-200002e2:	eea7 5a27 	vfma.f32	s10, s14, s15
-200002e6:	eef0 7a45 	vmov.f32	s15, s10
-200002ea:	e00b      	b.n	20000304 <_ZN3VPS16MultiPhaseShaperEf+0xa8>
+			ps = factor * fraction + v1;
+200002de:	ee30 0a65 	vsub.f32	s0, s0, s11
+200002e2:	ee76 6ae5 	vsub.f32	s13, s13, s11
+200002e6:	ee37 7ac5 	vsub.f32	s14, s15, s10
+200002ea:	eec0 7a26 	vdiv.f32	s15, s0, s13
+200002ee:	eea7 5a27 	vfma.f32	s10, s14, s15
+200002f2:	eef0 7a45 	vmov.f32	s15, s10
+200002f6:	e00b      	b.n	20000310 <_ZN4MVPS16MultiPhaseShaperEf+0xac>
 		} else {
-			float factor = 1.f - y2;
-			float numerator = phi - x2;
-			float denominator = 1.f - x2;
+			float factor = 1.f - v2;
+			float numerator = phi - d2;
+			float denominator = 1.f - d2;
 			float fraction = numerator / denominator;
-			ps = factor * fraction + y2;
-200002ec:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-200002f0:	ee30 0a66 	vsub.f32	s0, s0, s13
-200002f4:	ee77 6a66 	vsub.f32	s13, s14, s13
-200002f8:	ee37 6a67 	vsub.f32	s12, s14, s15
-200002fc:	ee80 7a26 	vdiv.f32	s14, s0, s13
-20000300:	eee6 7a07 	vfma.f32	s15, s12, s14
+			ps = factor * fraction + v2;
+200002f8:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+200002fc:	ee30 0a66 	vsub.f32	s0, s0, s13
+20000300:	ee77 6a66 	vsub.f32	s13, s14, s13
+20000304:	ee37 6a67 	vsub.f32	s12, s14, s15
+20000308:	ee80 7a26 	vdiv.f32	s14, s0, s13
+2000030c:	eee6 7a07 	vfma.f32	s15, s12, s14
     const uint32_t x0p = (uint32_t)x0f;
 
     const uint32_t x0 = x0p & k_wt_sine_mask;
     const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
     
     const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
-20000304:	4a17      	ldr	r2, [pc, #92]	; (20000364 <_ZN3VPS16MultiPhaseShaperEf+0x108>)
+20000310:	4a17      	ldr	r2, [pc, #92]	; (20000370 <_ZN4MVPS16MultiPhaseShaperEf+0x10c>)
    *
    * @param   x  Value in [0, 1.0].
    * @return     Result of cos(2*pi*x).
    */
   __fast_inline float osc_cosf(float x) {
     return osc_sinf(x+0.25f);
-20000306:	eeb5 7a00 	vmov.f32	s14, #80	; 0x3e800000  0.250
-2000030a:	ee77 7a87 	vadd.f32	s15, s15, s14
+20000312:	eeb5 7a00 	vmov.f32	s14, #80	; 0x3e800000  0.250
+20000316:	ee77 7a87 	vadd.f32	s15, s15, s14
    */
   __fast_inline float osc_sinf(float x) {
     const float p = x - (uint32_t)x;
     
     // half period stored -- wrap around and invert
     const float x0f = 2.f * p * k_wt_sine_size;
-2000030e:	eebc 7ae7 	vcvt.u32.f32	s14, s15
-20000312:	eeb8 7a47 	vcvt.f32.u32	s14, s14
-20000316:	ee77 7ac7 	vsub.f32	s15, s15, s14
-2000031a:	ed9f 7a13 	vldr	s14, [pc, #76]	; 20000368 <_ZN3VPS16MultiPhaseShaperEf+0x10c>
-2000031e:	ee67 7a87 	vmul.f32	s15, s15, s14
+2000031a:	eebc 7ae7 	vcvt.u32.f32	s14, s15
+2000031e:	eeb8 7a47 	vcvt.f32.u32	s14, s14
+20000322:	ee77 7ac7 	vsub.f32	s15, s15, s14
+20000326:	ed9f 7a13 	vldr	s14, [pc, #76]	; 20000374 <_ZN4MVPS16MultiPhaseShaperEf+0x110>
+2000032a:	ee67 7a87 	vmul.f32	s15, s15, s14
     const uint32_t x0p = (uint32_t)x0f;
-20000322:	eebc 7ae7 	vcvt.u32.f32	s14, s15
-20000326:	ee17 1a10 	vmov	r1, s14
+2000032e:	eebc 7ae7 	vcvt.u32.f32	s14, s15
+20000332:	ee17 1a10 	vmov	r1, s14
 
     const uint32_t x0 = x0p & k_wt_sine_mask;
-2000032a:	f001 037f 	and.w	r3, r1, #127	; 0x7f
+20000336:	f001 037f 	and.w	r3, r1, #127	; 0x7f
     const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
     
     const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
-2000032e:	eb02 0083 	add.w	r0, r2, r3, lsl #2
-20000332:	3301      	adds	r3, #1
+2000033a:	eb02 0083 	add.w	r0, r2, r3, lsl #2
+2000033e:	3301      	adds	r3, #1
 
 /** Linear interpolation
  */
 static inline __attribute__((optimize("Ofast"), always_inline))
 float linintf(const float fr, const float x0, const float x1) {
   return x0 + fr * (x1 - x0);
-20000334:	eeb8 7a47 	vcvt.f32.u32	s14, s14
-20000338:	f003 037f 	and.w	r3, r3, #127	; 0x7f
-2000033c:	eb02 0383 	add.w	r3, r2, r3, lsl #2
-20000340:	ed90 0a00 	vldr	s0, [r0]
-20000344:	ee77 7ac7 	vsub.f32	s15, s15, s14
-20000348:	ed93 7a00 	vldr	s14, [r3]
-2000034c:	ee37 7a40 	vsub.f32	s14, s14, s0
+20000340:	eeb8 7a47 	vcvt.f32.u32	s14, s14
+20000344:	f003 037f 	and.w	r3, r3, #127	; 0x7f
+20000348:	eb02 0383 	add.w	r3, r2, r3, lsl #2
+2000034c:	ed90 0a00 	vldr	s0, [r0]
+20000350:	ee77 7ac7 	vsub.f32	s15, s15, s14
+20000354:	ed93 7a00 	vldr	s14, [r3]
+20000358:	ee37 7a40 	vsub.f32	s14, s14, s0
     return (x0p < k_wt_sine_size)?y0:-y0;
-20000350:	297f      	cmp	r1, #127	; 0x7f
-20000352:	eea7 0a87 	vfma.f32	s0, s15, s14
-20000356:	bf88      	it	hi
-20000358:	eeb1 0a40 	vneghi.f32	s0, s0
+2000035c:	297f      	cmp	r1, #127	; 0x7f
+2000035e:	eea7 0a87 	vfma.f32	s0, s15, s14
+20000362:	bf88      	it	hi
+20000364:	eeb1 0a40 	vneghi.f32	s0, s0
 		}
 		
 		return -osc_cosf(ps);
 	}
-2000035c:	eeb1 0a40 	vneg.f32	s0, s0
-20000360:	4770      	bx	lr
-20000362:	bf00      	nop
-20000364:	08012bdc 	.word	0x08012bdc
-20000368:	43800000 	.word	0x43800000
+20000368:	eeb1 0a40 	vneg.f32	s0, s0
+2000036c:	4770      	bx	lr
+2000036e:	bf00      	nop
+20000370:	08012bdc 	.word	0x08012bdc
+20000374:	43800000 	.word	0x43800000
 
-2000036c <_GLOBAL__sub_I__hook_init>:
+20000378 <_GLOBAL__sub_I__hook_init>:
 	struct State {
 		float   phi; 		// Oscillator phase
 		float   w0;			// Oscillator pitch
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF)
-2000036c:	4b06      	ldr	r3, [pc, #24]	; (20000388 <_GLOBAL__sub_I__hook_init+0x1c>)
-2000036e:	2200      	movs	r2, #0
-20000370:	601a      	str	r2, [r3, #0]
-20000372:	605a      	str	r2, [r3, #4]
+20000378:	4b07      	ldr	r3, [pc, #28]	; (20000398 <_GLOBAL__sub_I__hook_init+0x20>)
+2000037a:	2200      	movs	r2, #0
+2000037c:	601a      	str	r2, [r3, #0]
+2000037e:	605a      	str	r2, [r3, #4]
 		{}
 	};
 
-	VPS(void) {
+	MVPS(void) {
 		state = State();
 		params = Params();
-20000374:	f04f 527c 	mov.w	r2, #1056964608	; 0x3f000000
-20000378:	609a      	str	r2, [r3, #8]
-2000037a:	60da      	str	r2, [r3, #12]
-2000037c:	611a      	str	r2, [r3, #16]
-2000037e:	615a      	str	r2, [r3, #20]
-20000380:	619a      	str	r2, [r3, #24]
-20000382:	61da      	str	r2, [r3, #28]
-20000384:	621a      	str	r2, [r3, #32]
-20000386:	4770      	bx	lr
-20000388:	20000390 	.word	0x20000390
+20000380:	f04f 527c 	mov.w	r2, #1056964608	; 0x3f000000
+20000384:	609a      	str	r2, [r3, #8]
+20000386:	60da      	str	r2, [r3, #12]
+20000388:	611a      	str	r2, [r3, #16]
+2000038a:	615a      	str	r2, [r3, #20]
+2000038c:	619a      	str	r2, [r3, #24]
+2000038e:	61da      	str	r2, [r3, #28]
+20000390:	621a      	str	r2, [r3, #32]
+20000392:	625a      	str	r2, [r3, #36]	; 0x24
+20000394:	4770      	bx	lr
+20000396:	bf00      	nop
+20000398:	200003a0 	.word	0x200003a0
