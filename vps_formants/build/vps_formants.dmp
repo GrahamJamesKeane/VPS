@@ -30,25 +30,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS
   8 .eh_frame     00000000  200002d4  200002d4  000102c0  2**2
                   CONTENTS
-  9 .debug_info   00001311  00000000  00000000  000102c0  2**0
+  9 .debug_info   000012ed  00000000  00000000  000102c0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00000558  00000000  00000000  000115d1  2**0
+ 10 .debug_abbrev 00000541  00000000  00000000  000115ad  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000590  00000000  00000000  00011b29  2**0
+ 11 .debug_loc    00000590  00000000  00000000  00011aee  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_aranges 00000048  00000000  00000000  000120b9  2**0
+ 12 .debug_aranges 00000048  00000000  00000000  0001207e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   00000550  00000000  00000000  00012101  2**0
+ 13 .debug_line   00000550  00000000  00000000  000120c6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    000009da  00000000  00000000  00012651  2**0
+ 14 .debug_str    000009e9  00000000  00000000  00012616  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .comment      0000006e  00000000  00000000  0001302b  2**0
+ 15 .comment      0000006e  00000000  00000000  00012fff  2**0
                   CONTENTS, READONLY
- 16 .ARM.attributes 00000039  00000000  00000000  00013099  2**0
+ 16 .ARM.attributes 00000039  00000000  00000000  0001306d  2**0
                   CONTENTS, READONLY
- 17 .debug_frame  00000128  00000000  00000000  000130d4  2**2
+ 17 .debug_frame  00000128  00000000  00000000  000130a8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_ranges 00000208  00000000  00000000  000131fc  2**0
+ 18 .debug_ranges 00000208  00000000  00000000  000131d0  2**0
                   CONTENTS, READONLY, DEBUGGING
 SYMBOL TABLE:
 20000000 l    d  .hooks	00000000 .hooks
@@ -74,7 +74,7 @@ SYMBOL TABLE:
 20000000 l     O .hooks	00000040 s_hook_table
 00000000 l    df *ABS*	00000000 vps_formants.cpp
 200002a0 l     F .text	0000001c _GLOBAL__sub_I__hook_init
-200002c0 l     O .bss	00000014 _ZL3vps
+200002c0 l     O .bss	00000014 _ZL4vpsf
 0801ed80 g       *ABS*	00000000 _osc_rand
 0800ff6c g       *ABS*	00000000 bitres_lut_f
 0801eabc g       *ABS*	00000000 _osc_mcu_hash

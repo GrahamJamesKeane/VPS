@@ -123,15 +123,15 @@ void _entry(uint32_t platform, uint32_t api)
 #include "userosc.h"
 #include "vps_formants.hpp"
 
-static VPS vps;
+static VPSF vpsf;
 
 void OSC_INIT(uint32_t platform, uint32_t api) {
 200000a4:	4770      	bx	lr
 
 200000a6 <_hook_cycle>:
-	// Local copies of the state and params objects.
-	VPS::State &s = vps.state;
-	const VPS::Params &p = vps.params;
+	
+	// Local copy of the state object.
+	VPSF::State &s = vpsf.state;
 	
 	// Current flag
 	const uint32_t flags = s.flags; 
@@ -174,19 +174,19 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 200000c0:	b570      	push	{r4, r5, r6, lr}
-	// Local copies of the state and params objects.
-	VPS::State &s = vps.state;
-	const VPS::Params &p = vps.params;
+	
+	// Local copy of the state object.
+	VPSF::State &s = vpsf.state;
 	
 	// Current flag
 	const uint32_t flags = s.flags; 
 200000c2:	7a1c      	ldrb	r4, [r3, #8]
 	// Reset s.flags
-    s.flags = VPS::flags_none; 
+    s.flags = VPSF::flags_none; 
 200000c4:	4625      	mov	r5, r4
 	
 	// Reset state if note-on trigger
-	if(flags & VPS::flag_reset) {
+	if(flags & VPSF::flag_reset) {
 200000c6:	07e4      	lsls	r4, r4, #31
 		{
 			reset();
@@ -210,19 +210,19 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 	// Local copies of the state object fields.
 	float phi = s.phi;
 200000d0:	edd3 6a00 	vldr	s13, [r3]
-	if(flags & VPS::flag_reset) {
+	if(flags & VPSF::flag_reset) {
 		s.reset();
 	}
 	
 	// Current note being played.
 	uint8_t note = params->pitch>>8;
 200000d4:	1220      	asrs	r0, r4, #8
-	const VPS::Params &p = vps.params;
+	VPSF::State &s = vpsf.state;
 	
 	// Current flag
 	const uint32_t flags = s.flags; 
 	// Reset s.flags
-    s.flags = VPS::flags_none; 
+    s.flags = VPSF::flags_none; 
 200000d6:	f36f 0500 	bfc	r5, #0, #1
    *
    * @param note Note in [0-151] range.
@@ -479,8 +479,8 @@ float fsel(const float a, const float b, const float c) {
 }
 
 void OSC_NOTEON(const user_osc_param_t *const params) {
-	VPS::State &s = vps.state;
-	s.flags |= VPS::flag_reset;
+	VPSF::State &s = vpsf.state;
+	s.flags |= VPSF::flag_reset;
 20000248:	4a02      	ldr	r2, [pc, #8]	; (20000254 <_hook_on+0xc>)
 2000024a:	7a13      	ldrb	r3, [r2, #8]
 2000024c:	f043 0301 	orr.w	r3, r3, #1
@@ -498,7 +498,7 @@ void OSC_NOTEOFF(const user_osc_param_t *const params) {
 
 void OSC_PARAM(uint16_t index, uint16_t value) { 
 
-	VPS::Params &p = vps.params;
+	VPSF::Params &p = vpsf.params;
 
 	const float valf = param_val_to_f32(value);
 2000025a:	ee07 1a90 	vmov	s15, r1
@@ -509,7 +509,7 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 
 void OSC_PARAM(uint16_t index, uint16_t value) { 
 
-	VPS::Params &p = vps.params;
+	VPSF::Params &p = vpsf.params;
 
 	const float valf = param_val_to_f32(value);
 20000268:	ee67 7a27 	vmul.f32	s15, s14, s15
@@ -519,6 +519,7 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 20000270:	d00c      	beq.n	2000028c <_hook_param+0x32>
 20000272:	b970      	cbnz	r0, 20000292 <_hook_param+0x38>
 		case k_user_osc_param_id1:  		// User parameter 1
+			// Set v values (formant)
 			p.shiftshape = value * 0.1f;
 20000274:	eddf 7a08 	vldr	s15, [pc, #32]	; 20000298 <_hook_param+0x3e>
 20000278:	4b08      	ldr	r3, [pc, #32]	; (2000029c <_hook_param+0x42>)
@@ -530,7 +531,7 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 		case k_user_osc_param_id6: break; 	// User parameter 6
 			
 		case k_user_osc_param_shape: 		// A knob
-			// 10bit parameter
+			// Set d values
 			p.shape = valf; 
 20000284:	4b05      	ldr	r3, [pc, #20]	; (2000029c <_hook_param+0x42>)
 20000286:	edc3 7a03 	vstr	s15, [r3, #12]
@@ -538,7 +539,7 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 2000028a:	4770      	bx	lr
 
 		case k_user_osc_param_shiftshape: 	// B knob
-			// 10bit parameter
+			// Set v values (non- formant)
 			p.shiftshape = valf; 
 2000028c:	4b03      	ldr	r3, [pc, #12]	; (2000029c <_hook_param+0x42>)
 2000028e:	edc3 7a04 	vstr	s15, [r3, #16]

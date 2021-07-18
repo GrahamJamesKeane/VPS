@@ -157,13 +157,13 @@ LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/
 END GROUP
 OUTPUT(build/vps_formants.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x1311
+.debug_info     0x00000000     0x12ed
  .debug_info    0x00000000      0x6a4 ./build/obj/_unit.o
- .debug_info    0x000006a4      0xc6d ./build/obj/vps_formants.o
+ .debug_info    0x000006a4      0xc49 ./build/obj/vps_formants.o
 
-.debug_abbrev   0x00000000      0x558
+.debug_abbrev   0x00000000      0x541
  .debug_abbrev  0x00000000      0x20e ./build/obj/_unit.o
- .debug_abbrev  0x0000020e      0x34a ./build/obj/vps_formants.o
+ .debug_abbrev  0x0000020e      0x333 ./build/obj/vps_formants.o
 
 .debug_loc      0x00000000      0x590
  .debug_loc     0x00000000       0xb9 ./build/obj/_unit.o
@@ -179,11 +179,11 @@ OUTPUT(build/vps_formants.elf elf32-littlearm)
  .debug_line    0x00000000      0x204 ./build/obj/_unit.o
  .debug_line    0x00000204      0x34c ./build/obj/vps_formants.o
 
-.debug_str      0x00000000      0x9da
+.debug_str      0x00000000      0x9e9
  .debug_str     0x00000000      0x5e9 ./build/obj/_unit.o
                                 0x676 (size before relaxing)
- .debug_str     0x000005e9      0x3f1 ./build/obj/vps_formants.o
-                                0x719 (size before relaxing)
+ .debug_str     0x000005e9      0x400 ./build/obj/vps_formants.o
+                                0x728 (size before relaxing)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e ./build/obj/_unit.o

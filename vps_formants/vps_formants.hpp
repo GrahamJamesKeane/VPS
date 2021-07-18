@@ -12,7 +12,7 @@
 
 #define ZEROF 0.f
 
-struct VPS {
+struct VPSF {
 	
 	enum {
 		flags_none = 0,
@@ -30,8 +30,8 @@ struct VPS {
 	};
   
 	struct State {
-		float    phi; 		// Main oscillator phase
-		float    w0;		// Main oscillator pitch
+		float    phi; 		// Oscillator phase
+		float    w0;		// Oscillator pitch
 		uint32_t flags: 1;	// Bit field
 		
 		State(void) :
@@ -47,7 +47,7 @@ struct VPS {
 		}
 	};
 
-	VPS(void) {
+	VPSF (void) {
 		state = State();
 		params = Params();
 	}

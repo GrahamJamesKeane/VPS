@@ -9,7 +9,7 @@
 #include "userosc.h"
 #include "vps_formants.hpp"
 
-static VPS vps;
+static VPSF vpsf;
 
 void OSC_INIT(uint32_t platform, uint32_t api) {
 	(void)platform;
@@ -18,17 +18,16 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 	
-	// Local copies of the state and params objects.
-	VPS::State &s = vps.state;
-	const VPS::Params &p = vps.params;
+	// Local copy of the state object.
+	VPSF::State &s = vpsf.state;
 	
 	// Current flag
 	const uint32_t flags = s.flags; 
 	// Reset s.flags
-    s.flags = VPS::flags_none; 
+    s.flags = VPSF::flags_none; 
 	
 	// Reset state if note-on trigger
-	if(flags & VPS::flag_reset) {
+	if(flags & VPSF::flag_reset) {
 		s.reset();
 	}
 	
@@ -48,7 +47,7 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 	// Fill buffer with samples
 	for (; y != y_e; ) { 
 
-		float sig = vps.PhaseShaper(phi);
+		float sig = vpsf.PhaseShaper(phi);
 		
 		// Softclip signal before sending to buffer
 		sig = osc_softclipf(0.05f, sig);
@@ -67,8 +66,8 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 }
 
 void OSC_NOTEON(const user_osc_param_t *const params) {
-	VPS::State &s = vps.state;
-	s.flags |= VPS::flag_reset;
+	VPSF::State &s = vpsf.state;
+	s.flags |= VPSF::flag_reset;
 }
 
 void OSC_NOTEOFF(const user_osc_param_t *const params) {
@@ -78,11 +77,12 @@ void OSC_NOTEOFF(const user_osc_param_t *const params) {
 
 void OSC_PARAM(uint16_t index, uint16_t value) { 
 
-	VPS::Params &p = vps.params;
+	VPSF::Params &p = vpsf.params;
 
 	const float valf = param_val_to_f32(value);
 	switch (index) {
 		case k_user_osc_param_id1:  		// User parameter 1
+			// Set v values (formant)
 			p.shiftshape = value * 0.1f;
 			break;
 			
@@ -97,12 +97,12 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 		case k_user_osc_param_id6: break; 	// User parameter 6
 			
 		case k_user_osc_param_shape: 		// A knob
-			// 10bit parameter
+			// Set d values
 			p.shape = valf; 
 			break;
 
 		case k_user_osc_param_shiftshape: 	// B knob
-			// 10bit parameter
+			// Set v values (non- formant)
 			p.shiftshape = valf; 
 			break;
 			
