@@ -157,9 +157,9 @@ LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/
 END GROUP
 OUTPUT(build/vps_basic.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x1310
+.debug_info     0x00000000     0x12ec
  .debug_info    0x00000000      0x6a4 ./build/obj/_unit.o
- .debug_info    0x000006a4      0xc6c ./build/obj/vps_basic.o
+ .debug_info    0x000006a4      0xc48 ./build/obj/vps_basic.o
 
 .debug_abbrev   0x00000000      0x567
  .debug_abbrev  0x00000000      0x20e ./build/obj/_unit.o
@@ -175,9 +175,9 @@ OUTPUT(build/vps_basic.elf elf32-littlearm)
  .debug_aranges
                 0x00000020       0x28 ./build/obj/vps_basic.o
 
-.debug_line     0x00000000      0x547
+.debug_line     0x00000000      0x548
  .debug_line    0x00000000      0x204 ./build/obj/_unit.o
- .debug_line    0x00000204      0x343 ./build/obj/vps_basic.o
+ .debug_line    0x00000204      0x344 ./build/obj/vps_basic.o
 
 .debug_str      0x00000000      0x9d4
  .debug_str     0x00000000      0x5e6 ./build/obj/_unit.o

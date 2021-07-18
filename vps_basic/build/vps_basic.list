@@ -120,18 +120,18 @@ void _entry(uint32_t platform, uint32_t api)
 200000a0:	20000044 	.word	0x20000044
 
 200000a4 <_hook_init>:
+# include "userosc.h"
 # include "vps_basic.hpp"
 
-// Create VPS object
 static VPS vps;
 
 void OSC_INIT(uint32_t platform, uint32_t api) {
 200000a4:	4770      	bx	lr
 
 200000a6 <_hook_cycle>:
-	// Local copies of the state and params objects.
+	
+	// Local copy of the state object.
 	VPS::State &s = vps.state;
-	const VPS::Params &p = vps.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -174,9 +174,9 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 200000c0:	b570      	push	{r4, r5, r6, lr}
-	// Local copies of the state and params objects.
+	
+	// Local copy of the state object.
 	VPS::State &s = vps.state;
-	const VPS::Params &p = vps.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -217,7 +217,7 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 	// Current note being played.
 	uint8_t note = params->pitch>>8;
 200000d4:	1220      	asrs	r0, r4, #8
-	const VPS::Params &p = vps.params;
+	VPS::State &s = vps.state;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -522,14 +522,16 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 		case k_user_osc_param_id6: break; 	// User parameter 6
 			
 		case k_user_osc_param_shape: 		// A knob
-			// 10bit parameter
-			p.shape = valf; break;
+			// Set d value
+			p.shape = valf; 
 20000274:	4b04      	ldr	r3, [pc, #16]	; (20000288 <_hook_param+0x2e>)
 20000276:	edc3 7a03 	vstr	s15, [r3, #12]
+			break;
 2000027a:	4770      	bx	lr
+			
 		case k_user_osc_param_shiftshape: 	// B knob
-			// 10bit parameter
-			p.shiftshape = valf; break;
+			// Set v vlaue
+			p.shiftshape = valf; 
 2000027c:	4b02      	ldr	r3, [pc, #8]	; (20000288 <_hook_param+0x2e>)
 2000027e:	edc3 7a04 	vstr	s15, [r3, #16]
 20000282:	4770      	bx	lr
@@ -537,7 +539,7 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 20000288:	200002a8 	.word	0x200002a8
 
 2000028c <_GLOBAL__sub_I__hook_init>:
-		float    w0;		// Main oscillator pitch
+		float    w0;		// Oscillator pitch
 		uint32_t flags: 1;	// Bit field
 		State(void) :
 			phi(ZEROF),

@@ -10,7 +10,7 @@
 
 #include "userosc.h" 
 
-# define ZEROF 0.f
+#define ZEROF 0.f
 
 struct VPS {
 	
@@ -30,8 +30,8 @@ struct VPS {
 	};
   
 	struct State {
-		float    phi; 		// Main oscillator phase
-		float    w0;		// Main oscillator pitch
+		float    phi; 		// Oscillator phase
+		float    w0;		// Oscillator pitch
 		uint32_t flags: 1;	// Bit field
 		State(void) :
 			phi(ZEROF),

@@ -9,7 +9,6 @@
 # include "userosc.h"
 # include "vps_basic.hpp"
 
-// Create VPS object
 static VPS vps;
 
 void OSC_INIT(uint32_t platform, uint32_t api) {
@@ -19,9 +18,8 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 	
-	// Local copies of the state and params objects.
+	// Local copy of the state object.
 	VPS::State &s = vps.state;
-	const VPS::Params &p = vps.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -96,11 +94,14 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 		case k_user_osc_param_id6: break; 	// User parameter 6
 			
 		case k_user_osc_param_shape: 		// A knob
-			// 10bit parameter
-			p.shape = valf; break;
+			// Set d value
+			p.shape = valf; 
+			break;
+			
 		case k_user_osc_param_shiftshape: 	// B knob
-			// 10bit parameter
-			p.shiftshape = valf; break;
+			// Set v vlaue
+			p.shiftshape = valf; 
+			break;
 			
 		default: break;
 	}
