@@ -114,8 +114,8 @@ void _entry(uint32_t platform, uint32_t api)
 2000008a:	f000 f80b 	bl	200000a4 <_hook_init>
 2000008e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
 20000092:	bf00      	nop
-20000094:	20000287 	.word	0x20000287
-20000098:	20000297 	.word	0x20000297
+20000094:	2000028f 	.word	0x2000028f
+20000098:	2000029f 	.word	0x2000029f
 2000009c:	20000040 	.word	0x20000040
 200000a0:	20000044 	.word	0x20000044
 
@@ -135,26 +135,26 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 200000a6:	b570      	push	{r4, r5, r6, lr}
+	// Local copies of the state and params objects.
+	PD::State &s = pd.state;
 	const PD::Params &p = pd.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
-	// Reset s.flags
-    s.flags = PD::flags_none; 
-200000a8:	4c59      	ldr	r4, [pc, #356]	; (20000210 <_hook_cycle+0x16a>)
-	if(flags & PD::flags_none) {
+200000a8:	4c5b      	ldr	r4, [pc, #364]	; (20000218 <_hook_cycle+0x172>)
+	if(flags & PD::flag_reset) {
 		s.reset();
 	}
 	
 	// Current note being played.
 	uint8_t note = params->pitch>>8;
 200000aa:	8880      	ldrh	r0, [r0, #4]
+	// Local copies of the state and params objects.
+	PD::State &s = pd.state;
 	const PD::Params &p = pd.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
-	// Reset s.flags
-    s.flags = PD::flags_none; 
 200000ac:	7a23      	ldrb	r3, [r4, #8]
 
 /** Linear interpolation
@@ -162,370 +162,391 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 static inline __attribute__((optimize("Ofast"), always_inline))
 float linintf(const float fr, const float x0, const float x1) {
   return x0 + fr * (x1 - x0);
-200000ae:	ed9f 7a59 	vldr	s14, [pc, #356]	; 20000214 <_hook_cycle+0x16e>
+200000ae:	ed9f 7a5b 	vldr	s14, [pc, #364]	; 2000021c <_hook_cycle+0x176>
+200000b2:	edd4 5a03 	vldr	s11, [r4, #12]
    */
   __fast_inline float osc_sinf(float x) {
     const float p = x - (uint32_t)x;
     
     // half period stored -- wrap around and invert
     const float x0f = 2.f * p * k_wt_sine_size;
-200000b2:	ed9f 2a59 	vldr	s4, [pc, #356]	; 20000218 <_hook_cycle+0x172>
+200000b6:	ed9f 2a5a 	vldr	s4, [pc, #360]	; 20000220 <_hook_cycle+0x17a>
 		
 		// Softclip signal before sending to buffer
 		sig = osc_softclipf(0.05f, sig);
 		
 		// Format in Q31 binary fixed-point representation and add to buffer
 		*(y++) = f32_to_q31(sig); 
-200000b6:	ed9f 3a59 	vldr	s6, [pc, #356]	; 2000021c <_hook_cycle+0x176>
-200000ba:	eddf 3a59 	vldr	s7, [pc, #356]	; 20000220 <_hook_cycle+0x17a>
+200000ba:	ed9f 3a5a 	vldr	s6, [pc, #360]	; 20000224 <_hook_cycle+0x17e>
+200000be:	eddf 3a5a 	vldr	s7, [pc, #360]	; 20000228 <_hook_cycle+0x182>
 	const PD::Params &p = pd.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
 	// Reset s.flags
     s.flags = PD::flags_none; 
-200000be:	f36f 0300 	bfc	r3, #0, #1
-200000c2:	7223      	strb	r3, [r4, #8]
-	if(flags & PD::flags_none) {
+200000c2:	461d      	mov	r5, r3
+	
+	// Reset state if note-on trigger
+	if(flags & PD::flag_reset) {
+200000c4:	07db      	lsls	r3, r3, #31
+		{
+			reset();
+		}
+		
+		inline void reset(void) {
+			phi = 0.f;
+200000c6:	bf44      	itt	mi
+200000c8:	2300      	movmi	r3, #0
+200000ca:	6023      	strmi	r3, [r4, #0]
 		s.reset();
 	}
 	
 	// Current note being played.
 	uint8_t note = params->pitch>>8;
-200000c4:	1203      	asrs	r3, r0, #8
+200000cc:	1203      	asrs	r3, r0, #8
+	const PD::Params &p = pd.params;
+	
+	// Get current flag
+	const uint32_t flags = s.flags; 
+	// Reset s.flags
+    s.flags = PD::flags_none; 
+200000ce:	f36f 0500 	bfc	r5, #0, #1
    *
    * @param note Note in [0-151] range.
    * @return     Corresponding Hertz value.
    */
   __fast_inline float osc_notehzf(uint8_t note) {
     return midi_to_hz_lut_f[clipmaxu32(note,k_midi_to_hz_size-1)];
-200000c6:	2b96      	cmp	r3, #150	; 0x96
-200000c8:	bfd8      	it	le
-200000ca:	461d      	movle	r5, r3
+200000d2:	2b96      	cmp	r3, #150	; 0x96
+200000d4:	7225      	strb	r5, [r4, #8]
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
 	
 	// Floating point phase increment for given note and fine modulation
 	float w0 = s.w0 = osc_w0f_for_note(note, params->pitch & 0xFF);
-200000cc:	b2c0      	uxtb	r0, r0
+200000d6:	b2c0      	uxtb	r0, r0
+200000d8:	bfd8      	it	le
+200000da:	461d      	movle	r5, r3
    * @param note Note in [0-151] range, mod in [0-255] range.
    * @return     Corresponding 0-1 phase increment in floating point.
    */
   __fast_inline float osc_w0f_for_note(uint8_t note, uint8_t mod) {    
     const float f0 = osc_notehzf(note);
     const float f1 = osc_notehzf(note+1);
-200000ce:	f103 0301 	add.w	r3, r3, #1
-200000d2:	b2db      	uxtb	r3, r3
-200000d4:	ee07 0a90 	vmov	s15, r0
+200000dc:	f103 0301 	add.w	r3, r3, #1
+200000e0:	b2db      	uxtb	r3, r3
+200000e2:	ee07 0a90 	vmov	s15, r0
    *
    * @param note Note in [0-151] range.
    * @return     Corresponding Hertz value.
    */
   __fast_inline float osc_notehzf(uint8_t note) {
     return midi_to_hz_lut_f[clipmaxu32(note,k_midi_to_hz_size-1)];
-200000d8:	bfc8      	it	gt
-200000da:	2597      	movgt	r5, #151	; 0x97
-200000dc:	4620      	mov	r0, r4
-200000de:	2b96      	cmp	r3, #150	; 0x96
-200000e0:	4c50      	ldr	r4, [pc, #320]	; (20000224 <_hook_cycle+0x17e>)
+200000e6:	bfc8      	it	gt
+200000e8:	2597      	movgt	r5, #151	; 0x97
+200000ea:	4850      	ldr	r0, [pc, #320]	; (2000022c <_hook_cycle+0x186>)
 	
 	// Local copies of the state object fields.
 	float phi = s.phi;
-200000e2:	edd0 6a00 	vldr	s13, [r0]
-200000e6:	edd0 5a03 	vldr	s11, [r0, #12]
-200000ea:	bf88      	it	hi
-200000ec:	2397      	movhi	r3, #151	; 0x97
-200000ee:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-200000f2:	eb04 0585 	add.w	r5, r4, r5, lsl #2
-200000f6:	eb04 0383 	add.w	r3, r4, r3, lsl #2
-200000fa:	ed95 6a00 	vldr	s12, [r5]
+200000ec:	edd4 6a00 	vldr	s13, [r4]
+200000f0:	2b96      	cmp	r3, #150	; 0x96
+200000f2:	bf88      	it	hi
+200000f4:	2397      	movhi	r3, #151	; 0x97
+200000f6:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+200000fa:	eb00 0585 	add.w	r5, r0, r5, lsl #2
+200000fe:	eb00 0383 	add.w	r3, r0, r3, lsl #2
+20000102:	ed95 6a00 	vldr	s12, [r5]
     const uint32_t x0p = (uint32_t)x0f;
 
     const uint32_t x0 = x0p & k_wt_sine_mask;
     const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
     
     const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
-200000fe:	4d4a      	ldr	r5, [pc, #296]	; (20000228 <_hook_cycle+0x182>)
-20000100:	ee67 7a87 	vmul.f32	s15, s15, s14
-20000104:	ed93 7a00 	vldr	s14, [r3]
-20000108:	ee37 7a46 	vsub.f32	s14, s14, s12
+20000106:	4d4a      	ldr	r5, [pc, #296]	; (20000230 <_hook_cycle+0x18a>)
+20000108:	ee67 7a87 	vmul.f32	s15, s15, s14
+2000010c:	ed93 7a00 	vldr	s14, [r3]
+20000110:	ee37 7a46 	vsub.f32	s14, s14, s12
 	
 	// Prepare to fill buffer
 	q31_t *__restrict y = (q31_t*)yn; // Pointer to start of buffer
 	const q31_t *y_e = y + frames; // Pointer to end of buffer
-2000010c:	eb01 0282 	add.w	r2, r1, r2, lsl #2
-20000110:	eea7 6a87 	vfma.f32	s12, s15, s14
+20000114:	eb01 0282 	add.w	r2, r1, r2, lsl #2
+20000118:	eea7 6a87 	vfma.f32	s12, s15, s14
 
 /** FSEL construct
  */
 static inline __attribute__((optimize("Ofast"),always_inline))
 float fsel(const float a, const float b, const float c) {
   return (a >= 0) ? b : c;
-20000114:	eddf 7a45 	vldr	s15, [pc, #276]	; 2000022c <_hook_cycle+0x186>
-20000118:	eeb4 6ae7 	vcmpe.f32	s12, s15
-2000011c:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-20000120:	bfa8      	it	ge
-20000122:	eeb0 6a67 	vmovge.f32	s12, s15
+2000011c:	eddf 7a45 	vldr	s15, [pc, #276]	; 20000234 <_hook_cycle+0x18e>
+20000120:	eeb4 6ae7 	vcmpe.f32	s12, s15
+20000124:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+20000128:	bfa8      	it	ge
+2000012a:	eeb0 6a67 	vmovge.f32	s12, s15
     const float f0 = osc_notehzf(note);
     const float f1 = osc_notehzf(note+1);
     
     const float f = clipmaxf(linintf(mod * k_note_mod_fscale, f0, f1), k_note_max_hz);
 
     return f * k_samplerate_recipf;
-20000126:	eddf 7a42 	vldr	s15, [pc, #264]	; 20000230 <_hook_cycle+0x18a>
-2000012a:	ee26 6a27 	vmul.f32	s12, s12, s15
-2000012e:	eeb6 4a00 	vmov.f32	s8, #96	; 0x3f000000  0.5
+2000012e:	eddf 7a42 	vldr	s15, [pc, #264]	; 20000238 <_hook_cycle+0x192>
+20000132:	ee26 6a27 	vmul.f32	s12, s12, s15
+20000136:	eeb6 4a00 	vmov.f32	s8, #96	; 0x3f000000  0.5
 	
 	// Current note being played.
 	uint8_t note = params->pitch>>8;
 	
 	// Floating point phase increment for given note and fine modulation
 	float w0 = s.w0 = osc_w0f_for_note(note, params->pitch & 0xFF);
-20000132:	ed80 6a01 	vstr	s12, [r0, #4]
+2000013a:	ed84 6a01 	vstr	s12, [r4, #4]
 			pd = 0.5f * fraction;
 		} else {
 			float numerator = phi - d;
 			float denominator = 1.f - d;
 			float fraction = numerator / denominator;
 			pd = 0.5f * (1 + fraction);
-20000136:	eeb7 5a00 	vmov.f32	s10, #112	; 0x3f800000  1.0
+2000013e:	eeb7 5a00 	vmov.f32	s10, #112	; 0x3f800000  1.0
    *
    * @param   x  Value in [0, 1.0].
    * @return     Result of cos(2*pi*x).
    */
   __fast_inline float osc_cosf(float x) {
     return osc_sinf(x+0.25f);
-2000013a:	eef5 2a00 	vmov.f32	s5, #80	; 0x3e800000  0.250
-2000013e:	eeff 1a00 	vmov.f32	s3, #240	; 0xbf800000 -1.0
+20000142:	eef5 2a00 	vmov.f32	s5, #80	; 0x3e800000  0.250
+20000146:	eeff 1a00 	vmov.f32	s3, #240	; 0xbf800000 -1.0
 	// Prepare to fill buffer
 	q31_t *__restrict y = (q31_t*)yn; // Pointer to start of buffer
 	const q31_t *y_e = y + frames; // Pointer to end of buffer
 	
 	// Fill buffer with samples
 	for (; y != y_e; ) { 
-20000142:	4291      	cmp	r1, r2
-20000144:	d060      	beq.n	20000208 <_hook_cycle+0x162>
+2000014a:	4291      	cmp	r1, r2
+2000014c:	d060      	beq.n	20000210 <_hook_cycle+0x16a>
 	
 	inline float PhaseDistortion(float phi) {
 		float d = params.shape;
 		
 		float pd;
 		if(phi < d) {
-20000146:	eef4 6ae5 	vcmpe.f32	s13, s11
-2000014a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+2000014e:	eef4 6ae5 	vcmpe.f32	s13, s11
+20000152:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
 			pd = 0.5f * fraction;
 		} else {
 			float numerator = phi - d;
 			float denominator = 1.f - d;
 			float fraction = numerator / denominator;
 			pd = 0.5f * (1 + fraction);
-2000014e:	bf5b      	ittet	pl
-20000150:	ee36 7ae5 	vsubpl.f32	s14, s13, s11
-20000154:	ee75 4a65 	vsubpl.f32	s9, s10, s11
+20000156:	bf5b      	ittet	pl
+20000158:	ee36 7ae5 	vsubpl.f32	s14, s13, s11
+2000015c:	ee75 4a65 	vsubpl.f32	s9, s10, s11
 		float d = params.shape;
 		
 		float pd;
 		if(phi < d) {
 			float fraction = phi / d;
 			pd = 0.5f * fraction;
-20000158:	eec6 7aa5 	vdivmi.f32	s15, s13, s11
+20000160:	eec6 7aa5 	vdivmi.f32	s15, s13, s11
 		} else {
 			float numerator = phi - d;
 			float denominator = 1.f - d;
 			float fraction = numerator / denominator;
 			pd = 0.5f * (1 + fraction);
-2000015c:	eec7 7a24 	vdivpl.f32	s15, s14, s9
-20000160:	bf58      	it	pl
-20000162:	ee77 7a85 	vaddpl.f32	s15, s15, s10
-20000166:	ee67 7a84 	vmul.f32	s15, s15, s8
-2000016a:	ee77 7aa2 	vadd.f32	s15, s15, s5
+20000164:	eec7 7a24 	vdivpl.f32	s15, s14, s9
+20000168:	bf58      	it	pl
+2000016a:	ee77 7a85 	vaddpl.f32	s15, s15, s10
+2000016e:	ee67 7a84 	vmul.f32	s15, s15, s8
+20000172:	ee77 7aa2 	vadd.f32	s15, s15, s5
    */
   __fast_inline float osc_sinf(float x) {
     const float p = x - (uint32_t)x;
     
     // half period stored -- wrap around and invert
     const float x0f = 2.f * p * k_wt_sine_size;
-2000016e:	eebc 7ae7 	vcvt.u32.f32	s14, s15
-20000172:	eeb8 7a47 	vcvt.f32.u32	s14, s14
-20000176:	ee37 7ac7 	vsub.f32	s14, s15, s14
-2000017a:	ee27 7a02 	vmul.f32	s14, s14, s4
+20000176:	eebc 7ae7 	vcvt.u32.f32	s14, s15
+2000017a:	eeb8 7a47 	vcvt.f32.u32	s14, s14
+2000017e:	ee37 7ac7 	vsub.f32	s14, s15, s14
+20000182:	ee27 7a02 	vmul.f32	s14, s14, s4
     const uint32_t x0p = (uint32_t)x0f;
-2000017e:	eefc 7ac7 	vcvt.u32.f32	s15, s14
-20000182:	ee17 4a90 	vmov	r4, s15
+20000186:	eefc 7ac7 	vcvt.u32.f32	s15, s14
+2000018a:	ee17 0a90 	vmov	r0, s15
 
     const uint32_t x0 = x0p & k_wt_sine_mask;
-20000186:	f004 037f 	and.w	r3, r4, #127	; 0x7f
+2000018e:	f000 037f 	and.w	r3, r0, #127	; 0x7f
 
 /** Linear interpolation
  */
 static inline __attribute__((optimize("Ofast"), always_inline))
 float linintf(const float fr, const float x0, const float x1) {
   return x0 + fr * (x1 - x0);
-2000018a:	ee04 4a90 	vmov	s9, r4
+20000192:	ee04 0a90 	vmov	s9, r0
     const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
     
     const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
-2000018e:	eb05 0683 	add.w	r6, r5, r3, lsl #2
-20000192:	3301      	adds	r3, #1
-20000194:	eef8 4a64 	vcvt.f32.u32	s9, s9
-20000198:	f003 037f 	and.w	r3, r3, #127	; 0x7f
-2000019c:	eb05 0383 	add.w	r3, r5, r3, lsl #2
-200001a0:	edd6 7a00 	vldr	s15, [r6]
-200001a4:	ee37 7a64 	vsub.f32	s14, s14, s9
-200001a8:	edd3 4a00 	vldr	s9, [r3]
-200001ac:	ee74 4ae7 	vsub.f32	s9, s9, s15
+20000196:	eb05 0683 	add.w	r6, r5, r3, lsl #2
+2000019a:	3301      	adds	r3, #1
+2000019c:	eef8 4a64 	vcvt.f32.u32	s9, s9
+200001a0:	f003 037f 	and.w	r3, r3, #127	; 0x7f
+200001a4:	eb05 0383 	add.w	r3, r5, r3, lsl #2
+200001a8:	edd6 7a00 	vldr	s15, [r6]
+200001ac:	ee37 7a64 	vsub.f32	s14, s14, s9
+200001b0:	edd3 4a00 	vldr	s9, [r3]
+200001b4:	ee74 4ae7 	vsub.f32	s9, s9, s15
     return (x0p < k_wt_sine_size)?y0:-y0;
-200001b0:	2c7f      	cmp	r4, #127	; 0x7f
-200001b2:	eee7 7a24 	vfma.f32	s15, s14, s9
-200001b6:	bf88      	it	hi
-200001b8:	eef1 7a67 	vneghi.f32	s15, s15
+200001b8:	287f      	cmp	r0, #127	; 0x7f
+200001ba:	eee7 7a24 	vfma.f32	s15, s14, s9
+200001be:	bf88      	it	hi
+200001c0:	eef1 7a67 	vneghi.f32	s15, s15
 		}
 		
 		return -osc_cosf(pd);
-200001bc:	eef1 7a67 	vneg.f32	s15, s15
+200001c4:	eef1 7a67 	vneg.f32	s15, s15
 
 /** FSEL construct
  */
 static inline __attribute__((optimize("Ofast"),always_inline))
 float fsel(const float a, const float b, const float c) {
   return (a >= 0) ? b : c;
-200001c0:	eef4 7ae1 	vcmpe.f32	s15, s3
-200001c4:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200001c8:	db07      	blt.n	200001da <_hook_cycle+0x134>
-200001ca:	eef4 7ac5 	vcmpe.f32	s15, s10
-200001ce:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200001d2:	bfa8      	it	ge
-200001d4:	eef0 7a45 	vmovge.f32	s15, s10
-200001d8:	e001      	b.n	200001de <_hook_cycle+0x138>
-200001da:	eeff 7a00 	vmov.f32	s15, #240	; 0xbf800000 -1.0
+200001c8:	eef4 7ae1 	vcmpe.f32	s15, s3
+200001cc:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200001d0:	db07      	blt.n	200001e2 <_hook_cycle+0x13c>
+200001d2:	eef4 7ac5 	vcmpe.f32	s15, s10
+200001d6:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200001da:	bfa8      	it	ge
+200001dc:	eef0 7a45 	vmovge.f32	s15, s10
+200001e0:	e001      	b.n	200001e6 <_hook_cycle+0x140>
+200001e2:	eeff 7a00 	vmov.f32	s15, #240	; 0xbf800000 -1.0
 		
 		// Softclip signal before sending to buffer
 		sig = osc_softclipf(0.05f, sig);
 		
 		// Format in Q31 binary fixed-point representation and add to buffer
 		*(y++) = f32_to_q31(sig); 
-200001de:	ee27 7aa7 	vmul.f32	s14, s15, s15
+200001e6:	ee27 7aa7 	vmul.f32	s14, s15, s15
 		
 		// Update local osc phase
 		phi += w0;
-200001e2:	ee76 6a86 	vadd.f32	s13, s13, s12
+200001ea:	ee76 6a86 	vadd.f32	s13, s13, s12
 		
 		// Softclip signal before sending to buffer
 		sig = osc_softclipf(0.05f, sig);
 		
 		// Format in Q31 binary fixed-point representation and add to buffer
 		*(y++) = f32_to_q31(sig); 
-200001e6:	ee27 7ac7 	vnmul.f32	s14, s15, s14
-200001ea:	eee7 7a03 	vfma.f32	s15, s14, s6
-200001ee:	ee67 7aa3 	vmul.f32	s15, s15, s7
-200001f2:	eefd 7ae7 	vcvt.s32.f32	s15, s15
-200001f6:	ece1 7a01 	vstmia	r1!, {s15}
+200001ee:	ee27 7ac7 	vnmul.f32	s14, s15, s14
+200001f2:	eee7 7a03 	vfma.f32	s15, s14, s6
+200001f6:	ee67 7aa3 	vmul.f32	s15, s15, s7
+200001fa:	eefd 7ae7 	vcvt.s32.f32	s15, s15
+200001fe:	ece1 7a01 	vstmia	r1!, {s15}
 		
 		// Update local osc phase
 		phi += w0;
 		phi -= (uint32_t)phi; // Mod 1
-200001fa:	eefc 7ae6 	vcvt.u32.f32	s15, s13
-200001fe:	eef8 7a67 	vcvt.f32.u32	s15, s15
-20000202:	ee76 6ae7 	vsub.f32	s13, s13, s15
+20000202:	eefc 7ae6 	vcvt.u32.f32	s15, s13
+20000206:	eef8 7a67 	vcvt.f32.u32	s15, s15
+2000020a:	ee76 6ae7 	vsub.f32	s13, s13, s15
 	// Prepare to fill buffer
 	q31_t *__restrict y = (q31_t*)yn; // Pointer to start of buffer
 	const q31_t *y_e = y + frames; // Pointer to end of buffer
 	
 	// Fill buffer with samples
 	for (; y != y_e; ) { 
-20000206:	e79c      	b.n	20000142 <_hook_cycle+0x9c>
+2000020e:	e79c      	b.n	2000014a <_hook_cycle+0xa4>
 		phi += w0;
 		phi -= (uint32_t)phi; // Mod 1
 	}
 	
 	// Update global osc phase
 	s.phi = phi;
-20000208:	edc0 6a00 	vstr	s13, [r0]
-2000020c:	bd70      	pop	{r4, r5, r6, pc}
-2000020e:	bf00      	nop
-20000210:	20000288 	.word	0x20000288
-20000214:	3b808081 	.word	0x3b808081
-20000218:	43800000 	.word	0x43800000
-2000021c:	3d4ccccd 	.word	0x3d4ccccd
-20000220:	4f000000 	.word	0x4f000000
-20000224:	0800f100 	.word	0x0800f100
-20000228:	08012bdc 	.word	0x08012bdc
-2000022c:	46b8ff49 	.word	0x46b8ff49
-20000230:	37aec33e 	.word	0x37aec33e
+20000210:	edc4 6a00 	vstr	s13, [r4]
+20000214:	bd70      	pop	{r4, r5, r6, pc}
+20000216:	bf00      	nop
+20000218:	20000290 	.word	0x20000290
+2000021c:	3b808081 	.word	0x3b808081
+20000220:	43800000 	.word	0x43800000
+20000224:	3d4ccccd 	.word	0x3d4ccccd
+20000228:	4f000000 	.word	0x4f000000
+2000022c:	0800f100 	.word	0x0800f100
+20000230:	08012bdc 	.word	0x08012bdc
+20000234:	46b8ff49 	.word	0x46b8ff49
+20000238:	37aec33e 	.word	0x37aec33e
 
-20000234 <_hook_on>:
+2000023c <_hook_on>:
 }
 
 void OSC_NOTEON(const user_osc_param_t *const params) {
 	PD::State &s = pd.state;
 	s.flags |= PD::flag_reset;
-20000234:	4a02      	ldr	r2, [pc, #8]	; (20000240 <_hook_on+0xc>)
-20000236:	7a13      	ldrb	r3, [r2, #8]
-20000238:	f043 0301 	orr.w	r3, r3, #1
-2000023c:	7213      	strb	r3, [r2, #8]
-2000023e:	4770      	bx	lr
-20000240:	20000288 	.word	0x20000288
+2000023c:	4a02      	ldr	r2, [pc, #8]	; (20000248 <_hook_on+0xc>)
+2000023e:	7a13      	ldrb	r3, [r2, #8]
+20000240:	f043 0301 	orr.w	r3, r3, #1
+20000244:	7213      	strb	r3, [r2, #8]
+20000246:	4770      	bx	lr
+20000248:	20000290 	.word	0x20000290
 
-20000244 <_hook_off>:
+2000024c <_hook_off>:
 }
 
 void OSC_NOTEOFF(const user_osc_param_t *const params) {
-20000244:	4770      	bx	lr
+2000024c:	4770      	bx	lr
 
-20000246 <_hook_param>:
+2000024e <_hook_param>:
 
 void OSC_PARAM(uint16_t index, uint16_t value) { 
 	
 	PD::Params &p = pd.params;
 	
 	switch (index) {
-20000246:	2806      	cmp	r0, #6
+2000024e:	2806      	cmp	r0, #6
 void OSC_NOTEOFF(const user_osc_param_t *const params) {
 	// Not used
 	(void)params;
 }
 
 void OSC_PARAM(uint16_t index, uint16_t value) { 
-20000248:	ee07 1a90 	vmov	s15, r1
+20000250:	ee07 1a90 	vmov	s15, r1
 	
 	PD::Params &p = pd.params;
 	
 	switch (index) {
-2000024c:	d108      	bne.n	20000260 <_hook_param+0x1a>
+20000254:	d108      	bne.n	20000268 <_hook_param+0x1a>
 			
 		case k_user_osc_param_id6: break; 			// User parameter 6
 			
 		case k_user_osc_param_shape: 				// A knob
 			// 10bit parameter
 			p.shape = param_val_to_f32(value); 
-2000024e:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-20000252:	ed9f 7a04 	vldr	s14, [pc, #16]	; 20000264 <_hook_param+0x1e>
-20000256:	4b04      	ldr	r3, [pc, #16]	; (20000268 <_hook_param+0x22>)
-20000258:	ee67 7a87 	vmul.f32	s15, s15, s14
-2000025c:	edc3 7a03 	vstr	s15, [r3, #12]
-20000260:	4770      	bx	lr
-20000262:	bf00      	nop
-20000264:	3a802008 	.word	0x3a802008
-20000268:	20000288 	.word	0x20000288
+20000256:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+2000025a:	ed9f 7a04 	vldr	s14, [pc, #16]	; 2000026c <_hook_param+0x1e>
+2000025e:	4b04      	ldr	r3, [pc, #16]	; (20000270 <_hook_param+0x22>)
+20000260:	ee67 7a87 	vmul.f32	s15, s15, s14
+20000264:	edc3 7a03 	vstr	s15, [r3, #12]
+20000268:	4770      	bx	lr
+2000026a:	bf00      	nop
+2000026c:	3a802008 	.word	0x3a802008
+20000270:	20000290 	.word	0x20000290
 
-2000026c <_GLOBAL__sub_I__hook_init>:
+20000274 <_GLOBAL__sub_I__hook_init>:
 		float    w0;		// Main oscillator pitch
 		uint32_t flags: 1;	// Bit field
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			flags(flags_none)
-2000026c:	4b04      	ldr	r3, [pc, #16]	; (20000280 <_GLOBAL__sub_I__hook_init+0x14>)
-2000026e:	7a19      	ldrb	r1, [r3, #8]
-20000270:	2200      	movs	r2, #0
-20000272:	f36f 0100 	bfc	r1, #0, #1
-20000276:	601a      	str	r2, [r3, #0]
-20000278:	605a      	str	r2, [r3, #4]
-2000027a:	7219      	strb	r1, [r3, #8]
+20000274:	4b04      	ldr	r3, [pc, #16]	; (20000288 <_GLOBAL__sub_I__hook_init+0x14>)
+20000276:	7a19      	ldrb	r1, [r3, #8]
+20000278:	2200      	movs	r2, #0
+2000027a:	f36f 0100 	bfc	r1, #0, #1
+2000027e:	601a      	str	r2, [r3, #0]
+20000280:	605a      	str	r2, [r3, #4]
+20000282:	7219      	strb	r1, [r3, #8]
 	
 	struct Params {
 		float   shape;
     
 		Params(void) :
 			shape(ZEROF)
-2000027c:	60da      	str	r2, [r3, #12]
-2000027e:	4770      	bx	lr
-20000280:	20000288 	.word	0x20000288
+20000284:	60da      	str	r2, [r3, #12]
+20000286:	4770      	bx	lr
+20000288:	20000290 	.word	0x20000290

@@ -18,6 +18,7 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 }
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
+	
 	// Local copies of the state and params objects.
 	PD::State &s = pd.state;
 	const PD::Params &p = pd.params;
@@ -28,7 +29,7 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
     s.flags = PD::flags_none; 
 	
 	// Reset state if note-on trigger
-	if(flags & PD::flags_none) {
+	if(flags & PD::flag_reset) {
 		s.reset();
 	}
 	
