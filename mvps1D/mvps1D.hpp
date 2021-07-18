@@ -3,7 +3,7 @@
  *
  * 2021 Graham Keane - Maynooth University
  *
- * Multiple Inflection Points with x-axis LFO modulation
+ * Multiple Inflection Points with 1D LFO modulation (d values)
  */
  
 #pragma once

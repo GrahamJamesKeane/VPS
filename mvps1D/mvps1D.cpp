@@ -3,7 +3,7 @@
  * 
  * 2021 Graham Keane - Maynooth University
  *
- * Multiple inflections points with d-value LFO modulation 
+ * Multiple inflections points with 1D LFO modulation (d-values)
  */
 
 #include "userosc.h"
@@ -17,7 +17,7 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 }
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
-	// Local copy of the state objects.
+	// Local copy of the state object.
 	MVPS1D::State &s = mvps1D.state;
 	
 	// Current note being played.
