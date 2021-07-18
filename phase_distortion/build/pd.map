@@ -157,9 +157,9 @@ LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/
 END GROUP
 OUTPUT(build/pd.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x12e4
+.debug_info     0x00000000     0x12c0
  .debug_info    0x00000000      0x6a4 ./build/obj/_unit.o
- .debug_info    0x000006a4      0xc40 ./build/obj/pd.o
+ .debug_info    0x000006a4      0xc1c ./build/obj/pd.o
 
 .debug_abbrev   0x00000000      0x558
  .debug_abbrev  0x00000000      0x20e ./build/obj/_unit.o

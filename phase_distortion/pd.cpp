@@ -9,7 +9,6 @@
 #include "userosc.h"
 #include "pd.hpp"
 
-// Create PD object
 static PD pd;
 
 void OSC_INIT(uint32_t platform, uint32_t api) {
@@ -19,9 +18,8 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 	
-	// Local copies of the state and params objects.
+	// Local copy of the state object.
 	PD::State &s = pd.state;
-	const PD::Params &p = pd.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -94,7 +92,7 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 		case k_user_osc_param_id6: break; 			// User parameter 6
 			
 		case k_user_osc_param_shape: 				// A knob
-			// 10bit parameter
+			// Set Phase distortion
 			p.shape = param_val_to_f32(value); 
 			break;
 			

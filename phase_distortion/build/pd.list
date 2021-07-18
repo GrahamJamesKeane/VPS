@@ -120,9 +120,9 @@ void _entry(uint32_t platform, uint32_t api)
 200000a0:	20000044 	.word	0x20000044
 
 200000a4 <_hook_init>:
+#include "userosc.h"
 #include "pd.hpp"
 
-// Create PD object
 static PD pd;
 
 void OSC_INIT(uint32_t platform, uint32_t api) {
@@ -135,9 +135,9 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 200000a6:	b570      	push	{r4, r5, r6, lr}
-	// Local copies of the state and params objects.
+	
+	// Local copy of the state object.
 	PD::State &s = pd.state;
-	const PD::Params &p = pd.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -149,9 +149,9 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 	// Current note being played.
 	uint8_t note = params->pitch>>8;
 200000aa:	8880      	ldrh	r0, [r0, #4]
-	// Local copies of the state and params objects.
+	
+	// Local copy of the state object.
 	PD::State &s = pd.state;
-	const PD::Params &p = pd.params;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -179,7 +179,7 @@ float linintf(const float fr, const float x0, const float x1) {
 		*(y++) = f32_to_q31(sig); 
 200000ba:	ed9f 3a5a 	vldr	s6, [pc, #360]	; 20000224 <_hook_cycle+0x17e>
 200000be:	eddf 3a5a 	vldr	s7, [pc, #360]	; 20000228 <_hook_cycle+0x182>
-	const PD::Params &p = pd.params;
+	PD::State &s = pd.state;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -205,7 +205,7 @@ float linintf(const float fr, const float x0, const float x1) {
 	// Current note being played.
 	uint8_t note = params->pitch>>8;
 200000cc:	1203      	asrs	r3, r0, #8
-	const PD::Params &p = pd.params;
+	PD::State &s = pd.state;
 	
 	// Get current flag
 	const uint32_t flags = s.flags; 
@@ -515,7 +515,7 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 		case k_user_osc_param_id6: break; 			// User parameter 6
 			
 		case k_user_osc_param_shape: 				// A knob
-			// 10bit parameter
+			// Set Phase distortion
 			p.shape = param_val_to_f32(value); 
 20000256:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 2000025a:	ed9f 7a04 	vldr	s14, [pc, #16]	; 2000026c <_hook_param+0x1e>
