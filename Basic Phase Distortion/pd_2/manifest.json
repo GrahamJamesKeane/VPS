@@ -8,9 +8,10 @@
         "prg_id" : 0,
         "version" : "1.0-1",
         "name" : "pd_2",
-        "num_param" : 1,
+        "num_param" : 2,
         "params" : [  
-			["D Value", 0, 100, "%"]
+			["D Value", 0, 100, "%"],
+			["F Ratio", 0, 100, "%"]
 		]
     }
 }

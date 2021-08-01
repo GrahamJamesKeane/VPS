@@ -11,8 +11,9 @@
 #include "userosc.h"
 #include "biquad.hpp."
 
-#define ZEROF 0.f
+#define ZEROF 	0.f
 #define DEFAULT 0.5f
+#define ONEF	1.f
 
 struct PD {
 	
@@ -22,10 +23,12 @@ struct PD {
 	};
 	
 	struct Params {
-		float   d;
+		float   d; 			// D-values
+		float	f_ratio; 	// Frequency ratio for filters
     
 		Params(void) :
-			d(DEFAULT)
+			d(DEFAULT),
+			f_ratio(ONEF)
 		{ }
 	};
   
@@ -53,7 +56,7 @@ struct PD {
 	}
 	
 	inline void setFilters(float w0) {
-		float limit = 8.f;
+		const float limit = params.f_ratio;
 		LPF.mCoeffs.setFOLP(osc_tanpif(limit * w0));
 		HPF.mCoeffs.setFOHP(osc_tanpif((1.f / limit) * w0));
 	}
@@ -81,6 +84,7 @@ struct PD {
 	
 	State 	state;
 	Params 	params;
+	
 	dsp::BiQuad LPF;
 	dsp::BiQuad HPF;
 };

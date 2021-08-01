@@ -114,8 +114,8 @@ void _entry(uint32_t platform, uint32_t api)
 2000008a:	f000 f80b 	bl	200000a4 <_hook_init>
 2000008e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
 20000092:	bf00      	nop
-20000094:	200003f7 	.word	0x200003f7
-20000098:	2000043f 	.word	0x2000043f
+20000094:	200003ef 	.word	0x200003ef
+20000098:	2000043b 	.word	0x2000043b
 2000009c:	20000040 	.word	0x20000040
 200000a0:	20000044 	.word	0x20000044
 
@@ -135,744 +135,747 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 	
 	// Current flag
 	const uint32_t flags = s.flags;
-200000a6:	4b59      	ldr	r3, [pc, #356]	; (2000020c <_hook_cycle+0x166>)
-		
-		// Softclip signal before sending to buffer
-		sig = osc_softclipf(0.05f, sig);
-		
-		// Format in Q31 binary fixed-point representation and add to buffer
-		*(y++) = f32_to_q31(sig); 
-200000a8:	eddf 2a59 	vldr	s5, [pc, #356]	; 20000210 <_hook_cycle+0x16a>
-	
-	// Local copy of the state object.
-	PD::State &s = pd.state;
-	
-	// Current flag
-	const uint32_t flags = s.flags;
-200000ac:	7a18      	ldrb	r0, [r3, #8]
-		s.reset();
+200000a6:	4b9a      	ldr	r3, [pc, #616]	; (20000310 <_hook_cycle+0x26a>)
+
+/** Linear interpolation
+ */
+static inline __attribute__((optimize("Ofast"), always_inline))
+float linintf(const float fr, const float x0, const float x1) {
+  return x0 + fr * (x1 - x0);
+200000a8:	ed9f 7a9a 	vldr	s14, [pc, #616]	; 20000314 <_hook_cycle+0x26e>
+		state = State();
+		params = Params();
 	}
 	
-	// Local copies of the phase and increment values.
-	float phi = s.phi;
-	float w0 = s.w0;
-200000ae:	edd3 3a01 	vldr	s7, [r3, #4]
+	inline void setFilters(float w0) {
+		const float limit = params.f_ratio;
+200000ac:	edd3 4a04 	vldr	s9, [r3, #16]
+   * @param   x  Value in [0.0001, 0.49].
+   * @return     Result of tan(pi*x).
+   * @note Not checking input, caller responsible for bounding x.
+   */
+  __fast_inline float osc_tanpif(float x) {
+    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
+200000b0:	ed9f 5a99 	vldr	s10, [pc, #612]	; 20000318 <_hook_cycle+0x272>
 		LPF.mCoeffs.setFOLP(osc_tanpif(limit * w0));
 		HPF.mCoeffs.setFOHP(osc_tanpif((1.f / limit) * w0));
 	}
 	
 	inline float PhaseDistortion(float phi) {
 		float d = params.d;
-200000b2:	ed93 5a03 	vldr	s10, [r3, #12]
-     *
-     * @return Output sample
-     */
-    inline __attribute__((optimize("Ofast"),always_inline))
-    float process_fo(const float xn) {
-      float acc = mCoeffs.ff0 * xn + mZ1;
-200000b6:	ed93 2a04 	vldr	s4, [r3, #16]
-      mZ1 = mCoeffs.ff1 * xn;
-200000ba:	edd3 1a05 	vldr	s3, [r3, #20]
-      mZ1 -= mCoeffs.fb1 * acc;
-200000be:	ed93 1a07 	vldr	s2, [r3, #28]
-200000c2:	edd3 5a09 	vldr	s11, [r3, #36]	; 0x24
-     *
-     * @return Output sample
-     */
-    inline __attribute__((optimize("Ofast"),always_inline))
-    float process_fo(const float xn) {
-      float acc = mCoeffs.ff0 * xn + mZ1;
-200000c6:	edd3 0a0b 	vldr	s1, [r3, #44]	; 0x2c
-      mZ1 = mCoeffs.ff1 * xn;
-200000ca:	ed93 0a0c 	vldr	s0, [r3, #48]	; 0x30
-200000ce:	ed93 6a10 	vldr	s12, [r3, #64]	; 0x40
+200000b4:	ed93 4a03 	vldr	s8, [r3, #12]
 		
 		// Softclip signal before sending to buffer
 		sig = osc_softclipf(0.05f, sig);
 		
 		// Format in Q31 binary fixed-point representation and add to buffer
 		*(y++) = f32_to_q31(sig); 
-200000d2:	ed9f 3a50 	vldr	s6, [pc, #320]	; 20000214 <_hook_cycle+0x16e>
+200000b8:	ed9f 0a98 	vldr	s0, [pc, #608]	; 2000031c <_hook_cycle+0x276>
+200000bc:	eddf 0a98 	vldr	s1, [pc, #608]	; 20000320 <_hook_cycle+0x27a>
 void OSC_INIT(uint32_t platform, uint32_t api) {
 	(void)platform;
 	(void)api;
 }
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
-200000d6:	b570      	push	{r4, r5, r6, lr}
+200000c0:	b570      	push	{r4, r5, r6, lr}
+	
+	// Local copy of the state object.
+	PD::State &s = pd.state;
+	
+	// Current flag
+	const uint32_t flags = s.flags;
+200000c2:	7a1c      	ldrb	r4, [r3, #8]
+	
+	// Reset s.flags
+    s.flags = PD::flags_none; 
+	
+	// Reset state if note-on trigger
+	if(flags & PD::flag_reset) {
+200000c4:	f014 0f01 	tst.w	r4, #1
 	
 	// Current flag
 	const uint32_t flags = s.flags;
 	
 	// Reset s.flags
     s.flags = PD::flags_none; 
-200000d8:	4604      	mov	r4, r0
-	
-	// Reset state if note-on trigger
+200000c8:	4625      	mov	r5, r4
 	if(flags & PD::flag_reset) {
-200000da:	07c0      	lsls	r0, r0, #31
+		s.reset();
+	}
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
+200000ca:	8884      	ldrh	r4, [r0, #4]
+	
+	// Current flag
+	const uint32_t flags = s.flags;
+	
+	// Reset s.flags
+    s.flags = PD::flags_none; 
+200000cc:	f36f 0500 	bfc	r5, #0, #1
+void OSC_INIT(uint32_t platform, uint32_t api) {
+	(void)platform;
+	(void)api;
+}
+
+void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
+200000d0:	ed2d 8b06 	vpush	{d8-d10}
+	if(flags & PD::flag_reset) {
+		s.reset();
+	}
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
+200000d4:	ea4f 2024 	mov.w	r0, r4, asr #8
+	
+	// Current flag
+	const uint32_t flags = s.flags;
+	
+	// Reset s.flags
+    s.flags = PD::flags_none; 
+200000d8:	721d      	strb	r5, [r3, #8]
+200000da:	f04f 0500 	mov.w	r5, #0
 		{
 			reset();
 		}
 		
 		inline void reset(void) {
 			phi = ZEROF;
-200000dc:	bf48      	it	mi
-200000de:	2000      	movmi	r0, #0
-void OSC_INIT(uint32_t platform, uint32_t api) {
-	(void)platform;
-	(void)api;
-}
-
-void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
-200000e0:	ed2d 8b06 	vpush	{d8-d10}
-200000e4:	bf48      	it	mi
-200000e6:	6018      	strmi	r0, [r3, #0]
-	
-	// Current flag
-	const uint32_t flags = s.flags;
-	
-	// Reset s.flags
-    s.flags = PD::flags_none; 
-200000e8:	f36f 0400 	bfc	r4, #0, #1
-	if(flags & PD::flag_reset) {
-		s.reset();
-	}
-	
-	// Local copies of the phase and increment values.
-	float phi = s.phi;
-200000ec:	edd3 6a00 	vldr	s13, [r3]
-      mZ1 -= mCoeffs.fb1 * acc;
-200000f0:	ed93 8a0e 	vldr	s16, [r3, #56]	; 0x38
-   */
-  __fast_inline float osc_sinf(float x) {
-    const float p = x - (uint32_t)x;
-    
-    // half period stored -- wrap around and invert
-    const float x0f = 2.f * p * k_wt_sine_size;
-200000f4:	ed9f 9a48 	vldr	s18, [pc, #288]	; 20000218 <_hook_cycle+0x172>
-    const uint32_t x0p = (uint32_t)x0f;
-
-    const uint32_t x0 = x0p & k_wt_sine_mask;
-    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
-    
-    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
-200000f8:	4d48      	ldr	r5, [pc, #288]	; (2000021c <_hook_cycle+0x176>)
-	
-	// Current flag
-	const uint32_t flags = s.flags;
-	
-	// Reset s.flags
-    s.flags = PD::flags_none; 
-200000fa:	721c      	strb	r4, [r3, #8]
-	
-	// Pointer to start of buffer
-	q31_t *__restrict y = (q31_t*)yn;
-
-	// Pointer to end of buffer	
-	const q31_t *y_e = y + frames; 
-200000fc:	eb01 0282 	add.w	r2, r1, r2, lsl #2
-20000100:	eeb6 4a00 	vmov.f32	s8, #96	; 0x3f000000  0.5
-			pd = 0.5f * fraction;
-		} else {
-			float numerator = phi - d;
-			float denominator = 1.f - d;
-			float fraction = numerator / denominator;
-			pd = 0.5f * (1 + fraction);
-20000104:	eef7 4a00 	vmov.f32	s9, #112	; 0x3f800000  1.0
-   *
-   * @param   x  Value in [0, 1.0].
-   * @return     Result of cos(2*pi*x).
-   */
-  __fast_inline float osc_cosf(float x) {
-    return osc_sinf(x+0.25f);
-20000108:	eef5 8a00 	vmov.f32	s17, #80	; 0x3e800000  0.250
-
-/** FSEL construct
- */
-static inline __attribute__((optimize("Ofast"),always_inline))
-float fsel(const float a, const float b, const float c) {
-  return (a >= 0) ? b : c;
-2000010c:	eeff 9a00 	vmov.f32	s19, #240	; 0xbf800000 -1.0
-	
-	// Fill buffer with samples
-	for (; y != y_e; ) { 
-20000110:	4291      	cmp	r1, r2
-20000112:	d072      	beq.n	200001fa <_hook_cycle+0x154>
-	
-	inline float PhaseDistortion(float phi) {
-		float d = params.d;
-		
-		float pd;
-		if(phi < d) {
-20000114:	eef4 6ac5 	vcmpe.f32	s13, s10
-20000118:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-			pd = 0.5f * fraction;
-		} else {
-			float numerator = phi - d;
-			float denominator = 1.f - d;
-			float fraction = numerator / denominator;
-			pd = 0.5f * (1 + fraction);
-2000011c:	bf5b      	ittet	pl
-2000011e:	ee76 7ac5 	vsubpl.f32	s15, s13, s10
-20000122:	ee34 aac5 	vsubpl.f32	s20, s9, s10
-		float d = params.d;
-		
-		float pd;
-		if(phi < d) {
-			float fraction = phi / d;
-			pd = 0.5f * fraction;
-20000126:	ee86 7a85 	vdivmi.f32	s14, s13, s10
-		} else {
-			float numerator = phi - d;
-			float denominator = 1.f - d;
-			float fraction = numerator / denominator;
-			pd = 0.5f * (1 + fraction);
-2000012a:	ee87 7a8a 	vdivpl.f32	s14, s15, s20
-2000012e:	bf58      	it	pl
-20000130:	ee37 7a24 	vaddpl.f32	s14, s14, s9
-20000134:	ee27 7a04 	vmul.f32	s14, s14, s8
-20000138:	ee37 7a28 	vadd.f32	s14, s14, s17
-   */
-  __fast_inline float osc_sinf(float x) {
-    const float p = x - (uint32_t)x;
-    
-    // half period stored -- wrap around and invert
-    const float x0f = 2.f * p * k_wt_sine_size;
-2000013c:	eefc 7ac7 	vcvt.u32.f32	s15, s14
-20000140:	eef8 7a67 	vcvt.f32.u32	s15, s15
-20000144:	ee77 7a67 	vsub.f32	s15, s14, s15
-20000148:	ee67 7a89 	vmul.f32	s15, s15, s18
-    const uint32_t x0p = (uint32_t)x0f;
-2000014c:	eebc 7ae7 	vcvt.u32.f32	s14, s15
-20000150:	ee17 4a10 	vmov	r4, s14
-
-    const uint32_t x0 = x0p & k_wt_sine_mask;
-20000154:	f004 007f 	and.w	r0, r4, #127	; 0x7f
-
-/** Linear interpolation
- */
-static inline __attribute__((optimize("Ofast"), always_inline))
-float linintf(const float fr, const float x0, const float x1) {
-  return x0 + fr * (x1 - x0);
-20000158:	ee0a 4a10 	vmov	s20, r4
-    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
-    
-    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
-2000015c:	eb05 0680 	add.w	r6, r5, r0, lsl #2
-20000160:	3001      	adds	r0, #1
-20000162:	eeb8 aa4a 	vcvt.f32.u32	s20, s20
-20000166:	f000 007f 	and.w	r0, r0, #127	; 0x7f
-2000016a:	eb05 0080 	add.w	r0, r5, r0, lsl #2
-2000016e:	ee77 7aca 	vsub.f32	s15, s15, s20
-20000172:	ed96 7a00 	vldr	s14, [r6]
-20000176:	ed90 aa00 	vldr	s20, [r0]
-2000017a:	ee3a aa47 	vsub.f32	s20, s20, s14
-    return (x0p < k_wt_sine_size)?y0:-y0;
-2000017e:	2c7f      	cmp	r4, #127	; 0x7f
-20000180:	eea7 7a8a 	vfma.f32	s14, s15, s20
-20000184:	eef0 7a47 	vmov.f32	s15, s14
-20000188:	bf88      	it	hi
-2000018a:	eef1 7a47 	vneghi.f32	s15, s14
-		}
-		
-		float sig = -osc_cosf(pd);
-2000018e:	eef1 7a67 	vneg.f32	s15, s15
-     *
-     * @return Output sample
-     */
-    inline __attribute__((optimize("Ofast"),always_inline))
-    float process_fo(const float xn) {
-      float acc = mCoeffs.ff0 * xn + mZ1;
-20000192:	eeb0 7a65 	vmov.f32	s14, s11
-20000196:	eea7 7a82 	vfma.f32	s14, s15, s4
-      mZ1 = mCoeffs.ff1 * xn;
-      mZ1 -= mCoeffs.fb1 * acc;
-2000019a:	ee61 5a47 	vnmul.f32	s11, s2, s14
-2000019e:	eee7 5aa1 	vfma.f32	s11, s15, s3
-     *
-     * @return Output sample
-     */
-    inline __attribute__((optimize("Ofast"),always_inline))
-    float process_fo(const float xn) {
-      float acc = mCoeffs.ff0 * xn + mZ1;
-200001a2:	eef0 7a46 	vmov.f32	s15, s12
-200001a6:	eee7 7a20 	vfma.f32	s15, s14, s1
-      mZ1 = mCoeffs.ff1 * xn;
-      mZ1 -= mCoeffs.fb1 * acc;
-200001aa:	ee28 6a67 	vnmul.f32	s12, s16, s15
-
-/** FSEL construct
- */
-static inline __attribute__((optimize("Ofast"),always_inline))
-float fsel(const float a, const float b, const float c) {
-  return (a >= 0) ? b : c;
-200001ae:	eef4 7ae9 	vcmpe.f32	s15, s19
-200001b2:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200001b6:	eea7 6a00 	vfma.f32	s12, s14, s0
-200001ba:	db07      	blt.n	200001cc <_hook_cycle+0x126>
-200001bc:	eef4 7ae4 	vcmpe.f32	s15, s9
-200001c0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200001c4:	bfa8      	it	ge
-200001c6:	eef0 7a64 	vmovge.f32	s15, s9
-200001ca:	e001      	b.n	200001d0 <_hook_cycle+0x12a>
-200001cc:	eeff 7a00 	vmov.f32	s15, #240	; 0xbf800000 -1.0
-		
-		// Softclip signal before sending to buffer
-		sig = osc_softclipf(0.05f, sig);
-		
-		// Format in Q31 binary fixed-point representation and add to buffer
-		*(y++) = f32_to_q31(sig); 
-200001d0:	ee27 7aa7 	vmul.f32	s14, s15, s15
-		
-		// Update local osc phase
-		phi += w0;
-200001d4:	ee76 6aa3 	vadd.f32	s13, s13, s7
-		
-		// Softclip signal before sending to buffer
-		sig = osc_softclipf(0.05f, sig);
-		
-		// Format in Q31 binary fixed-point representation and add to buffer
-		*(y++) = f32_to_q31(sig); 
-200001d8:	ee27 7ac7 	vnmul.f32	s14, s15, s14
-200001dc:	eee7 7a22 	vfma.f32	s15, s14, s5
-200001e0:	ee67 7a83 	vmul.f32	s15, s15, s6
-200001e4:	eefd 7ae7 	vcvt.s32.f32	s15, s15
-200001e8:	ece1 7a01 	vstmia	r1!, {s15}
-		
-		// Update local osc phase
-		phi += w0;
-		phi -= (uint32_t)phi; // Mod 1
-200001ec:	eefc 7ae6 	vcvt.u32.f32	s15, s13
-200001f0:	eef8 7a67 	vcvt.f32.u32	s15, s15
-200001f4:	ee76 6ae7 	vsub.f32	s13, s13, s15
-
-	// Pointer to end of buffer	
-	const q31_t *y_e = y + frames; 
-	
-	// Fill buffer with samples
-	for (; y != y_e; ) { 
-200001f8:	e78a      	b.n	20000110 <_hook_cycle+0x6a>
-		phi -= (uint32_t)phi; // Mod 1
-	}
-	
-	// Update global osc phase
-	s.phi = phi;
-}
-200001fa:	ecbd 8b06 	vpop	{d8-d10}
-200001fe:	edc3 5a09 	vstr	s11, [r3, #36]	; 0x24
-20000202:	ed83 6a10 	vstr	s12, [r3, #64]	; 0x40
-		phi += w0;
-		phi -= (uint32_t)phi; // Mod 1
-	}
-	
-	// Update global osc phase
-	s.phi = phi;
-20000206:	edc3 6a00 	vstr	s13, [r3]
-}
-2000020a:	bd70      	pop	{r4, r5, r6, pc}
-2000020c:	200003f8 	.word	0x200003f8
-20000210:	3d4ccccd 	.word	0x3d4ccccd
-20000214:	4f000000 	.word	0x4f000000
-20000218:	43800000 	.word	0x43800000
-2000021c:	08012bdc 	.word	0x08012bdc
-
-20000220 <_hook_on>:
-
-void OSC_NOTEON(const user_osc_param_t *const params) {
-	
-	PD::State &s = pd.state;
-	s.flags |= PD::flag_reset;
-20000220:	4b4c      	ldr	r3, [pc, #304]	; (20000354 <_hook_on+0x134>)
-	
-	// Current note being played.
-	uint8_t note = params->pitch>>8;
-20000222:	8881      	ldrh	r1, [r0, #4]
-}
-
-void OSC_NOTEON(const user_osc_param_t *const params) {
-	
-	PD::State &s = pd.state;
-	s.flags |= PD::flag_reset;
-20000224:	7a1a      	ldrb	r2, [r3, #8]
-
-/** Linear interpolation
- */
-static inline __attribute__((optimize("Ofast"), always_inline))
-float linintf(const float fr, const float x0, const float x1) {
-  return x0 + fr * (x1 - x0);
-20000226:	eddf 7a4c 	vldr	s15, [pc, #304]	; 20000358 <_hook_on+0x138>
-   * @param   x  Value in [0.0001, 0.49].
-   * @return     Result of tan(pi*x).
-   * @note Not checking input, caller responsible for bounding x.
-   */
-  __fast_inline float osc_tanpif(float x) {
-    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
-2000022a:	eddf 5a4c 	vldr	s11, [pc, #304]	; 2000035c <_hook_on+0x13c>
-2000022e:	f042 0201 	orr.w	r2, r2, #1
-	
-	// Update global osc phase
-	s.phi = phi;
-}
-
-void OSC_NOTEON(const user_osc_param_t *const params) {
-20000232:	b510      	push	{r4, lr}
-	
-	PD::State &s = pd.state;
-	s.flags |= PD::flag_reset;
-20000234:	721a      	strb	r2, [r3, #8]
-	
-	// Current note being played.
-	uint8_t note = params->pitch>>8;
-20000236:	120a      	asrs	r2, r1, #8
-
-/** Clip upper bound of unsigned integer x to m (inclusive)
- */
-static inline __attribute__((optimize("Ofast"), always_inline))
-uint32_t clipmaxu32(const uint32_t x, const uint32_t m) {
-  return (((x)>=m)?m:(x));
-20000238:	2a96      	cmp	r2, #150	; 0x96
+200000de:	bf18      	it	ne
+200000e0:	601d      	strne	r5, [r3, #0]
    *
    * @param note Note in [0-151] range.
    * @return     Corresponding Hertz value.
    */
   __fast_inline float osc_notehzf(uint8_t note) {
     return midi_to_hz_lut_f[clipmaxu32(note,k_midi_to_hz_size-1)];
-2000023a:	bfd8      	it	le
-2000023c:	4610      	movle	r0, r2
+200000e2:	2896      	cmp	r0, #150	; 0x96
+200000e4:	bfd8      	it	le
+200000e6:	4606      	movle	r6, r0
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
 	
 	// Floating point phase increment for given note and fine modulation
 	float w0 = s.w0 = osc_w0f_for_note(note, params->pitch & 0xFF);
-2000023e:	b2c9      	uxtb	r1, r1
+200000e8:	b2e4      	uxtb	r4, r4
    * @param note Note in [0-151] range, mod in [0-255] range.
    * @return     Corresponding 0-1 phase increment in floating point.
    */
   __fast_inline float osc_w0f_for_note(uint8_t note, uint8_t mod) {    
     const float f0 = osc_notehzf(note);
     const float f1 = osc_notehzf(note+1);
-20000240:	f102 0201 	add.w	r2, r2, #1
-20000244:	b2d2      	uxtb	r2, r2
-20000246:	ee06 1a90 	vmov	s13, r1
+200000ea:	f100 0001 	add.w	r0, r0, #1
+200000ee:	b2c0      	uxtb	r0, r0
+200000f0:	ee07 4a90 	vmov	s15, r4
    *
    * @param note Note in [0-151] range.
    * @return     Corresponding Hertz value.
    */
   __fast_inline float osc_notehzf(uint8_t note) {
     return midi_to_hz_lut_f[clipmaxu32(note,k_midi_to_hz_size-1)];
-2000024a:	bfc8      	it	gt
-2000024c:	2097      	movgt	r0, #151	; 0x97
-2000024e:	4944      	ldr	r1, [pc, #272]	; (20000360 <_hook_on+0x140>)
-20000250:	2a96      	cmp	r2, #150	; 0x96
-20000252:	bf88      	it	hi
-20000254:	2297      	movhi	r2, #151	; 0x97
-20000256:	eef8 6ae6 	vcvt.f32.s32	s13, s13
-2000025a:	eb01 0080 	add.w	r0, r1, r0, lsl #2
-2000025e:	eb01 0282 	add.w	r2, r1, r2, lsl #2
-20000262:	ed90 7a00 	vldr	s14, [r0]
-20000266:	ee66 6aa7 	vmul.f32	s13, s13, s15
-2000026a:	edd2 7a00 	vldr	s15, [r2]
+200000f4:	bfc8      	it	gt
+200000f6:	2697      	movgt	r6, #151	; 0x97
+200000f8:	4c8a      	ldr	r4, [pc, #552]	; (20000324 <_hook_cycle+0x27e>)
+      void setFOLP(const float k) {
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = ff1 = k / kp1;
+        fb1 = km1 / kp1;
+        fb2 = ff2 = 0.f;
+200000fa:	61dd      	str	r5, [r3, #28]
+200000fc:	2896      	cmp	r0, #150	; 0x96
+200000fe:	bf88      	it	hi
+20000100:	2097      	movhi	r0, #151	; 0x97
+20000102:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+20000106:	eb04 0686 	add.w	r6, r4, r6, lsl #2
+2000010a:	eb04 0080 	add.w	r0, r4, r0, lsl #2
+2000010e:	edd6 5a00 	vldr	s11, [r6]
+20000112:	625d      	str	r5, [r3, #36]	; 0x24
+20000114:	ee67 7a87 	vmul.f32	s15, s15, s14
+20000118:	ed90 7a00 	vldr	s14, [r0]
    * @note Not checking input, caller responsible for bounding x.
    */
   __fast_inline float osc_tanpif(float x) {
     const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
     const uint32_t idx = (uint32_t)idxf;
     const float y0 = tanpi_lut_f[idx];
-2000026e:	4a3d      	ldr	r2, [pc, #244]	; (20000364 <_hook_on+0x144>)
-20000270:	ee77 7ac7 	vsub.f32	s15, s15, s14
-20000274:	eea6 7aa7 	vfma.f32	s14, s13, s15
-   * @param   x  Value in [0.0001, 0.49].
-   * @return     Result of tan(pi*x).
-   * @note Not checking input, caller responsible for bounding x.
-   */
-  __fast_inline float osc_tanpif(float x) {
-    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
-20000278:	eef2 6a00 	vmov.f32	s13, #32	; 0x41000000  8.0
-2000027c:	eef0 7a47 	vmov.f32	s15, s14
+2000011c:	4882      	ldr	r0, [pc, #520]	; (20000328 <_hook_cycle+0x282>)
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = 1.f / kp1;
+        ff1 = -ff0;
+        fb1 = km1 / kp1;
+        fb2 = ff2 = 0.f;
+2000011e:	639d      	str	r5, [r3, #56]	; 0x38
+20000120:	ee37 7a65 	vsub.f32	s14, s14, s11
+20000124:	641d      	str	r5, [r3, #64]	; 0x40
+20000126:	eee7 5a87 	vfma.f32	s11, s15, s14
+    const uint32_t x0p = (uint32_t)x0f;
+
+    const uint32_t x0 = x0p & k_wt_sine_mask;
+    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
+    
+    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
+2000012a:	4d80      	ldr	r5, [pc, #512]	; (2000032c <_hook_cycle+0x286>)
 
 /** FSEL construct
  */
 static inline __attribute__((optimize("Ofast"),always_inline))
 float fsel(const float a, const float b, const float c) {
   return (a >= 0) ? b : c;
-20000280:	ed9f 7a39 	vldr	s14, [pc, #228]	; 20000368 <_hook_on+0x148>
-20000284:	eef4 7ac7 	vcmpe.f32	s15, s14
-20000288:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-2000028c:	bfb8      	it	lt
-2000028e:	eeb0 7a67 	vmovlt.f32	s14, s15
+2000012c:	eddf 7a80 	vldr	s15, [pc, #512]	; 20000330 <_hook_cycle+0x28a>
+   */
+  __fast_inline float osc_sinf(float x) {
+    const float p = x - (uint32_t)x;
+    
+    // half period stored -- wrap around and invert
+    const float x0f = 2.f * p * k_wt_sine_size;
+20000130:	eddf 8a80 	vldr	s17, [pc, #512]	; 20000334 <_hook_cycle+0x28e>
+20000134:	eef4 5ae7 	vcmpe.f32	s11, s15
+20000138:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+2000013c:	bfa8      	it	ge
+2000013e:	eef0 5a67 	vmovge.f32	s11, s15
     const float f0 = osc_notehzf(note);
     const float f1 = osc_notehzf(note+1);
     
     const float f = clipmaxf(linintf(mod * k_note_mod_fscale, f0, f1), k_note_max_hz);
 
     return f * k_samplerate_recipf;
-20000292:	eddf 7a36 	vldr	s15, [pc, #216]	; 2000036c <_hook_on+0x14c>
-20000296:	ee67 7a27 	vmul.f32	s15, s14, s15
+20000142:	eddf 7a7d 	vldr	s15, [pc, #500]	; 20000338 <_hook_cycle+0x292>
+20000146:	ee65 5aa7 	vmul.f32	s11, s11, s15
+	
+	// Pointer to start of buffer
+	q31_t *__restrict y = (q31_t*)yn;
+
+	// Pointer to end of buffer	
+	const q31_t *y_e = y + frames; 
+2000014a:	eb01 0282 	add.w	r2, r1, r2, lsl #2
    * @param   x  Value in [0.0001, 0.49].
    * @return     Result of tan(pi*x).
    * @note Not checking input, caller responsible for bounding x.
    */
   __fast_inline float osc_tanpif(float x) {
     const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
-2000029a:	ee67 6aa6 	vmul.f32	s13, s15, s13
-2000029e:	edc3 7a01 	vstr	s15, [r3, #4]
-200002a2:	ee66 6aa5 	vmul.f32	s13, s13, s11
+2000014e:	ee65 6aa4 	vmul.f32	s13, s11, s9
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
+	
+	// Floating point phase increment for given note and fine modulation
+	float w0 = s.w0 = osc_w0f_for_note(note, params->pitch & 0xFF);
+20000152:	edc3 5a01 	vstr	s11, [r3, #4]
+20000156:	ee66 6a85 	vmul.f32	s13, s13, s10
+2000015a:	eeb6 1a00 	vmov.f32	s2, #96	; 0x3f000000  0.5
     const uint32_t idx = (uint32_t)idxf;
-200002a6:	eebc 7ae6 	vcvt.u32.f32	s14, s13
-200002aa:	ee17 1a10 	vmov	r1, s14
+2000015e:	eefc 7ae6 	vcvt.u32.f32	s15, s13
+   *
+   * @param   x  Value in [0, 1.0].
+   * @return     Result of cos(2*pi*x).
+   */
+  __fast_inline float osc_cosf(float x) {
+    return osc_sinf(x+0.25f);
+20000162:	eeb5 8a00 	vmov.f32	s16, #80	; 0x3e800000  0.250
+   * @return     Result of tan(pi*x).
+   * @note Not checking input, caller responsible for bounding x.
+   */
+  __fast_inline float osc_tanpif(float x) {
+    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
+    const uint32_t idx = (uint32_t)idxf;
+20000166:	ee17 4a90 	vmov	r4, s15
+    const float y0 = tanpi_lut_f[idx];
+2000016a:	eb00 0684 	add.w	r6, r0, r4, lsl #2
+2000016e:	ed96 7a00 	vldr	s14, [r6]
 
 /** Linear interpolation
  */
 static inline __attribute__((optimize("Ofast"), always_inline))
 float linintf(const float fr, const float x0, const float x1) {
   return x0 + fr * (x1 - x0);
-200002ae:	ee06 1a10 	vmov	s12, r1
-200002b2:	eeb8 6a46 	vcvt.f32.u32	s12, s12
-    const float y0 = tanpi_lut_f[idx];
-200002b6:	eb02 0081 	add.w	r0, r2, r1, lsl #2
-200002ba:	ed90 7a00 	vldr	s14, [r0]
-200002be:	ee76 6ac6 	vsub.f32	s13, s13, s12
-200002c2:	ed90 6a01 	vldr	s12, [r0, #4]
-200002c6:	ee36 6a47 	vsub.f32	s12, s12, s14
-      void setFOLP(const float k) {
-        const float kp1 = k+1.f;
-        const float km1 = k-1.f;
-        ff0 = ff1 = k / kp1;
-        fb1 = km1 / kp1;
-        fb2 = ff2 = 0.f;
-200002ca:	2100      	movs	r1, #0
-200002cc:	eea6 7a86 	vfma.f32	s14, s13, s12
-200002d0:	6199      	str	r1, [r3, #24]
-200002d2:	6219      	str	r1, [r3, #32]
-       *
-       * @param   k Tangent of PI x cutoff frequency in radians: tan(pi*wc)
-       */
-      inline __attribute__((optimize("Ofast"),always_inline))
-      void setFOLP(const float k) {
-        const float kp1 = k+1.f;
-200002d4:	eef7 6a00 	vmov.f32	s13, #112	; 0x3f800000  1.0
-200002d8:	ee37 6a26 	vadd.f32	s12, s14, s13
-        const float kp1 = k+1.f;
-        const float km1 = k-1.f;
-        ff0 = 1.f / kp1;
-        ff1 = -ff0;
-        fb1 = km1 / kp1;
-        fb2 = ff2 = 0.f;
-200002dc:	6359      	str	r1, [r3, #52]	; 0x34
-       */
-      inline __attribute__((optimize("Ofast"),always_inline))
-      void setFOLP(const float k) {
-        const float kp1 = k+1.f;
-        const float km1 = k-1.f;
-        ff0 = ff1 = k / kp1;
-200002de:	ee87 5a06 	vdiv.f32	s10, s14, s12
-        const float kp1 = k+1.f;
-        const float km1 = k-1.f;
-        ff0 = 1.f / kp1;
-        ff1 = -ff0;
-        fb1 = km1 / kp1;
-        fb2 = ff2 = 0.f;
-200002e2:	63d9      	str	r1, [r3, #60]	; 0x3c
-      inline __attribute__((optimize("Ofast"),always_inline))
-      void setFOLP(const float k) {
-        const float kp1 = k+1.f;
-        const float km1 = k-1.f;
-        ff0 = ff1 = k / kp1;
-        fb1 = km1 / kp1;
-200002e4:	ee37 7a66 	vsub.f32	s14, s14, s13
-       */
-      inline __attribute__((optimize("Ofast"),always_inline))
-      void setFOLP(const float k) {
-        const float kp1 = k+1.f;
-        const float km1 = k-1.f;
-        ff0 = ff1 = k / kp1;
-200002e8:	ed83 5a05 	vstr	s10, [r3, #20]
-200002ec:	ed83 5a04 	vstr	s10, [r3, #16]
-        fb1 = km1 / kp1;
-200002f0:	ee87 5a06 	vdiv.f32	s10, s14, s12
-   * @param   x  Value in [0.0001, 0.49].
-   * @return     Result of tan(pi*x).
-   * @note Not checking input, caller responsible for bounding x.
-   */
-  __fast_inline float osc_tanpif(float x) {
-    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
-200002f4:	eeb4 7a00 	vmov.f32	s14, #64	; 0x3e000000  0.125
-200002f8:	ee67 7a87 	vmul.f32	s15, s15, s14
-200002fc:	ed83 5a07 	vstr	s10, [r3, #28]
-20000300:	ee67 7aa5 	vmul.f32	s15, s15, s11
-    const uint32_t idx = (uint32_t)idxf;
-20000304:	eebc 7ae7 	vcvt.u32.f32	s14, s15
-20000308:	ee17 0a10 	vmov	r0, s14
-2000030c:	ee06 0a10 	vmov	s12, r0
-20000310:	eeb8 6a46 	vcvt.f32.u32	s12, s12
-    const float y0 = tanpi_lut_f[idx];
-20000314:	eb02 0480 	add.w	r4, r2, r0, lsl #2
-20000318:	ee77 7ac6 	vsub.f32	s15, s15, s12
-2000031c:	ed94 7a00 	vldr	s14, [r4]
-20000320:	ed94 6a01 	vldr	s12, [r4, #4]
-20000324:	ee36 6a47 	vsub.f32	s12, s12, s14
-20000328:	eea7 7a86 	vfma.f32	s14, s15, s12
-       * @param   k Tangent of PI x cutoff frequency in radians: tan(pi*wc)
-       */
-      inline __attribute__((optimize("Ofast"),always_inline))
-      void setFOHP(const float k) {
-        // k = tan(pi*wc)
-        const float kp1 = k+1.f;
-2000032c:	ee37 6a26 	vadd.f32	s12, s14, s13
-20000330:	eef0 7a47 	vmov.f32	s15, s14
-        const float km1 = k-1.f;
-        ff0 = 1.f / kp1;
-20000334:	ee86 7a86 	vdiv.f32	s14, s13, s12
-        ff1 = -ff0;
-        fb1 = km1 / kp1;
-20000338:	ee77 7ae6 	vsub.f32	s15, s15, s13
-      inline __attribute__((optimize("Ofast"),always_inline))
-      void setFOHP(const float k) {
-        // k = tan(pi*wc)
-        const float kp1 = k+1.f;
-        const float km1 = k-1.f;
-        ff0 = 1.f / kp1;
-2000033c:	ed83 7a0b 	vstr	s14, [r3, #44]	; 0x2c
-        ff1 = -ff0;
-20000340:	eeb1 7a47 	vneg.f32	s14, s14
-20000344:	ed83 7a0c 	vstr	s14, [r3, #48]	; 0x30
-        fb1 = km1 / kp1;
-20000348:	ee87 7a86 	vdiv.f32	s14, s15, s12
-2000034c:	ed83 7a0e 	vstr	s14, [r3, #56]	; 0x38
-        fb2 = ff2 = 0.f;
-20000350:	bd10      	pop	{r4, pc}
-20000352:	bf00      	nop
-20000354:	200003f8 	.word	0x200003f8
-20000358:	3b808081 	.word	0x3b808081
-2000035c:	44029cbc 	.word	0x44029cbc
-20000360:	0800f100 	.word	0x0800f100
-20000364:	0800f764 	.word	0x0800f764
-20000368:	46b8ff49 	.word	0x46b8ff49
-2000036c:	37aec33e 	.word	0x37aec33e
-
-20000370 <_hook_off>:
-	// Set pole for filters
-	pd.setFilters(w0);
-	
-}
-
-void OSC_NOTEOFF(const user_osc_param_t *const params) {
-20000370:	4770      	bx	lr
-
-20000372 <_hook_param>:
-	// Not used
-	(void)params;
-}
-
-void OSC_PARAM(uint16_t index, uint16_t value) { 
-20000372:	ee07 1a90 	vmov	s15, r1
-
-	// Local copy of Params structure
-	PD::Params &p = pd.params;
-	
-	switch (index) {
-20000376:	b9c8      	cbnz	r0, 200003ac <_hook_param+0x3a>
-		case k_user_osc_param_id1: 	// User parameter 1
-			// Set Phase distortion
-			// Scale to [0-1]
-			p.d = clip01f(value * 0.01f); 
-20000378:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-2000037c:	ed9f 7a0c 	vldr	s14, [pc, #48]	; 200003b0 <_hook_param+0x3e>
-20000380:	ee67 7a87 	vmul.f32	s15, s15, s14
+20000172:	ed96 6a01 	vldr	s12, [r6, #4]
+20000176:	eef8 7a67 	vcvt.f32.u32	s15, s15
+2000017a:	ee36 6a47 	vsub.f32	s12, s12, s14
+2000017e:	ee76 6ae7 	vsub.f32	s13, s13, s15
 
 /** FSEL construct
  */
 static inline __attribute__((optimize("Ofast"),always_inline))
 float fsel(const float a, const float b, const float c) {
   return (a >= 0) ? b : c;
-20000384:	eef5 7ac0 	vcmpe.f32	s15, #0.0
-20000388:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-2000038c:	db09      	blt.n	200003a2 <_hook_param+0x30>
-2000038e:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-20000392:	eef4 7ac7 	vcmpe.f32	s15, s14
-20000396:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-2000039a:	bfa8      	it	ge
-2000039c:	eef0 7a47 	vmovge.f32	s15, s14
-200003a0:	e001      	b.n	200003a6 <_hook_param+0x34>
-200003a2:	eddf 7a04 	vldr	s15, [pc, #16]	; 200003b4 <_hook_param+0x42>
-200003a6:	4b04      	ldr	r3, [pc, #16]	; (200003b8 <_hook_param+0x46>)
-200003a8:	edc3 7a03 	vstr	s15, [r3, #12]
-200003ac:	4770      	bx	lr
-200003ae:	bf00      	nop
-200003b0:	3c23d70a 	.word	0x3c23d70a
-200003b4:	00000000 	.word	0x00000000
-200003b8:	200003f8 	.word	0x200003f8
+20000182:	eebf 9a00 	vmov.f32	s18, #240	; 0xbf800000 -1.0
 
-200003bc <_GLOBAL__sub_I__hook_init>:
+/** Linear interpolation
+ */
+static inline __attribute__((optimize("Ofast"), always_inline))
+float linintf(const float fr, const float x0, const float x1) {
+  return x0 + fr * (x1 - x0);
+20000186:	eea6 7a86 	vfma.f32	s14, s13, s12
+       *
+       * @param   k Tangent of PI x cutoff frequency in radians: tan(pi*wc)
+       */
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOLP(const float k) {
+        const float kp1 = k+1.f;
+2000018a:	eef7 6a00 	vmov.f32	s13, #112	; 0x3f800000  1.0
+2000018e:	ee77 7a26 	vadd.f32	s15, s14, s13
+
+/** FSEL construct
+ */
+static inline __attribute__((optimize("Ofast"),always_inline))
+float fsel(const float a, const float b, const float c) {
+  return (a >= 0) ? b : c;
+20000192:	eef0 9a66 	vmov.f32	s19, s13
+        const float km1 = k-1.f;
+        ff0 = ff1 = k / kp1;
+20000196:	eec7 3a27 	vdiv.f32	s7, s14, s15
+        fb1 = km1 / kp1;
+2000019a:	ee37 7a66 	vsub.f32	s14, s14, s13
+       */
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOLP(const float k) {
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = ff1 = k / kp1;
+2000019e:	edc3 3a06 	vstr	s7, [r3, #24]
+        fb1 = km1 / kp1;
+200001a2:	eec7 2a27 	vdiv.f32	s5, s14, s15
+   * @param   x  Value in [0.0001, 0.49].
+   * @return     Result of tan(pi*x).
+   * @note Not checking input, caller responsible for bounding x.
+   */
+  __fast_inline float osc_tanpif(float x) {
+    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
+200001a6:	eec6 7aa4 	vdiv.f32	s15, s13, s9
+200001aa:	edd3 4a0a 	vldr	s9, [r3, #40]	; 0x28
+       */
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOLP(const float k) {
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = ff1 = k / kp1;
+200001ae:	edc3 3a05 	vstr	s7, [r3, #20]
+200001b2:	ee67 7aa5 	vmul.f32	s15, s15, s11
+        fb1 = km1 / kp1;
+200001b6:	edc3 2a08 	vstr	s5, [r3, #32]
+200001ba:	ee67 7a85 	vmul.f32	s15, s15, s10
+200001be:	ed93 5a11 	vldr	s10, [r3, #68]	; 0x44
+    const uint32_t idx = (uint32_t)idxf;
+200001c2:	eebc 7ae7 	vcvt.u32.f32	s14, s15
+200001c6:	ee17 4a10 	vmov	r4, s14
+
+/** Linear interpolation
+ */
+static inline __attribute__((optimize("Ofast"), always_inline))
+float linintf(const float fr, const float x0, const float x1) {
+  return x0 + fr * (x1 - x0);
+200001ca:	ee06 4a10 	vmov	s12, r4
+200001ce:	eeb8 6a46 	vcvt.f32.u32	s12, s12
+    const float y0 = tanpi_lut_f[idx];
+200001d2:	eb00 0684 	add.w	r6, r0, r4, lsl #2
+200001d6:	ee77 7ac6 	vsub.f32	s15, s15, s12
+200001da:	ed96 7a00 	vldr	s14, [r6]
+200001de:	ed96 6a01 	vldr	s12, [r6, #4]
+200001e2:	ee36 6a47 	vsub.f32	s12, s12, s14
+200001e6:	eea7 7a86 	vfma.f32	s14, s15, s12
+	
+	// Set pole for filters
+	pd.setFilters(w0);
+	
+	// Local copy of the phase value.
+	float phi = s.phi;
+200001ea:	ed93 6a00 	vldr	s12, [r3]
+200001ee:	eef0 7a47 	vmov.f32	s15, s14
+       * @param   k Tangent of PI x cutoff frequency in radians: tan(pi*wc)
+       */
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOHP(const float k) {
+        // k = tan(pi*wc)
+        const float kp1 = k+1.f;
+200001f2:	ee37 7a26 	vadd.f32	s14, s14, s13
+        const float km1 = k-1.f;
+        ff0 = 1.f / kp1;
+        ff1 = -ff0;
+        fb1 = km1 / kp1;
+200001f6:	ee77 7ae6 	vsub.f32	s15, s15, s13
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOHP(const float k) {
+        // k = tan(pi*wc)
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = 1.f / kp1;
+200001fa:	ee86 3a87 	vdiv.f32	s6, s13, s14
+        ff1 = -ff0;
+        fb1 = km1 / kp1;
+200001fe:	eec7 1a87 	vdiv.f32	s3, s15, s14
+      void setFOHP(const float k) {
+        // k = tan(pi*wc)
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = 1.f / kp1;
+        ff1 = -ff0;
+20000202:	eeb1 2a43 	vneg.f32	s4, s6
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOHP(const float k) {
+        // k = tan(pi*wc)
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = 1.f / kp1;
+20000206:	ed83 3a0c 	vstr	s6, [r3, #48]	; 0x30
+        ff1 = -ff0;
+2000020a:	ed83 2a0d 	vstr	s4, [r3, #52]	; 0x34
+        fb1 = km1 / kp1;
+2000020e:	edc3 1a0f 	vstr	s3, [r3, #60]	; 0x3c
+
+	// Pointer to end of buffer	
+	const q31_t *y_e = y + frames; 
+	
+	// Fill buffer with samples
+	for (; y != y_e; ) { 
+20000212:	4291      	cmp	r1, r2
+20000214:	d072      	beq.n	200002fc <_hook_cycle+0x256>
+	
+	inline float PhaseDistortion(float phi) {
+		float d = params.d;
+		
+		float pd;
+		if(phi < d) {
+20000216:	eeb4 6ac4 	vcmpe.f32	s12, s8
+2000021a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+			pd = 0.5f * fraction;
+		} else {
+			float numerator = phi - d;
+			float denominator = 1.f - d;
+			float fraction = numerator / denominator;
+			pd = 0.5f * (1 + fraction);
+2000021e:	bf5b      	ittet	pl
+20000220:	ee76 7a44 	vsubpl.f32	s15, s12, s8
+20000224:	ee36 aac4 	vsubpl.f32	s20, s13, s8
+		float d = params.d;
+		
+		float pd;
+		if(phi < d) {
+			float fraction = phi / d;
+			pd = 0.5f * fraction;
+20000228:	ee86 7a04 	vdivmi.f32	s14, s12, s8
+		} else {
+			float numerator = phi - d;
+			float denominator = 1.f - d;
+			float fraction = numerator / denominator;
+			pd = 0.5f * (1 + fraction);
+2000022c:	ee87 7a8a 	vdivpl.f32	s14, s15, s20
+20000230:	bf58      	it	pl
+20000232:	ee37 7a26 	vaddpl.f32	s14, s14, s13
+20000236:	ee27 7a01 	vmul.f32	s14, s14, s2
+   *
+   * @param   x  Value in [0, 1.0].
+   * @return     Result of cos(2*pi*x).
+   */
+  __fast_inline float osc_cosf(float x) {
+    return osc_sinf(x+0.25f);
+2000023a:	ee37 7a08 	vadd.f32	s14, s14, s16
+   */
+  __fast_inline float osc_sinf(float x) {
+    const float p = x - (uint32_t)x;
+    
+    // half period stored -- wrap around and invert
+    const float x0f = 2.f * p * k_wt_sine_size;
+2000023e:	eefc 7ac7 	vcvt.u32.f32	s15, s14
+20000242:	eef8 7a67 	vcvt.f32.u32	s15, s15
+20000246:	ee77 7a67 	vsub.f32	s15, s14, s15
+2000024a:	ee67 7aa8 	vmul.f32	s15, s15, s17
+    const uint32_t x0p = (uint32_t)x0f;
+2000024e:	eebc 7ae7 	vcvt.u32.f32	s14, s15
+20000252:	ee17 4a10 	vmov	r4, s14
+
+    const uint32_t x0 = x0p & k_wt_sine_mask;
+20000256:	f004 007f 	and.w	r0, r4, #127	; 0x7f
+2000025a:	ee0a 4a10 	vmov	s20, r4
+    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
+    
+    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
+2000025e:	eb05 0680 	add.w	r6, r5, r0, lsl #2
+20000262:	3001      	adds	r0, #1
+20000264:	eeb8 aa4a 	vcvt.f32.u32	s20, s20
+20000268:	f000 007f 	and.w	r0, r0, #127	; 0x7f
+2000026c:	eb05 0080 	add.w	r0, r5, r0, lsl #2
+20000270:	ee77 7aca 	vsub.f32	s15, s15, s20
+20000274:	ed96 7a00 	vldr	s14, [r6]
+20000278:	ed90 aa00 	vldr	s20, [r0]
+2000027c:	ee3a aa47 	vsub.f32	s20, s20, s14
+    return (x0p < k_wt_sine_size)?y0:-y0;
+20000280:	2c7f      	cmp	r4, #127	; 0x7f
+20000282:	eea7 7a8a 	vfma.f32	s14, s15, s20
+20000286:	eef0 7a47 	vmov.f32	s15, s14
+2000028a:	bf88      	it	hi
+2000028c:	eef1 7a47 	vneghi.f32	s15, s14
+		}
+		
+		float sig = -osc_cosf(pd);
+20000290:	eef1 7a67 	vneg.f32	s15, s15
+     *
+     * @return Output sample
+     */
+    inline __attribute__((optimize("Ofast"),always_inline))
+    float process_fo(const float xn) {
+      float acc = mCoeffs.ff0 * xn + mZ1;
+20000294:	eeb0 7a64 	vmov.f32	s14, s9
+20000298:	eea3 7aa7 	vfma.f32	s14, s7, s15
+      mZ1 = mCoeffs.ff1 * xn;
+      mZ1 -= mCoeffs.fb1 * acc;
+2000029c:	ee67 4a62 	vnmul.f32	s9, s14, s5
+200002a0:	eee3 4aa7 	vfma.f32	s9, s7, s15
+     *
+     * @return Output sample
+     */
+    inline __attribute__((optimize("Ofast"),always_inline))
+    float process_fo(const float xn) {
+      float acc = mCoeffs.ff0 * xn + mZ1;
+200002a4:	eef0 7a45 	vmov.f32	s15, s10
+200002a8:	eee3 7a07 	vfma.f32	s15, s6, s14
+      mZ1 = mCoeffs.ff1 * xn;
+      mZ1 -= mCoeffs.fb1 * acc;
+200002ac:	ee27 5ae1 	vnmul.f32	s10, s15, s3
+
+/** FSEL construct
+ */
+static inline __attribute__((optimize("Ofast"),always_inline))
+float fsel(const float a, const float b, const float c) {
+  return (a >= 0) ? b : c;
+200002b0:	eef4 7ac9 	vcmpe.f32	s15, s18
+200002b4:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200002b8:	eea2 5a07 	vfma.f32	s10, s4, s14
+200002bc:	db07      	blt.n	200002ce <_hook_cycle+0x228>
+200002be:	eef4 7ae6 	vcmpe.f32	s15, s13
+200002c2:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200002c6:	bfa8      	it	ge
+200002c8:	eef0 7a69 	vmovge.f32	s15, s19
+200002cc:	e001      	b.n	200002d2 <_hook_cycle+0x22c>
+200002ce:	eeff 7a00 	vmov.f32	s15, #240	; 0xbf800000 -1.0
+		
+		// Softclip signal before sending to buffer
+		sig = osc_softclipf(0.05f, sig);
+		
+		// Format in Q31 binary fixed-point representation and add to buffer
+		*(y++) = f32_to_q31(sig); 
+200002d2:	ee27 7aa7 	vmul.f32	s14, s15, s15
+		
+		// Update local osc phase
+		phi += w0;
+200002d6:	ee36 6a25 	vadd.f32	s12, s12, s11
+		
+		// Softclip signal before sending to buffer
+		sig = osc_softclipf(0.05f, sig);
+		
+		// Format in Q31 binary fixed-point representation and add to buffer
+		*(y++) = f32_to_q31(sig); 
+200002da:	ee27 7ac7 	vnmul.f32	s14, s15, s14
+200002de:	eee7 7a00 	vfma.f32	s15, s14, s0
+200002e2:	ee67 7aa0 	vmul.f32	s15, s15, s1
+200002e6:	eefd 7ae7 	vcvt.s32.f32	s15, s15
+200002ea:	ece1 7a01 	vstmia	r1!, {s15}
+		
+		// Update local osc phase
+		phi += w0;
+		phi -= (uint32_t)phi; // Mod 1
+200002ee:	eefc 7ac6 	vcvt.u32.f32	s15, s12
+200002f2:	eef8 7a67 	vcvt.f32.u32	s15, s15
+200002f6:	ee36 6a67 	vsub.f32	s12, s12, s15
+
+	// Pointer to end of buffer	
+	const q31_t *y_e = y + frames; 
+	
+	// Fill buffer with samples
+	for (; y != y_e; ) { 
+200002fa:	e78a      	b.n	20000212 <_hook_cycle+0x16c>
+		phi -= (uint32_t)phi; // Mod 1
+	}
+	
+	// Update global osc phase
+	s.phi = phi;
+}
+200002fc:	ecbd 8b06 	vpop	{d8-d10}
+20000300:	edc3 4a0a 	vstr	s9, [r3, #40]	; 0x28
+20000304:	ed83 5a11 	vstr	s10, [r3, #68]	; 0x44
+		phi += w0;
+		phi -= (uint32_t)phi; // Mod 1
+	}
+	
+	// Update global osc phase
+	s.phi = phi;
+20000308:	ed83 6a00 	vstr	s12, [r3]
+}
+2000030c:	bd70      	pop	{r4, r5, r6, pc}
+2000030e:	bf00      	nop
+20000310:	200003f0 	.word	0x200003f0
+20000314:	3b808081 	.word	0x3b808081
+20000318:	44029cbc 	.word	0x44029cbc
+2000031c:	3d4ccccd 	.word	0x3d4ccccd
+20000320:	4f000000 	.word	0x4f000000
+20000324:	0800f100 	.word	0x0800f100
+20000328:	0800f764 	.word	0x0800f764
+2000032c:	08012bdc 	.word	0x08012bdc
+20000330:	46b8ff49 	.word	0x46b8ff49
+20000334:	43800000 	.word	0x43800000
+20000338:	37aec33e 	.word	0x37aec33e
+
+2000033c <_hook_on>:
+
+void OSC_NOTEON(const user_osc_param_t *const params) {
+	
+	PD::State &s = pd.state;
+	s.flags |= PD::flag_reset;
+2000033c:	4a02      	ldr	r2, [pc, #8]	; (20000348 <_hook_on+0xc>)
+2000033e:	7a13      	ldrb	r3, [r2, #8]
+20000340:	f043 0301 	orr.w	r3, r3, #1
+20000344:	7213      	strb	r3, [r2, #8]
+20000346:	4770      	bx	lr
+20000348:	200003f0 	.word	0x200003f0
+
+2000034c <_hook_off>:
+	
+}
+
+void OSC_NOTEOFF(const user_osc_param_t *const params) {
+2000034c:	4770      	bx	lr
+
+2000034e <_hook_param>:
+	// Not used
+	(void)params;
+}
+
+void OSC_PARAM(uint16_t index, uint16_t value) { 
+2000034e:	ee07 1a90 	vmov	s15, r1
+
+	// Local copy of Params structure
+	PD::Params &p = pd.params;
+
+	switch (index) {
+20000352:	b110      	cbz	r0, 2000035a <_hook_param+0xc>
+20000354:	2801      	cmp	r0, #1
+20000356:	d01b      	beq.n	20000390 <_hook_param+0x42>
+20000358:	4770      	bx	lr
+		case k_user_osc_param_id1: 	// User parameter 1
+			// Set Phase distortion
+			// Scale to [0-1]
+			p.d = clip01f(value * 0.01f); 
+2000035a:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+2000035e:	ed9f 7a11 	vldr	s14, [pc, #68]	; 200003a4 <_hook_param+0x56>
+20000362:	ee67 7a87 	vmul.f32	s15, s15, s14
+20000366:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+2000036a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+2000036e:	db09      	blt.n	20000384 <_hook_param+0x36>
+20000370:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+20000374:	eef4 7ac7 	vcmpe.f32	s15, s14
+20000378:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+2000037c:	bfa8      	it	ge
+2000037e:	eef0 7a47 	vmovge.f32	s15, s14
+20000382:	e001      	b.n	20000388 <_hook_param+0x3a>
+20000384:	eddf 7a08 	vldr	s15, [pc, #32]	; 200003a8 <_hook_param+0x5a>
+20000388:	4b08      	ldr	r3, [pc, #32]	; (200003ac <_hook_param+0x5e>)
+2000038a:	edc3 7a03 	vstr	s15, [r3, #12]
+			break;
+2000038e:	4770      	bx	lr
+			
+		case k_user_osc_param_id2:  // User parameter 2
+			// Set the frequency ratio for filters
+			p.f_ratio = 1.f + (value * 1.f);
+20000390:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+20000394:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+20000398:	ee77 7a87 	vadd.f32	s15, s15, s14
+2000039c:	4b03      	ldr	r3, [pc, #12]	; (200003ac <_hook_param+0x5e>)
+2000039e:	edc3 7a04 	vstr	s15, [r3, #16]
+200003a2:	4770      	bx	lr
+200003a4:	3c23d70a 	.word	0x3c23d70a
+200003a8:	00000000 	.word	0x00000000
+200003ac:	200003f0 	.word	0x200003f0
+
+200003b0 <_GLOBAL__sub_I__hook_init>:
 		uint32_t flags: 1;	// Bit field
 		
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			flags(flags_none)
-200003bc:	4b0c      	ldr	r3, [pc, #48]	; (200003f0 <_GLOBAL__sub_I__hook_init+0x34>)
-200003be:	7a19      	ldrb	r1, [r3, #8]
-200003c0:	f36f 0100 	bfc	r1, #0, #1
-200003c4:	2200      	movs	r2, #0
-200003c6:	7219      	strb	r1, [r3, #8]
-	
-	struct Params {
-		float   d;
+200003b0:	4b0e      	ldr	r3, [pc, #56]	; (200003ec <_GLOBAL__sub_I__hook_init+0x3c>)
+200003b2:	7a19      	ldrb	r1, [r3, #8]
+200003b4:	f36f 0100 	bfc	r1, #0, #1
+200003b8:	7219      	strb	r1, [r3, #8]
+		float   d; 			// D-values
+		float	f_ratio; 	// Frequency ratio for filters
     
 		Params(void) :
-			d(DEFAULT)
-200003c8:	f04f 517c 	mov.w	r1, #1056964608	; 0x3f000000
+			d(DEFAULT),
+			f_ratio(ONEF)
+200003ba:	f04f 517c 	mov.w	r1, #1056964608	; 0x3f000000
 		uint32_t flags: 1;	// Bit field
 		
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			flags(flags_none)
-200003cc:	601a      	str	r2, [r3, #0]
-200003ce:	605a      	str	r2, [r3, #4]
-	
-	struct Params {
-		float   d;
+200003be:	2200      	movs	r2, #0
+		float   d; 			// D-values
+		float	f_ratio; 	// Frequency ratio for filters
     
 		Params(void) :
-			d(DEFAULT)
-200003d0:	60d9      	str	r1, [r3, #12]
+			d(DEFAULT),
+			f_ratio(ONEF)
+200003c0:	60d9      	str	r1, [r3, #12]
+200003c2:	f04f 517e 	mov.w	r1, #1065353216	; 0x3f800000
+		uint32_t flags: 1;	// Bit field
+		
+		State(void) :
+			phi(ZEROF),
+			w0(ZEROF),
+			flags(flags_none)
+200003c6:	601a      	str	r2, [r3, #0]
+200003c8:	605a      	str	r2, [r3, #4]
+		float   d; 			// D-values
+		float	f_ratio; 	// Frequency ratio for filters
+    
+		Params(void) :
+			d(DEFAULT),
+			f_ratio(ONEF)
+200003ca:	6119      	str	r1, [r3, #16]
       /**
        * Default constructor
        */
       Coeffs() :
         ff0(0), ff1(0), ff2(0),
         fb1(0), fb2(0)
-200003d2:	611a      	str	r2, [r3, #16]
-200003d4:	615a      	str	r2, [r3, #20]
-200003d6:	619a      	str	r2, [r3, #24]
-200003d8:	61da      	str	r2, [r3, #28]
-200003da:	621a      	str	r2, [r3, #32]
+200003cc:	615a      	str	r2, [r3, #20]
+200003ce:	619a      	str	r2, [r3, #24]
+200003d0:	61da      	str	r2, [r3, #28]
+200003d2:	621a      	str	r2, [r3, #32]
+200003d4:	625a      	str	r2, [r3, #36]	; 0x24
     /*=====================================================================*/
 
     /**
      * Default constructor
      */
     BiQuad(void) : mZ1(0), mZ2(0)
-200003dc:	625a      	str	r2, [r3, #36]	; 0x24
-200003de:	629a      	str	r2, [r3, #40]	; 0x28
+200003d6:	629a      	str	r2, [r3, #40]	; 0x28
+200003d8:	62da      	str	r2, [r3, #44]	; 0x2c
       /**
        * Default constructor
        */
       Coeffs() :
         ff0(0), ff1(0), ff2(0),
         fb1(0), fb2(0)
-200003e0:	62da      	str	r2, [r3, #44]	; 0x2c
-200003e2:	631a      	str	r2, [r3, #48]	; 0x30
-200003e4:	635a      	str	r2, [r3, #52]	; 0x34
-200003e6:	639a      	str	r2, [r3, #56]	; 0x38
-200003e8:	63da      	str	r2, [r3, #60]	; 0x3c
+200003da:	631a      	str	r2, [r3, #48]	; 0x30
+200003dc:	635a      	str	r2, [r3, #52]	; 0x34
+200003de:	639a      	str	r2, [r3, #56]	; 0x38
+200003e0:	63da      	str	r2, [r3, #60]	; 0x3c
+200003e2:	641a      	str	r2, [r3, #64]	; 0x40
     /*=====================================================================*/
 
     /**
      * Default constructor
      */
     BiQuad(void) : mZ1(0), mZ2(0)
-200003ea:	641a      	str	r2, [r3, #64]	; 0x40
-200003ec:	645a      	str	r2, [r3, #68]	; 0x44
-200003ee:	4770      	bx	lr
-200003f0:	200003f8 	.word	0x200003f8
+200003e4:	645a      	str	r2, [r3, #68]	; 0x44
+200003e6:	649a      	str	r2, [r3, #72]	; 0x48
+200003e8:	4770      	bx	lr
+200003ea:	bf00      	nop
+200003ec:	200003f0 	.word	0x200003f0

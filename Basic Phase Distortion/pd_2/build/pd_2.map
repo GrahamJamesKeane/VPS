@@ -27,7 +27,7 @@ LOAD ./build/obj/pd_2.o
                 0x20000044                . = ALIGN (0x4)
                 0x20000044                PROVIDE (__init_array_end, .)
 
-.text           0x20000044      0x3b0
+.text           0x20000044      0x3ac
                 0x20000044                . = ALIGN (0x4)
                 0x20000044                _text_start = .
  *(.text)
@@ -35,91 +35,91 @@ LOAD ./build/obj/pd_2.o
                 0x20000046                _hook_mute
                 0x20000048                _hook_value
                 0x20000052                _entry
- .text          0x200000a4      0x318 ./build/obj/pd_2.o
+ .text          0x200000a4      0x30c ./build/obj/pd_2.o
                 0x200000a4                _hook_init
                 0x200000a6                _hook_cycle
-                0x20000220                _hook_on
-                0x20000370                _hook_off
-                0x20000372                _hook_param
+                0x2000033c                _hook_on
+                0x2000034c                _hook_off
+                0x2000034e                _hook_param
  *(.text.*)
- .text.startup  0x200003bc       0x38 ./build/obj/pd_2.o
+ .text.startup  0x200003b0       0x40 ./build/obj/pd_2.o
  *(.glue_7)
- .glue_7        0x200003f4        0x0 linker stubs
+ .glue_7        0x200003f0        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x200003f4        0x0 linker stubs
+ .glue_7t       0x200003f0        0x0 linker stubs
  *(.gcc*)
-                0x200003f4                . = ALIGN (0x4)
-                0x200003f4                _text_end = .
+                0x200003f0                . = ALIGN (0x4)
+                0x200003f0                _text_end = .
 
-.vfp11_veneer   0x200003f4        0x0
- .vfp11_veneer  0x200003f4        0x0 linker stubs
+.vfp11_veneer   0x200003f0        0x0
+ .vfp11_veneer  0x200003f0        0x0 linker stubs
 
-.v4_bx          0x200003f4        0x0
- .v4_bx         0x200003f4        0x0 linker stubs
+.v4_bx          0x200003f0        0x0
+ .v4_bx         0x200003f0        0x0 linker stubs
 
-.iplt           0x200003f4        0x0
- .iplt          0x200003f4        0x0 ./build/obj/_unit.o
+.iplt           0x200003f0        0x0
+ .iplt          0x200003f0        0x0 ./build/obj/_unit.o
 
-.rel.dyn        0x200003f4        0x0
- .rel.iplt      0x200003f4        0x0 ./build/obj/_unit.o
+.rel.dyn        0x200003f0        0x0
+ .rel.iplt      0x200003f0        0x0 ./build/obj/_unit.o
 
-.rodata         0x200003f4        0x0
-                0x200003f4                . = ALIGN (0x4)
-                0x200003f4                _rodata_start = .
+.rodata         0x200003f0        0x0
+                0x200003f0                . = ALIGN (0x4)
+                0x200003f0                _rodata_start = .
  *(.rodata)
  *(.rodata.*)
-                0x200003f4                . = ALIGN (0x4)
-                0x200003f4                _rodata_end = .
+                0x200003f0                . = ALIGN (0x4)
+                0x200003f0                _rodata_end = .
 
-.data           0x200003f8        0x0
-                0x200003f8                . = ALIGN (0x8)
-                0x200003f8                _data_start = .
+.data           0x200003f0        0x0
+                0x200003f0                . = ALIGN (0x8)
+                0x200003f0                _data_start = .
  *(.data)
- .data          0x200003f8        0x0 ./build/obj/_unit.o
- .data          0x200003f8        0x0 ./build/obj/pd_2.o
+ .data          0x200003f0        0x0 ./build/obj/_unit.o
+ .data          0x200003f0        0x0 ./build/obj/pd_2.o
  *(.data.*)
-                0x200003f8                . = ALIGN (0x8)
-                0x200003f8                _data_end = .
+                0x200003f0                . = ALIGN (0x8)
+                0x200003f0                _data_end = .
 
-.igot.plt       0x200003f8        0x0
- .igot.plt      0x200003f8        0x0 ./build/obj/_unit.o
+.igot.plt       0x200003f0        0x0
+ .igot.plt      0x200003f0        0x0 ./build/obj/_unit.o
 
-.bss            0x200003f8       0x48
-                0x200003f8                . = ALIGN (0x4)
-                0x200003f8                _bss_start = .
+.bss            0x200003f0       0x4c
+                0x200003f0                . = ALIGN (0x4)
+                0x200003f0                _bss_start = .
  *(.bss)
- .bss           0x200003f8        0x0 ./build/obj/_unit.o
- .bss           0x200003f8       0x48 ./build/obj/pd_2.o
+ .bss           0x200003f0        0x0 ./build/obj/_unit.o
+ .bss           0x200003f0       0x4c ./build/obj/pd_2.o
  *(.bss.*)
  *(COMMON)
-                0x20000440                . = ALIGN (0x4)
-                0x20000440                _bss_end = .
+                0x2000043c                . = ALIGN (0x4)
+                0x2000043c                _bss_end = .
 
-.ARM.extab      0x20000440        0x0
-                0x20000440                . = ALIGN (0x4)
-                0x20000440                __extab_start = .
+.ARM.extab      0x2000043c        0x0
+                0x2000043c                . = ALIGN (0x4)
+                0x2000043c                __extab_start = .
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x20000440                . = ALIGN (0x4)
-                0x20000440                __extab_end = .
+                0x2000043c                . = ALIGN (0x4)
+                0x2000043c                __extab_end = .
 
-.ARM.exidx      0x20000440        0x0
-                0x20000440                __exidx_start = .
+.ARM.exidx      0x2000043c        0x0
+                0x2000043c                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x20000440                __exidx_end = .
+                0x2000043c                __exidx_end = .
 
-.eh_frame_hdr   0x20000440        0x0
-                0x20000440                . = ALIGN (0x4)
-                0x20000440                _eh_frame_hdr_start = .
+.eh_frame_hdr   0x2000043c        0x0
+                0x2000043c                . = ALIGN (0x4)
+                0x2000043c                _eh_frame_hdr_start = .
  *(.eh_frame_hdr)
-                0x20000440                . = ALIGN (0x4)
-                0x20000440                _eh_frame_hdr_end = .
+                0x2000043c                . = ALIGN (0x4)
+                0x2000043c                _eh_frame_hdr_end = .
 
-.eh_frame       0x20000440        0x0
-                0x20000440                . = ALIGN (0x4)
-                0x20000440                _eh_frame_start = .
+.eh_frame       0x2000043c        0x0
+                0x2000043c                . = ALIGN (0x4)
+                0x2000043c                _eh_frame_start = .
  *(.eh_frame)
-                0x20000440                . = ALIGN (0x4)
-                0x20000440                _eh_frame_end = .
+                0x2000043c                . = ALIGN (0x4)
+                0x2000043c                _eh_frame_end = .
 LOAD ./ld/osc_api.syms
                 0x0800f000                k_osc_api_version = 0x800f000
                 0x0800f004                k_osc_api_platform = 0x800f004
@@ -157,17 +157,17 @@ LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/
 END GROUP
 OUTPUT(build/pd_2.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x1ae0
+.debug_info     0x00000000     0x1aaf
  .debug_info    0x00000000      0x6a4 ./build/obj/_unit.o
- .debug_info    0x000006a4     0x143c ./build/obj/pd_2.o
+ .debug_info    0x000006a4     0x140b ./build/obj/pd_2.o
 
-.debug_abbrev   0x00000000      0x642
+.debug_abbrev   0x00000000      0x644
  .debug_abbrev  0x00000000      0x20e ./build/obj/_unit.o
- .debug_abbrev  0x0000020e      0x434 ./build/obj/pd_2.o
+ .debug_abbrev  0x0000020e      0x436 ./build/obj/pd_2.o
 
-.debug_loc      0x00000000      0x8b8
+.debug_loc      0x00000000      0x88f
  .debug_loc     0x00000000       0xb9 ./build/obj/_unit.o
- .debug_loc     0x000000b9      0x7ff ./build/obj/pd_2.o
+ .debug_loc     0x000000b9      0x7d6 ./build/obj/pd_2.o
 
 .debug_aranges  0x00000000       0x48
  .debug_aranges
@@ -175,15 +175,15 @@ OUTPUT(build/pd_2.elf elf32-littlearm)
  .debug_aranges
                 0x00000020       0x28 ./build/obj/pd_2.o
 
-.debug_line     0x00000000      0x696
+.debug_line     0x00000000      0x67e
  .debug_line    0x00000000      0x204 ./build/obj/_unit.o
- .debug_line    0x00000204      0x492 ./build/obj/pd_2.o
+ .debug_line    0x00000204      0x47a ./build/obj/pd_2.o
 
-.debug_str      0x00000000      0xd72
+.debug_str      0x00000000      0xd7a
  .debug_str     0x00000000      0x5f8 ./build/obj/_unit.o
                                 0x685 (size before relaxing)
- .debug_str     0x000005f8      0x77a ./build/obj/pd_2.o
-                                0xaa7 (size before relaxing)
+ .debug_str     0x000005f8      0x782 ./build/obj/pd_2.o
+                                0xaaf (size before relaxing)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e ./build/obj/_unit.o
@@ -197,12 +197,12 @@ OUTPUT(build/pd_2.elf elf32-littlearm)
  .ARM.attributes
                 0x00000039       0x39 ./build/obj/pd_2.o
 
-.debug_frame    0x00000000      0x164
+.debug_frame    0x00000000      0x15c
  .debug_frame   0x00000000       0xa8 ./build/obj/_unit.o
- .debug_frame   0x000000a8       0xbc ./build/obj/pd_2.o
+ .debug_frame   0x000000a8       0xb4 ./build/obj/pd_2.o
 
-.debug_ranges   0x00000000      0x3f0
- .debug_ranges  0x00000000      0x3f0 ./build/obj/pd_2.o
+.debug_ranges   0x00000000      0x468
+ .debug_ranges  0x00000000      0x468 ./build/obj/pd_2.o
 
 Cross Reference Table
 
