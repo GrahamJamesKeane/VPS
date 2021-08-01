@@ -58,9 +58,18 @@ struct VPS {
 	}
 	
 	inline void setFilters(float w0) {
+		
+		/*
+		* We need to ensure we don't go over the
+		* nyquist frequency
+		*/  
+		
 		float limit = params.f_ratio;
-		LPF.mCoeffs.setFOLP(osc_tanpif(limit * w0));
-		HPF.mCoeffs.setFOHP(osc_tanpif((1.f / limit) * w0));
+		float lpf 	= clipmaxf(limit * w0, 0.49f);
+		float hpf 	= clipminf((1.f / limit) * w0, ZEROF);
+
+		LPF.mCoeffs.setFOLP(osc_tanpif(lpf));
+		HPF.mCoeffs.setFOHP(osc_tanpif(hpf));
 	}
 	
 	inline float PhaseShaper(float phi) {
