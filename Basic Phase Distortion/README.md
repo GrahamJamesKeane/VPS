@@ -1,4 +1,4 @@
-### Basic Phase Distortion
+# Basic Phase Distortion
 
 This custom oscillator was designed for the Korg NTS-1 Nu:Tekt digital synthesizer. It is a simple program which implements the classic non-linear phase distortion method. The program serves at the foundation for a series of programs that implement a technique called Vector Phaseshaping.
 
