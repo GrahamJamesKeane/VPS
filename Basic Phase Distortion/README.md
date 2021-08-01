@@ -8,7 +8,7 @@ This custom oscillator was designed for the **Korg NTS-1 Nu:Tekt digital synthes
 
 # 2 - Filtered Phase Distortion (pd_2)
 
-This version of the Phase Distortion program has filters included from the BiQuad header to reduce artefects present in the ouput resulting from gaps in phase transitions.
+This version of the Phase Distortion program has filters included from the BiQuad header to reduce artefacts present in the ouput resulting from gaps in phase transitions.
 
 [Filtered PD Program Files](https://github.com/GrahamJamesKeane/VPS/tree/main/Basic%20Phase%20Distortion/pd_2)
 
