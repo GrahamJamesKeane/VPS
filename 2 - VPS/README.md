@@ -1,1 +1,1 @@
-# Vector Phaseshaping Synthesis
+# Vector Phaseshaping Synthesis (VPS)
