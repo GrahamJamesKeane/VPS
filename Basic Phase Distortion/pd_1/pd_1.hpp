@@ -51,7 +51,7 @@ struct PD {
 	}
 	
 	inline float PhaseDistortion(float phi) {
-		float d = params.shape;
+		float d = params.d;
 		
 		float pd;
 		if(phi < d) {
