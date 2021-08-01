@@ -6,7 +6,7 @@ This custom oscillator was designed for the **Korg NTS-1 Nu:Tekt digital synthes
 
 - [VPSF unit file](https://github.com/GrahamJamesKeane/VPS/blob/main/3%20-%20Formant%20Synthesis/vpsf_1/vpsf_1.ntkdigunit)
 
-## 1.1 - Basic VPS Controls 
+## 1.1 - VPSF Controls 
 This program has four user parameters.
 
 - Slot 1: D value, range [0-1].
@@ -24,7 +24,7 @@ This version of the VPSF introduces an interpolation gain to tackle discontinuit
 
 - [VPSFI Unit File](https://github.com/GrahamJamesKeane/VPS/blob/main/3%20-%20Formant%20Synthesis/vpsf_2/vpsf_2.ntkdigunit)
 
-## 2.1 - Basic VPS with Interpolation Controls 
-This program shares the same controls as the Basic version above.
+## 2.1 - VPSFI Controls 
+This program shares the same controls as VPSF above.
 
 # 3 - Project Build
