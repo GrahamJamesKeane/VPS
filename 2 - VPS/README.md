@@ -7,10 +7,11 @@ This custom oscillator was designed for the **Korg NTS-1 Nu:Tekt digital synthes
 [Basic VPS unit file](https://github.com/GrahamJamesKeane/VPS/blob/main/2%20-%20VPS/vps_basic/vps_basic.ntkdigunit)
 
 ## 1.1 - Basic VPS Controls 
-This program has three user parameters;
--D value: Slot 1, range [0-1].
--V value: Slot 2, range [0-1].
--Frequency ratio: Slot 3, range [1-101].
+This program has three user parameters.
+
+- D value: Slot 1, range [0-1].
+- V value: Slot 2, range [0-1].
+- Frequency ratio: Slot 3, range [1-101].
 
 These parameters can be accessed via the shift function of the OSC button and the TYPE knob. The parameters are modified via the B knob once selected. 
 
