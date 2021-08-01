@@ -14,7 +14,7 @@ This program has four user parameters.
 - Slot 3: V range, range [1-10]
 - Slot 4: Frequency ratio, range [1-101].
 
-These parameters can be accessed via the shift function of the OSC button and the TYPE knob. The parameters are modified via the B knob once selected. 
+These parameters can be accessed via the **shift** function of the **OSC** button and the **TYPE** knob. The parameters are modified via the **B** knob once selected. 
 
 # 2 - VPSF with Interpolation Gain (VPSFI)
 
