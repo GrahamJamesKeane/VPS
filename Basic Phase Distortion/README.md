@@ -3,7 +3,6 @@
 This custom oscillator was designed for the **Korg NTS-1 Nu:Tekt digital synthesizer**. It is a simple program which implements the classic non-linear phase distortion method. The program serves as the foundation for a series of programs that implement a technique called Vector Phaseshaping.
 
 -[Basic PD Program Files](https://github.com/GrahamJamesKeane/VPS/tree/main/Basic%20Phase%20Distortion/pd_1)
-
 -[Basic PD unit file](https://github.com/GrahamJamesKeane/VPS/blob/main/Basic%20Phase%20Distortion/pd_1/pd_1.ntkdigunit)
 
 ## 1.1 - Basic Phase Distortion Controls 
@@ -14,7 +13,6 @@ This program has only one parameter that is located in the user parameter 1 slot
 This version of the Phase Distortion program has filters included from the BiQuad header to reduce artefacts present in the ouput resulting from gaps in phase transitions.
 
 -[Filtered PD Program Files](https://github.com/GrahamJamesKeane/VPS/tree/main/Basic%20Phase%20Distortion/pd_2)
-
 -[Filtered PD Unit File](https://github.com/GrahamJamesKeane/VPS/blob/main/Basic%20Phase%20Distortion/pd_2/pd_2.ntkdigunit)
 
 ## 2.1 - Filtered Phase Distortion Controls 
