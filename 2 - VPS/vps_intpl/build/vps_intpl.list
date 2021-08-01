@@ -114,8 +114,8 @@ void _entry(uint32_t platform, uint32_t api)
 2000008a:	f000 f80b 	bl	200000a4 <_hook_init>
 2000008e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
 20000092:	bf00      	nop
-20000094:	20000447 	.word	0x20000447
-20000098:	2000049b 	.word	0x2000049b
+20000094:	2000044f 	.word	0x2000044f
+20000098:	200004a3 	.word	0x200004a3
 2000009c:	20000040 	.word	0x20000040
 200000a0:	20000044 	.word	0x20000044
 
@@ -700,7 +700,7 @@ float fsel(const float a, const float b, const float c) {
 }
 2000032c:	bd70      	pop	{r4, r5, r6, pc}
 2000032e:	bf00      	nop
-20000330:	20000448 	.word	0x20000448
+20000330:	20000450 	.word	0x20000450
 20000334:	3b808081 	.word	0x3b808081
 20000338:	44029cbc 	.word	0x44029cbc
 2000033c:	4f000000 	.word	0x4f000000
@@ -723,7 +723,7 @@ void OSC_NOTEON(const user_osc_param_t *const params) {
 20000360:	f043 0301 	orr.w	r3, r3, #1
 20000364:	7313      	strb	r3, [r2, #12]
 20000366:	4770      	bx	lr
-20000368:	20000448 	.word	0x20000448
+20000368:	20000450 	.word	0x20000450
 
 2000036c <_hook_off>:
 }
@@ -737,29 +737,29 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 	
 	VPS::Params &p = vps.params;
 	
-	const float valf = param_val_to_f32(value);
-2000036e:	ee07 1a90 	vmov	s15, r1
-	
 	switch (index) {
-20000372:	2801      	cmp	r0, #1
+2000036e:	2801      	cmp	r0, #1
+void OSC_NOTEOFF(const user_osc_param_t *const params) {
+	// Not used
+	(void)params;
+}
 
 void OSC_PARAM(uint16_t index, uint16_t value) {
+20000370:	ee07 1a90 	vmov	s15, r1
 	
 	VPS::Params &p = vps.params;
 	
-	const float valf = param_val_to_f32(value);
-20000374:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-	
 	switch (index) {
-20000378:	d01c      	beq.n	200003b4 <_hook_param+0x46>
-2000037a:	d302      	bcc.n	20000382 <_hook_param+0x14>
-2000037c:	2802      	cmp	r0, #2
-2000037e:	d032      	beq.n	200003e6 <_hook_param+0x78>
-20000380:	4770      	bx	lr
+20000374:	d01e      	beq.n	200003b4 <_hook_param+0x46>
+20000376:	d302      	bcc.n	2000037e <_hook_param+0x10>
+20000378:	2802      	cmp	r0, #2
+2000037a:	d036      	beq.n	200003ea <_hook_param+0x7c>
+2000037c:	4770      	bx	lr
 		case k_user_osc_param_id1: // User parameter 1
 			// Set d value in range [0-1]
 			p.d = clip01f(value * 0.01f);
-20000382:	ed9f 7a1d 	vldr	s14, [pc, #116]	; 200003f8 <_hook_param+0x8a>
+2000037e:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+20000382:	ed9f 7a1f 	vldr	s14, [pc, #124]	; 20000400 <_hook_param+0x92>
 20000386:	ee67 7a87 	vmul.f32	s15, s15, s14
 2000038a:	eef5 7ac0 	vcmpe.f32	s15, #0.0
 2000038e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
@@ -770,8 +770,8 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 200003a0:	bfa8      	it	ge
 200003a2:	eef0 7a47 	vmovge.f32	s15, s14
 200003a6:	e001      	b.n	200003ac <_hook_param+0x3e>
-200003a8:	eddf 7a14 	vldr	s15, [pc, #80]	; 200003fc <_hook_param+0x8e>
-200003ac:	4b14      	ldr	r3, [pc, #80]	; (20000400 <_hook_param+0x92>)
+200003a8:	eddf 7a16 	vldr	s15, [pc, #88]	; 20000404 <_hook_param+0x96>
+200003ac:	4b16      	ldr	r3, [pc, #88]	; (20000408 <_hook_param+0x9a>)
 200003ae:	edc3 7a04 	vstr	s15, [r3, #16]
 			break;
 200003b2:	4770      	bx	lr
@@ -779,124 +779,126 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 		case k_user_osc_param_id2: // User parameter 2
 			// Set v value in range [0-1]
 			p.v = clip01f(value * 0.01f);
-200003b4:	ed9f 7a10 	vldr	s14, [pc, #64]	; 200003f8 <_hook_param+0x8a>
-200003b8:	ee67 7a87 	vmul.f32	s15, s15, s14
-200003bc:	eef5 7ac0 	vcmpe.f32	s15, #0.0
-200003c0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200003c4:	db09      	blt.n	200003da <_hook_param+0x6c>
-200003c6:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-200003ca:	eef4 7ac7 	vcmpe.f32	s15, s14
-200003ce:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200003d2:	bfa8      	it	ge
-200003d4:	eef0 7a47 	vmovge.f32	s15, s14
-200003d8:	e001      	b.n	200003de <_hook_param+0x70>
-200003da:	eddf 7a08 	vldr	s15, [pc, #32]	; 200003fc <_hook_param+0x8e>
-200003de:	4b08      	ldr	r3, [pc, #32]	; (20000400 <_hook_param+0x92>)
-200003e0:	edc3 7a05 	vstr	s15, [r3, #20]
+200003b4:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+200003b8:	ed9f 7a11 	vldr	s14, [pc, #68]	; 20000400 <_hook_param+0x92>
+200003bc:	ee67 7a87 	vmul.f32	s15, s15, s14
+200003c0:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+200003c4:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200003c8:	db09      	blt.n	200003de <_hook_param+0x70>
+200003ca:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+200003ce:	eef4 7ac7 	vcmpe.f32	s15, s14
+200003d2:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200003d6:	bfa8      	it	ge
+200003d8:	eef0 7a47 	vmovge.f32	s15, s14
+200003dc:	e001      	b.n	200003e2 <_hook_param+0x74>
+200003de:	eddf 7a09 	vldr	s15, [pc, #36]	; 20000404 <_hook_param+0x96>
+200003e2:	4b09      	ldr	r3, [pc, #36]	; (20000408 <_hook_param+0x9a>)
+200003e4:	edc3 7a05 	vstr	s15, [r3, #20]
 			break;
-200003e4:	4770      	bx	lr
+200003e8:	4770      	bx	lr
 			
 		case k_user_osc_param_id3: // User parameter 3
 			// Set the frequency ratio for filters
 			p.f_ratio = 1.f + (value * 1.f);
-200003e6:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-200003ea:	ee77 7a87 	vadd.f32	s15, s15, s14
-200003ee:	4b04      	ldr	r3, [pc, #16]	; (20000400 <_hook_param+0x92>)
-200003f0:	edc3 7a06 	vstr	s15, [r3, #24]
-200003f4:	4770      	bx	lr
-200003f6:	bf00      	nop
-200003f8:	3c23d70a 	.word	0x3c23d70a
-200003fc:	00000000 	.word	0x00000000
-20000400:	20000448 	.word	0x20000448
+200003ea:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+200003ee:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+200003f2:	ee77 7a87 	vadd.f32	s15, s15, s14
+200003f6:	4b04      	ldr	r3, [pc, #16]	; (20000408 <_hook_param+0x9a>)
+200003f8:	edc3 7a06 	vstr	s15, [r3, #24]
+200003fc:	4770      	bx	lr
+200003fe:	bf00      	nop
+20000400:	3c23d70a 	.word	0x3c23d70a
+20000404:	00000000 	.word	0x00000000
+20000408:	20000450 	.word	0x20000450
 
-20000404 <_GLOBAL__sub_I__hook_init>:
+2000040c <_GLOBAL__sub_I__hook_init>:
 		uint32_t flags: 1;	// Bit field
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			last(ZEROF),
 			flags(flags_none)
-20000404:	4b0f      	ldr	r3, [pc, #60]	; (20000444 <_GLOBAL__sub_I__hook_init+0x40>)
-20000406:	7b19      	ldrb	r1, [r3, #12]
-20000408:	f36f 0100 	bfc	r1, #0, #1
-2000040c:	7319      	strb	r1, [r3, #12]
+2000040c:	4b0f      	ldr	r3, [pc, #60]	; (2000044c <_GLOBAL__sub_I__hook_init+0x40>)
+2000040e:	7b19      	ldrb	r1, [r3, #12]
+20000410:	f36f 0100 	bfc	r1, #0, #1
+20000414:	7319      	strb	r1, [r3, #12]
 		float	f_ratio; 	// Frequency ratio for filters
 		
 		Params(void) :
 			d(DEFAULT),
 			v(DEFAULT),
 			f_ratio(ONEF)
-2000040e:	f04f 517c 	mov.w	r1, #1056964608	; 0x3f000000
+20000416:	f04f 517c 	mov.w	r1, #1056964608	; 0x3f000000
 		uint32_t flags: 1;	// Bit field
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			last(ZEROF),
 			flags(flags_none)
-20000412:	2200      	movs	r2, #0
+2000041a:	2200      	movs	r2, #0
 		float	f_ratio; 	// Frequency ratio for filters
 		
 		Params(void) :
 			d(DEFAULT),
 			v(DEFAULT),
 			f_ratio(ONEF)
-20000414:	6119      	str	r1, [r3, #16]
-20000416:	6159      	str	r1, [r3, #20]
-20000418:	f04f 517e 	mov.w	r1, #1065353216	; 0x3f800000
+2000041c:	6119      	str	r1, [r3, #16]
+2000041e:	6159      	str	r1, [r3, #20]
+20000420:	f04f 517e 	mov.w	r1, #1065353216	; 0x3f800000
 		uint32_t flags: 1;	// Bit field
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			last(ZEROF),
 			flags(flags_none)
-2000041c:	601a      	str	r2, [r3, #0]
-2000041e:	605a      	str	r2, [r3, #4]
-20000420:	609a      	str	r2, [r3, #8]
+20000424:	601a      	str	r2, [r3, #0]
+20000426:	605a      	str	r2, [r3, #4]
+20000428:	609a      	str	r2, [r3, #8]
 		float	f_ratio; 	// Frequency ratio for filters
 		
 		Params(void) :
 			d(DEFAULT),
 			v(DEFAULT),
 			f_ratio(ONEF)
-20000422:	6199      	str	r1, [r3, #24]
+2000042a:	6199      	str	r1, [r3, #24]
       /**
        * Default constructor
        */
       Coeffs() :
         ff0(0), ff1(0), ff2(0),
         fb1(0), fb2(0)
-20000424:	61da      	str	r2, [r3, #28]
-20000426:	621a      	str	r2, [r3, #32]
-20000428:	625a      	str	r2, [r3, #36]	; 0x24
-2000042a:	629a      	str	r2, [r3, #40]	; 0x28
-2000042c:	62da      	str	r2, [r3, #44]	; 0x2c
+2000042c:	61da      	str	r2, [r3, #28]
+2000042e:	621a      	str	r2, [r3, #32]
+20000430:	625a      	str	r2, [r3, #36]	; 0x24
+20000432:	629a      	str	r2, [r3, #40]	; 0x28
+20000434:	62da      	str	r2, [r3, #44]	; 0x2c
     /*=====================================================================*/
 
     /**
      * Default constructor
      */
     BiQuad(void) : mZ1(0), mZ2(0)
-2000042e:	631a      	str	r2, [r3, #48]	; 0x30
-20000430:	635a      	str	r2, [r3, #52]	; 0x34
+20000436:	631a      	str	r2, [r3, #48]	; 0x30
+20000438:	635a      	str	r2, [r3, #52]	; 0x34
       /**
        * Default constructor
        */
       Coeffs() :
         ff0(0), ff1(0), ff2(0),
         fb1(0), fb2(0)
-20000432:	639a      	str	r2, [r3, #56]	; 0x38
-20000434:	63da      	str	r2, [r3, #60]	; 0x3c
-20000436:	641a      	str	r2, [r3, #64]	; 0x40
-20000438:	645a      	str	r2, [r3, #68]	; 0x44
-2000043a:	649a      	str	r2, [r3, #72]	; 0x48
+2000043a:	639a      	str	r2, [r3, #56]	; 0x38
+2000043c:	63da      	str	r2, [r3, #60]	; 0x3c
+2000043e:	641a      	str	r2, [r3, #64]	; 0x40
+20000440:	645a      	str	r2, [r3, #68]	; 0x44
+20000442:	649a      	str	r2, [r3, #72]	; 0x48
     /*=====================================================================*/
 
     /**
      * Default constructor
      */
     BiQuad(void) : mZ1(0), mZ2(0)
-2000043c:	64da      	str	r2, [r3, #76]	; 0x4c
-2000043e:	651a      	str	r2, [r3, #80]	; 0x50
-20000440:	4770      	bx	lr
-20000442:	bf00      	nop
-20000444:	20000448 	.word	0x20000448
+20000444:	64da      	str	r2, [r3, #76]	; 0x4c
+20000446:	651a      	str	r2, [r3, #80]	; 0x50
+20000448:	4770      	bx	lr
+2000044a:	bf00      	nop
+2000044c:	20000450 	.word	0x20000450

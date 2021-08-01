@@ -27,7 +27,7 @@ LOAD ./build/obj/vps_intpl.o
                 0x20000044                . = ALIGN (0x4)
                 0x20000044                PROVIDE (__init_array_end, .)
 
-.text           0x20000044      0x404
+.text           0x20000044      0x40c
                 0x20000044                . = ALIGN (0x4)
                 0x20000044                _text_start = .
  *(.text)
@@ -35,91 +35,91 @@ LOAD ./build/obj/vps_intpl.o
                 0x20000046                _hook_mute
                 0x20000048                _hook_value
                 0x20000052                _entry
- .text          0x200000a4      0x360 ./build/obj/vps_intpl.o
+ .text          0x200000a4      0x368 ./build/obj/vps_intpl.o
                 0x200000a4                _hook_init
                 0x200000a6                _hook_cycle
                 0x2000035c                _hook_on
                 0x2000036c                _hook_off
                 0x2000036e                _hook_param
  *(.text.*)
- .text.startup  0x20000404       0x44 ./build/obj/vps_intpl.o
+ .text.startup  0x2000040c       0x44 ./build/obj/vps_intpl.o
  *(.glue_7)
- .glue_7        0x20000448        0x0 linker stubs
+ .glue_7        0x20000450        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x20000448        0x0 linker stubs
+ .glue_7t       0x20000450        0x0 linker stubs
  *(.gcc*)
-                0x20000448                . = ALIGN (0x4)
-                0x20000448                _text_end = .
+                0x20000450                . = ALIGN (0x4)
+                0x20000450                _text_end = .
 
-.vfp11_veneer   0x20000448        0x0
- .vfp11_veneer  0x20000448        0x0 linker stubs
+.vfp11_veneer   0x20000450        0x0
+ .vfp11_veneer  0x20000450        0x0 linker stubs
 
-.v4_bx          0x20000448        0x0
- .v4_bx         0x20000448        0x0 linker stubs
+.v4_bx          0x20000450        0x0
+ .v4_bx         0x20000450        0x0 linker stubs
 
-.iplt           0x20000448        0x0
- .iplt          0x20000448        0x0 ./build/obj/_unit.o
+.iplt           0x20000450        0x0
+ .iplt          0x20000450        0x0 ./build/obj/_unit.o
 
-.rel.dyn        0x20000448        0x0
- .rel.iplt      0x20000448        0x0 ./build/obj/_unit.o
+.rel.dyn        0x20000450        0x0
+ .rel.iplt      0x20000450        0x0 ./build/obj/_unit.o
 
-.rodata         0x20000448        0x0
-                0x20000448                . = ALIGN (0x4)
-                0x20000448                _rodata_start = .
+.rodata         0x20000450        0x0
+                0x20000450                . = ALIGN (0x4)
+                0x20000450                _rodata_start = .
  *(.rodata)
  *(.rodata.*)
-                0x20000448                . = ALIGN (0x4)
-                0x20000448                _rodata_end = .
+                0x20000450                . = ALIGN (0x4)
+                0x20000450                _rodata_end = .
 
-.data           0x20000448        0x0
-                0x20000448                . = ALIGN (0x8)
-                0x20000448                _data_start = .
+.data           0x20000450        0x0
+                0x20000450                . = ALIGN (0x8)
+                0x20000450                _data_start = .
  *(.data)
- .data          0x20000448        0x0 ./build/obj/_unit.o
- .data          0x20000448        0x0 ./build/obj/vps_intpl.o
+ .data          0x20000450        0x0 ./build/obj/_unit.o
+ .data          0x20000450        0x0 ./build/obj/vps_intpl.o
  *(.data.*)
-                0x20000448                . = ALIGN (0x8)
-                0x20000448                _data_end = .
+                0x20000450                . = ALIGN (0x8)
+                0x20000450                _data_end = .
 
-.igot.plt       0x20000448        0x0
- .igot.plt      0x20000448        0x0 ./build/obj/_unit.o
+.igot.plt       0x20000450        0x0
+ .igot.plt      0x20000450        0x0 ./build/obj/_unit.o
 
-.bss            0x20000448       0x54
-                0x20000448                . = ALIGN (0x4)
-                0x20000448                _bss_start = .
+.bss            0x20000450       0x54
+                0x20000450                . = ALIGN (0x4)
+                0x20000450                _bss_start = .
  *(.bss)
- .bss           0x20000448        0x0 ./build/obj/_unit.o
- .bss           0x20000448       0x54 ./build/obj/vps_intpl.o
+ .bss           0x20000450        0x0 ./build/obj/_unit.o
+ .bss           0x20000450       0x54 ./build/obj/vps_intpl.o
  *(.bss.*)
  *(COMMON)
-                0x2000049c                . = ALIGN (0x4)
-                0x2000049c                _bss_end = .
+                0x200004a4                . = ALIGN (0x4)
+                0x200004a4                _bss_end = .
 
-.ARM.extab      0x2000049c        0x0
-                0x2000049c                . = ALIGN (0x4)
-                0x2000049c                __extab_start = .
+.ARM.extab      0x200004a4        0x0
+                0x200004a4                . = ALIGN (0x4)
+                0x200004a4                __extab_start = .
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x2000049c                . = ALIGN (0x4)
-                0x2000049c                __extab_end = .
+                0x200004a4                . = ALIGN (0x4)
+                0x200004a4                __extab_end = .
 
-.ARM.exidx      0x2000049c        0x0
-                0x2000049c                __exidx_start = .
+.ARM.exidx      0x200004a4        0x0
+                0x200004a4                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x2000049c                __exidx_end = .
+                0x200004a4                __exidx_end = .
 
-.eh_frame_hdr   0x2000049c        0x0
-                0x2000049c                . = ALIGN (0x4)
-                0x2000049c                _eh_frame_hdr_start = .
+.eh_frame_hdr   0x200004a4        0x0
+                0x200004a4                . = ALIGN (0x4)
+                0x200004a4                _eh_frame_hdr_start = .
  *(.eh_frame_hdr)
-                0x2000049c                . = ALIGN (0x4)
-                0x2000049c                _eh_frame_hdr_end = .
+                0x200004a4                . = ALIGN (0x4)
+                0x200004a4                _eh_frame_hdr_end = .
 
-.eh_frame       0x2000049c        0x0
-                0x2000049c                . = ALIGN (0x4)
-                0x2000049c                _eh_frame_start = .
+.eh_frame       0x200004a4        0x0
+                0x200004a4                . = ALIGN (0x4)
+                0x200004a4                _eh_frame_start = .
  *(.eh_frame)
-                0x2000049c                . = ALIGN (0x4)
-                0x2000049c                _eh_frame_end = .
+                0x200004a4                . = ALIGN (0x4)
+                0x200004a4                _eh_frame_end = .
 LOAD ./ld/osc_api.syms
                 0x0800f000                k_osc_api_version = 0x800f000
                 0x0800f004                k_osc_api_platform = 0x800f004
@@ -157,17 +157,17 @@ LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/
 END GROUP
 OUTPUT(build/vps_intpl.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x1b42
+.debug_info     0x00000000     0x1b33
  .debug_info    0x00000000      0x6a4 ./build/obj/_unit.o
- .debug_info    0x000006a4     0x149e ./build/obj/vps_intpl.o
+ .debug_info    0x000006a4     0x148f ./build/obj/vps_intpl.o
 
 .debug_abbrev   0x00000000      0x62d
  .debug_abbrev  0x00000000      0x20e ./build/obj/_unit.o
  .debug_abbrev  0x0000020e      0x41f ./build/obj/vps_intpl.o
 
-.debug_loc      0x00000000      0xa2d
+.debug_loc      0x00000000      0x998
  .debug_loc     0x00000000       0xb9 ./build/obj/_unit.o
- .debug_loc     0x000000b9      0x974 ./build/obj/vps_intpl.o
+ .debug_loc     0x000000b9      0x8df ./build/obj/vps_intpl.o
 
 .debug_aranges  0x00000000       0x48
  .debug_aranges
@@ -175,15 +175,15 @@ OUTPUT(build/vps_intpl.elf elf32-littlearm)
  .debug_aranges
                 0x00000020       0x28 ./build/obj/vps_intpl.o
 
-.debug_line     0x00000000      0x6ad
+.debug_line     0x00000000      0x6ab
  .debug_line    0x00000000      0x204 ./build/obj/_unit.o
- .debug_line    0x00000204      0x4a9 ./build/obj/vps_intpl.o
+ .debug_line    0x00000204      0x4a7 ./build/obj/vps_intpl.o
 
-.debug_str      0x00000000      0xd5e
+.debug_str      0x00000000      0xd59
  .debug_str     0x00000000      0x5ee ./build/obj/_unit.o
                                 0x67b (size before relaxing)
- .debug_str     0x000005ee      0x770 ./build/obj/vps_intpl.o
-                                0xa93 (size before relaxing)
+ .debug_str     0x000005ee      0x76b ./build/obj/vps_intpl.o
+                                0xa8e (size before relaxing)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e ./build/obj/_unit.o

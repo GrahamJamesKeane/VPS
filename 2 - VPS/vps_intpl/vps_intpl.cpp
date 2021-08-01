@@ -87,8 +87,6 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 	
 	VPS::Params &p = vps.params;
 	
-	const float valf = param_val_to_f32(value);
-	
 	switch (index) {
 		case k_user_osc_param_id1: // User parameter 1
 			// Set d value in range [0-1]
