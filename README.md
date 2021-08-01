@@ -3,11 +3,13 @@ Vector Phaseshaping  Synthesis methods for the Korg NTS-1 Nu:Tekt digital synthe
 
 ## 1 - Basic Phase Distortion Synthesis Example
 
-## 2 - Formant Synthesis
+## 2 - Basic VPS
 
-## 3 - Multiple Inflection Points
+## 3 - Formant Synthesis
 
-## 4 - Adaptive Vector Control
+## 4 - Multiple Inflection Points (MVPS)
+
+## 5 - Adaptive Vector Control
 
 ### 4.1 - 1D Control
 ### 4.2 - 2D LFM
