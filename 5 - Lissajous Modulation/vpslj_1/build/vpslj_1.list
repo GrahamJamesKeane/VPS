@@ -1,0 +1,1225 @@
+
+build/vpslj_1.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+20000044 <_text_start>:
+  (void)api;
+}
+
+__attribute__((weak))
+void _hook_cycle(const user_osc_param_t * const params, int32_t *yn, const uint32_t frames)
+{
+20000044:	4770      	bx	lr
+
+20000046 <_hook_mute>:
+  (void)params;
+}
+
+__attribute__((weak))
+void _hook_mute(const user_osc_param_t * const params)
+{
+20000046:	4770      	bx	lr
+
+20000048 <_hook_value>:
+  (void)params;
+}
+
+__attribute__((weak))
+void _hook_value(uint16_t value)
+{
+20000048:	4770      	bx	lr
+  (void)value;
+}
+
+__attribute__((weak))
+void _hook_param(uint16_t index, uint16_t value)
+{
+2000004a:	4770      	bx	lr
+2000004c:	4770      	bx	lr
+2000004e:	4770      	bx	lr
+  _hook_init(platform, api);
+}
+
+__attribute__((weak))
+void _hook_init(uint32_t platform, uint32_t api)
+{
+20000050:	4770      	bx	lr
+
+20000052 <_entry>:
+ * @{
+ */
+
+__attribute__((used))
+void _entry(uint32_t platform, uint32_t api)
+{
+20000052:	4b10      	ldr	r3, [pc, #64]	; (20000094 <_entry+0x42>)
+20000054:	4a10      	ldr	r2, [pc, #64]	; (20000098 <_entry+0x46>)
+20000056:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+2000005a:	4688      	mov	r8, r1
+2000005c:	4607      	mov	r7, r0
+  // Ensure zero-clear BSS segment
+  uint8_t * __restrict bss_p = (uint8_t *)&_bss_start;
+  const uint8_t * const bss_e = (uint8_t *)&_bss_end;
+
+  for (; bss_p != bss_e;)
+    *(bss_p++) = 0;
+2000005e:	2100      	movs	r1, #0
+{
+  // Ensure zero-clear BSS segment
+  uint8_t * __restrict bss_p = (uint8_t *)&_bss_start;
+  const uint8_t * const bss_e = (uint8_t *)&_bss_end;
+
+  for (; bss_p != bss_e;)
+20000060:	4293      	cmp	r3, r2
+20000062:	d002      	beq.n	2000006a <_entry+0x18>
+    *(bss_p++) = 0;
+20000064:	f803 1f01 	strb.w	r1, [r3, #1]!
+20000068:	e7fa      	b.n	20000060 <_entry+0xe>
+2000006a:	4b0c      	ldr	r3, [pc, #48]	; (2000009c <_entry+0x4a>)
+2000006c:	4c0c      	ldr	r4, [pc, #48]	; (200000a0 <_entry+0x4e>)
+2000006e:	1ae4      	subs	r4, r4, r3
+20000070:	10a4      	asrs	r4, r4, #2
+
+  // Call constructors if any.  
+  const size_t count = __init_array_end - __init_array_start;
+  for (size_t i = 0; i<count; ++i) {
+20000072:	2500      	movs	r5, #0
+20000074:	461e      	mov	r6, r3
+20000076:	42a5      	cmp	r5, r4
+20000078:	d005      	beq.n	20000086 <_entry+0x34>
+    __init_fptr init_p = (__init_fptr)__init_array_start[i];
+2000007a:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+    if (init_p != NULL)
+2000007e:	b103      	cbz	r3, 20000082 <_entry+0x30>
+      init_p();
+20000080:	4798      	blx	r3
+  for (; bss_p != bss_e;)
+    *(bss_p++) = 0;
+
+  // Call constructors if any.  
+  const size_t count = __init_array_end - __init_array_start;
+  for (size_t i = 0; i<count; ++i) {
+20000082:	3501      	adds	r5, #1
+20000084:	e7f7      	b.n	20000076 <_entry+0x24>
+    if (init_p != NULL)
+      init_p();
+  }
+  
+  // Call user initialization
+  _hook_init(platform, api);
+20000086:	4641      	mov	r1, r8
+20000088:	4638      	mov	r0, r7
+2000008a:	f000 f80b 	bl	200000a4 <_hook_init>
+2000008e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+20000092:	bf00      	nop
+20000094:	20000657 	.word	0x20000657
+20000098:	200006cb 	.word	0x200006cb
+2000009c:	20000040 	.word	0x20000040
+200000a0:	20000044 	.word	0x20000044
+
+200000a4 <_hook_init>:
+# include "userosc.h"
+# include "vpslj_1.hpp"
+
+static VPSLJ2D vpslj2d;
+
+void OSC_INIT(uint32_t platform, uint32_t api) {
+200000a4:	4770      	bx	lr
+
+200000a6 <_hook_cycle>:
+	(void)platform;
+	(void)api;
+}
+
+void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
+200000a6:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+	// Local copies of the state and params objects.
+	VPSLJ2D::State &s = vpslj2d.state;
+	const VPSLJ2D::Params &p = vpslj2d.params;
+	
+	// Current flag
+	const uint32_t flags = s.flags; 
+200000a8:	4c9f      	ldr	r4, [pc, #636]	; (20000328 <_hook_cycle+0x282>)
+	if(flags & VPSLJ2D::flag_reset) {
+		s.reset();
+	}
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
+200000aa:	8880      	ldrh	r0, [r0, #4]
+	// Local copies of the state and params objects.
+	VPSLJ2D::State &s = vpslj2d.state;
+	const VPSLJ2D::Params &p = vpslj2d.params;
+	
+	// Current flag
+	const uint32_t flags = s.flags; 
+200000ac:	7f23      	ldrb	r3, [r4, #28]
+200000ae:	eddf 5a9f 	vldr	s11, [pc, #636]	; 2000032c <_hook_cycle+0x286>
+
+/** Linear interpolation
+ */
+static inline __attribute__((optimize("Ofast"), always_inline))
+float linintf(const float fr, const float x0, const float x1) {
+  return x0 + fr * (x1 - x0);
+200000b2:	ed9f 7a9f 	vldr	s14, [pc, #636]	; 20000330 <_hook_cycle+0x28a>
+    const float f0 = osc_notehzf(note);
+    const float f1 = osc_notehzf(note+1);
+    
+    const float f = clipmaxf(linintf(mod * k_note_mod_fscale, f0, f1), k_note_max_hz);
+
+    return f * k_samplerate_recipf;
+200000b6:	ed9f 6a9f 	vldr	s12, [pc, #636]	; 20000334 <_hook_cycle+0x28e>
+		/*
+		* We need to ensure we don't go over the
+		* nyquist frequency
+		*/  
+		
+		float limit = params.f_ratio;
+200000ba:	edd4 6a0b 	vldr	s13, [r4, #44]	; 0x2c
+   * @param   x  Value in [0.0001, 0.49].
+   * @return     Result of tan(pi*x).
+   * @note Not checking input, caller responsible for bounding x.
+   */
+  __fast_inline float osc_tanpif(float x) {
+    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
+200000be:	eddf 4a9e 	vldr	s9, [pc, #632]	; 20000338 <_hook_cycle+0x292>
+      void setFOLP(const float k) {
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = ff1 = k / kp1;
+        fb1 = km1 / kp1;
+        fb2 = ff2 = 0.f;
+200000c2:	edc4 5a11 	vstr	s11, [r4, #68]	; 0x44
+200000c6:	f003 060f 	and.w	r6, r3, #15
+	
+	// Reset s.flags
+    s.flags = VPSLJ2D::flags_none; 
+200000ca:	f36f 0303 	bfc	r3, #0, #4
+	
+	// Reset state if note-on trigger
+	if(flags & VPSLJ2D::flag_reset) {
+200000ce:	f016 0f08 	tst.w	r6, #8
+	
+	// Current flag
+	const uint32_t flags = s.flags; 
+	
+	// Reset s.flags
+    s.flags = VPSLJ2D::flags_none; 
+200000d2:	7723      	strb	r3, [r4, #28]
+	if(flags & VPSLJ2D::flag_reset) {
+		s.reset();
+	}
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
+200000d4:	ea4f 2320 	mov.w	r3, r0, asr #8
+		{
+			reset();
+		}
+		
+		inline void reset(void) {
+			phi = ZEROF;
+200000d8:	bf18      	it	ne
+200000da:	edc4 5a00 	vstrne	s11, [r4]
+   *
+   * @param note Note in [0-151] range.
+   * @return     Corresponding Hertz value.
+   */
+  __fast_inline float osc_notehzf(uint8_t note) {
+    return midi_to_hz_lut_f[clipmaxu32(note,k_midi_to_hz_size-1)];
+200000de:	2b96      	cmp	r3, #150	; 0x96
+void OSC_INIT(uint32_t platform, uint32_t api) {
+	(void)platform;
+	(void)api;
+}
+
+void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
+200000e0:	460d      	mov	r5, r1
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
+	
+	// Floating point phase increment for given note and fine modulation
+	float w0 = s.w0 = osc_w0f_for_note(note, params->pitch & 0xFF);
+200000e2:	b2c1      	uxtb	r1, r0
+200000e4:	bfd8      	it	le
+200000e6:	4618      	movle	r0, r3
+   * @param note Note in [0-151] range, mod in [0-255] range.
+   * @return     Corresponding 0-1 phase increment in floating point.
+   */
+  __fast_inline float osc_w0f_for_note(uint8_t note, uint8_t mod) {    
+    const float f0 = osc_notehzf(note);
+    const float f1 = osc_notehzf(note+1);
+200000e8:	f103 0301 	add.w	r3, r3, #1
+200000ec:	b2db      	uxtb	r3, r3
+200000ee:	ee07 1a90 	vmov	s15, r1
+   *
+   * @param note Note in [0-151] range.
+   * @return     Corresponding Hertz value.
+   */
+  __fast_inline float osc_notehzf(uint8_t note) {
+    return midi_to_hz_lut_f[clipmaxu32(note,k_midi_to_hz_size-1)];
+200000f2:	bfc8      	it	gt
+200000f4:	2097      	movgt	r0, #151	; 0x97
+200000f6:	4991      	ldr	r1, [pc, #580]	; (2000033c <_hook_cycle+0x296>)
+200000f8:	edc4 5a13 	vstr	s11, [r4, #76]	; 0x4c
+200000fc:	2b96      	cmp	r3, #150	; 0x96
+200000fe:	bf88      	it	hi
+20000100:	2397      	movhi	r3, #151	; 0x97
+20000102:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+20000106:	eb01 0080 	add.w	r0, r1, r0, lsl #2
+2000010a:	eb01 0383 	add.w	r3, r1, r3, lsl #2
+void OSC_INIT(uint32_t platform, uint32_t api) {
+	(void)platform;
+	(void)api;
+}
+
+void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
+2000010e:	ed2d 8b0a 	vpush	{d8-d12}
+20000112:	ee67 7a87 	vmul.f32	s15, s15, s14
+20000116:	ed90 8a00 	vldr	s16, [r0]
+2000011a:	ed93 7a00 	vldr	s14, [r3]
+   * @note Not checking input, caller responsible for bounding x.
+   */
+  __fast_inline float osc_tanpif(float x) {
+    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
+    const uint32_t idx = (uint32_t)idxf;
+    const float y0 = tanpi_lut_f[idx];
+2000011e:	4b88      	ldr	r3, [pc, #544]	; (20000340 <_hook_cycle+0x29a>)
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = 1.f / kp1;
+        ff1 = -ff0;
+        fb1 = km1 / kp1;
+        fb2 = ff2 = 0.f;
+20000120:	edc4 5a18 	vstr	s11, [r4, #96]	; 0x60
+20000124:	ee37 7a48 	vsub.f32	s14, s14, s16
+		* nyquist frequency
+		*/  
+		
+		float limit = params.f_ratio;
+		float lpf 	= clipmaxf(limit * w0, 0.49f);
+		float hpf 	= clipminf((1.f / limit) * w0, ZEROF);
+20000128:	eef7 8a00 	vmov.f32	s17, #112	; 0x3f800000  1.0
+2000012c:	eea7 8a87 	vfma.f32	s16, s15, s14
+
+/** FSEL construct
+ */
+static inline __attribute__((optimize("Ofast"),always_inline))
+float fsel(const float a, const float b, const float c) {
+  return (a >= 0) ? b : c;
+20000130:	eddf 7a84 	vldr	s15, [pc, #528]	; 20000344 <_hook_cycle+0x29e>
+20000134:	edc4 5a1a 	vstr	s11, [r4, #104]	; 0x68
+20000138:	eeb4 8ae7 	vcmpe.f32	s16, s15
+2000013c:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+20000140:	bfa8      	it	ge
+20000142:	eeb0 8a67 	vmovge.f32	s16, s15
+    const float f0 = osc_notehzf(note);
+    const float f1 = osc_notehzf(note+1);
+    
+    const float f = clipmaxf(linintf(mod * k_note_mod_fscale, f0, f1), k_note_max_hz);
+
+    return f * k_samplerate_recipf;
+20000146:	ee28 8a06 	vmul.f32	s16, s16, s12
+2000014a:	eddf 7a7f 	vldr	s15, [pc, #508]	; 20000348 <_hook_cycle+0x2a2>
+	
+	// Current note being played.
+	uint8_t note = params->pitch>>8;
+	
+	// Floating point phase increment for given note and fine modulation
+	float w0 = s.w0 = osc_w0f_for_note(note, params->pitch & 0xFF);
+2000014e:	ed84 8a01 	vstr	s16, [r4, #4]
+		* We need to ensure we don't go over the
+		* nyquist frequency
+		*/  
+		
+		float limit = params.f_ratio;
+		float lpf 	= clipmaxf(limit * w0, 0.49f);
+20000152:	ee28 7a26 	vmul.f32	s14, s16, s13
+20000156:	ee37 5a67 	vsub.f32	s10, s14, s15
+2000015a:	eeb5 5ac0 	vcmpe.f32	s10, #0.0
+2000015e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+20000162:	bfb8      	it	lt
+20000164:	eef0 7a47 	vmovlt.f32	s15, s14
+		float hpf 	= clipminf((1.f / limit) * w0, ZEROF);
+20000168:	ee88 7aa6 	vdiv.f32	s14, s17, s13
+   * @param   x  Value in [0.0001, 0.49].
+   * @return     Result of tan(pi*x).
+   * @note Not checking input, caller responsible for bounding x.
+   */
+  __fast_inline float osc_tanpif(float x) {
+    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
+2000016c:	ee67 7aa4 	vmul.f32	s15, s15, s9
+20000170:	ee67 6a08 	vmul.f32	s13, s14, s16
+20000174:	ee35 7ae6 	vsub.f32	s14, s11, s13
+20000178:	eeb5 7ac0 	vcmpe.f32	s14, #0.0
+2000017c:	ed9f 7a6b 	vldr	s14, [pc, #428]	; 2000032c <_hook_cycle+0x286>
+20000180:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+20000184:	bfb8      	it	lt
+20000186:	eeb0 7a66 	vmovlt.f32	s14, s13
+    const uint32_t idx = (uint32_t)idxf;
+2000018a:	eefc 6ae7 	vcvt.u32.f32	s13, s15
+2000018e:	ee16 1a90 	vmov	r1, s13
+
+/** Linear interpolation
+ */
+static inline __attribute__((optimize("Ofast"), always_inline))
+float linintf(const float fr, const float x0, const float x1) {
+  return x0 + fr * (x1 - x0);
+20000192:	ee05 1a10 	vmov	s10, r1
+20000196:	eeb8 5a45 	vcvt.f32.u32	s10, s10
+    const float y0 = tanpi_lut_f[idx];
+2000019a:	eb03 0081 	add.w	r0, r3, r1, lsl #2
+2000019e:	edd0 6a00 	vldr	s13, [r0]
+       */
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOLP(const float k) {
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = ff1 = k / kp1;
+200001a2:	4961      	ldr	r1, [pc, #388]	; (20000328 <_hook_cycle+0x282>)
+200001a4:	ee77 7ac5 	vsub.f32	s15, s15, s10
+200001a8:	ed90 5a01 	vldr	s10, [r0, #4]
+200001ac:	ee35 5a66 	vsub.f32	s10, s10, s13
+200001b0:	eee7 6a85 	vfma.f32	s13, s15, s10
+       *
+       * @param   k Tangent of PI x cutoff frequency in radians: tan(pi*wc)
+       */
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOLP(const float k) {
+        const float kp1 = k+1.f;
+200001b4:	ee76 7aa8 	vadd.f32	s15, s13, s17
+        const float km1 = k-1.f;
+        ff0 = ff1 = k / kp1;
+200001b8:	ee86 5aa7 	vdiv.f32	s10, s13, s15
+        fb1 = km1 / kp1;
+200001bc:	ee76 6ae8 	vsub.f32	s13, s13, s17
+       */
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOLP(const float k) {
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = ff1 = k / kp1;
+200001c0:	ed84 5a10 	vstr	s10, [r4, #64]	; 0x40
+200001c4:	ed84 5a0f 	vstr	s10, [r4, #60]	; 0x3c
+        fb1 = km1 / kp1;
+200001c8:	ee86 5aa7 	vdiv.f32	s10, s13, s15
+   * @param   x  Value in [0.0001, 0.49].
+   * @return     Result of tan(pi*x).
+   * @note Not checking input, caller responsible for bounding x.
+   */
+  __fast_inline float osc_tanpif(float x) {
+    const float idxf = x * k_tanpi_range_recip * k_tanpi_size;
+200001cc:	ee67 7a24 	vmul.f32	s15, s14, s9
+200001d0:	ed84 5a12 	vstr	s10, [r4, #72]	; 0x48
+    const uint32_t idx = (uint32_t)idxf;
+200001d4:	eebc 7ae7 	vcvt.u32.f32	s14, s15
+200001d8:	ee17 0a10 	vmov	r0, s14
+200001dc:	ee06 0a90 	vmov	s13, r0
+200001e0:	eef8 6a66 	vcvt.f32.u32	s13, s13
+    const float y0 = tanpi_lut_f[idx];
+200001e4:	eb03 0780 	add.w	r7, r3, r0, lsl #2
+200001e8:	ee77 7ae6 	vsub.f32	s15, s15, s13
+200001ec:	ed97 7a00 	vldr	s14, [r7]
+200001f0:	edd7 6a01 	vldr	s13, [r7, #4]
+200001f4:	ee76 6ac7 	vsub.f32	s13, s13, s14
+	
+	// Set pole for filters
+	vpslj2d.setFilters(w0);
+	
+	// Update LFO frequency
+	if(flags & VPSLJ2D::flag_LFO) {
+200001f8:	07f0      	lsls	r0, r6, #31
+200001fa:	eea7 7aa6 	vfma.f32	s14, s15, s13
+       * @param   k Tangent of PI x cutoff frequency in radians: tan(pi*wc)
+       */
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOHP(const float k) {
+        // k = tan(pi*wc)
+        const float kp1 = k+1.f;
+200001fe:	ee77 6a28 	vadd.f32	s13, s14, s17
+20000202:	eef0 7a47 	vmov.f32	s15, s14
+        const float km1 = k-1.f;
+        ff0 = 1.f / kp1;
+20000206:	ee88 7aa6 	vdiv.f32	s14, s17, s13
+        ff1 = -ff0;
+        fb1 = km1 / kp1;
+2000020a:	ee77 7ae8 	vsub.f32	s15, s15, s17
+      inline __attribute__((optimize("Ofast"),always_inline))
+      void setFOHP(const float k) {
+        // k = tan(pi*wc)
+        const float kp1 = k+1.f;
+        const float km1 = k-1.f;
+        ff0 = 1.f / kp1;
+2000020e:	ed84 7a16 	vstr	s14, [r4, #88]	; 0x58
+        ff1 = -ff0;
+20000212:	eeb1 7a47 	vneg.f32	s14, s14
+20000216:	ed84 7a17 	vstr	s14, [r4, #92]	; 0x5c
+        fb1 = km1 / kp1;
+2000021a:	ee87 7aa6 	vdiv.f32	s14, s15, s13
+		s.w0LFOD = p.w0LFO * k_samplerate_recipf;
+2000021e:	bf48      	it	mi
+20000220:	edd1 7a08 	vldrmi	s15, [r1, #32]
+20000224:	ed84 7a19 	vstr	s14, [r4, #100]	; 0x64
+20000228:	bf42      	ittt	mi
+2000022a:	ee67 7a86 	vmulmi.f32	s15, s15, s12
+2000022e:	edc1 7a02 	vstrmi	s15, [r1, #8]
+		s.w0LFOV = p.w0LFO * k_samplerate_recipf;
+20000232:	edc1 7a03 	vstrmi	s15, [r1, #12]
+	}
+	
+	// Update LFO1 frequency ratio
+	if(flags & VPSLJ2D::flag_LFOD) {
+20000236:	07b1      	lsls	r1, r6, #30
+20000238:	d50b      	bpl.n	20000252 <_hook_cycle+0x1ac>
+		s.w0LFOV = p.w0LFO * k_samplerate_recipf;
+2000023a:	edd4 7a08 	vldr	s15, [r4, #32]
+		s.w0LFOD = p.freq_shift_D * s.w0LFOV;
+2000023e:	ed94 7a0c 	vldr	s14, [r4, #48]	; 0x30
+		s.w0LFOV = p.w0LFO * k_samplerate_recipf;
+	}
+	
+	// Update LFO1 frequency ratio
+	if(flags & VPSLJ2D::flag_LFOD) {
+		s.w0LFOV = p.w0LFO * k_samplerate_recipf;
+20000242:	ee67 7a86 	vmul.f32	s15, s15, s12
+20000246:	edc4 7a03 	vstr	s15, [r4, #12]
+		s.w0LFOD = p.freq_shift_D * s.w0LFOV;
+2000024a:	ee67 7a27 	vmul.f32	s15, s14, s15
+2000024e:	edc4 7a02 	vstr	s15, [r4, #8]
+	}
+	
+	// Update LFO2 frequency ratio
+	if(flags & VPSLJ2D::flag_LFOV) {
+20000252:	0773      	lsls	r3, r6, #29
+20000254:	d50b      	bpl.n	2000026e <_hook_cycle+0x1c8>
+		s.w0LFOD = p.w0LFO * k_samplerate_recipf;
+20000256:	edd4 7a08 	vldr	s15, [r4, #32]
+2000025a:	ee27 6a86 	vmul.f32	s12, s15, s12
+		s.w0LFOV = p.freq_shift_V * s.w0LFOD;
+2000025e:	edd4 7a0d 	vldr	s15, [r4, #52]	; 0x34
+		s.w0LFOD = p.freq_shift_D * s.w0LFOV;
+	}
+	
+	// Update LFO2 frequency ratio
+	if(flags & VPSLJ2D::flag_LFOV) {
+		s.w0LFOD = p.w0LFO * k_samplerate_recipf;
+20000262:	ed84 6a02 	vstr	s12, [r4, #8]
+		s.w0LFOV = p.freq_shift_V * s.w0LFOD;
+20000266:	ee27 6a86 	vmul.f32	s12, s15, s12
+2000026a:	ed84 6a03 	vstr	s12, [r4, #12]
+	}
+	
+	// Local copies of the state object fields.
+	float phi 		= s.phi;
+2000026e:	ed94 aa00 	vldr	s20, [r4]
+	float *Phi 		= &phi;
+	float phiLFOD 	= s.phiLFOD;
+20000272:	edd4 9a04 	vldr	s19, [r4, #16]
+	float *ptrLFOD 	= &phiLFOD;
+	float phiLFOV 	= s.phiLFOV;
+20000276:	ed94 9a05 	vldr	s18, [r4, #20]
+	float *ptrLFOV 	= &phiLFOV;
+	float w0LFOD 	= s.w0LFOD;
+2000027a:	edd4 ba02 	vldr	s23, [r4, #8]
+	float w0LFOV 	= s.w0LFOV;
+2000027e:	ed94 ca03 	vldr	s24, [r4, #12]
+		
+		// Softclip signal before sending to buffer
+		sig = osc_softclipf(0.0125f, sig);
+		
+		// Format in Q31 binary fixed-point representation and add to buffer
+		*(y++) = f32_to_q31(sig); 
+20000282:	ed9f ba32 	vldr	s22, [pc, #200]	; 2000034c <_hook_cycle+0x2a6>
+20000286:	eddf aa32 	vldr	s21, [pc, #200]	; 20000350 <_hook_cycle+0x2aa>
+  
+	// Pointer to start of buffer
+	q31_t *__restrict y = (q31_t*)yn; 
+	
+	// Pointer to end of buffer
+	const q31_t *y_e = y + frames; 
+2000028a:	eb05 0682 	add.w	r6, r5, r2, lsl #2
+
+	// Fill buffer with samples
+	for (; y != y_e; ) { 
+2000028e:	42b5      	cmp	r5, r6
+20000290:	d040      	beq.n	20000314 <_hook_cycle+0x26e>
+	
+		// Compute waveform
+		float sig = vpslj2d.PhaseShaper(phi, phiLFOD, phiLFOV);
+20000292:	eeb0 1a49 	vmov.f32	s2, s18
+20000296:	eef0 0a69 	vmov.f32	s1, s19
+2000029a:	eeb0 0a4a 	vmov.f32	s0, s20
+2000029e:	4822      	ldr	r0, [pc, #136]	; (20000328 <_hook_cycle+0x282>)
+200002a0:	f000 f8f0 	bl	20000484 <_ZN7VPSLJ2D11PhaseShaperEfff>
+		LPF.mCoeffs.setFOLP(osc_tanpif(lpf));
+		HPF.mCoeffs.setFOHP(osc_tanpif(hpf));
+	}
+	
+	inline float updatePhase(float *phi, float w0) {
+		*phi += w0;
+200002a4:	ee3a aa08 	vadd.f32	s20, s20, s16
+200002a8:	ee7b 9aa9 	vadd.f32	s19, s23, s19
+		*phi -= (uint32_t)*phi;
+200002ac:	eefc 7aca 	vcvt.u32.f32	s15, s20
+		LPF.mCoeffs.setFOLP(osc_tanpif(lpf));
+		HPF.mCoeffs.setFOHP(osc_tanpif(hpf));
+	}
+	
+	inline float updatePhase(float *phi, float w0) {
+		*phi += w0;
+200002b0:	ee3c 9a09 	vadd.f32	s18, s24, s18
+		*phi -= (uint32_t)*phi;
+200002b4:	eef8 7a67 	vcvt.f32.u32	s15, s15
+200002b8:	ee3a aa67 	vsub.f32	s20, s20, s15
+200002bc:	eefc 7ae9 	vcvt.u32.f32	s15, s19
+200002c0:	eef8 7a67 	vcvt.f32.u32	s15, s15
+200002c4:	ee79 9ae7 	vsub.f32	s19, s19, s15
+200002c8:	eefc 7ac9 	vcvt.u32.f32	s15, s18
+200002cc:	eef8 7a67 	vcvt.f32.u32	s15, s15
+200002d0:	ee39 9a67 	vsub.f32	s18, s18, s15
+
+/** FSEL construct
+ */
+static inline __attribute__((optimize("Ofast"),always_inline))
+float fsel(const float a, const float b, const float c) {
+  return (a >= 0) ? b : c;
+200002d4:	eeff 7a00 	vmov.f32	s15, #240	; 0xbf800000 -1.0
+200002d8:	eeb4 0ae7 	vcmpe.f32	s0, s15
+200002dc:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200002e0:	db09      	blt.n	200002f6 <_hook_cycle+0x250>
+200002e2:	eeb4 0ae8 	vcmpe.f32	s0, s17
+200002e6:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200002ea:	eef7 7a00 	vmov.f32	s15, #112	; 0x3f800000  1.0
+200002ee:	bfa8      	it	ge
+200002f0:	eeb0 0a67 	vmovge.f32	s0, s15
+200002f4:	e001      	b.n	200002fa <_hook_cycle+0x254>
+200002f6:	eeb0 0a67 	vmov.f32	s0, s15
+		
+		// Softclip signal before sending to buffer
+		sig = osc_softclipf(0.0125f, sig);
+		
+		// Format in Q31 binary fixed-point representation and add to buffer
+		*(y++) = f32_to_q31(sig); 
+200002fa:	ee60 7a00 	vmul.f32	s15, s0, s0
+200002fe:	ee60 7a67 	vnmul.f32	s15, s0, s15
+20000302:	eea7 0a8b 	vfma.f32	s0, s15, s22
+20000306:	ee20 0a2a 	vmul.f32	s0, s0, s21
+2000030a:	eebd 0ac0 	vcvt.s32.f32	s0, s0
+2000030e:	eca5 0a01 	vstmia	r5!, {s0}
+	
+	// Pointer to end of buffer
+	const q31_t *y_e = y + frames; 
+
+	// Fill buffer with samples
+	for (; y != y_e; ) { 
+20000312:	e7bc      	b.n	2000028e <_hook_cycle+0x1e8>
+		*(y++) = f32_to_q31(sig); 
+	
+	}
+	
+	// Update global phases:
+	s.phi 		= phi;
+20000314:	ed84 aa00 	vstr	s20, [r4]
+	s.phiLFOD 	= phiLFOD;
+20000318:	edc4 9a04 	vstr	s19, [r4, #16]
+	s.phiLFOV 	= phiLFOV;
+2000031c:	ed84 9a05 	vstr	s18, [r4, #20]
+	
+}
+20000320:	ecbd 8b0a 	vpop	{d8-d12}
+20000324:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+20000326:	bf00      	nop
+20000328:	20000658 	.word	0x20000658
+2000032c:	00000000 	.word	0x00000000
+20000330:	3b808081 	.word	0x3b808081
+20000334:	37aec33e 	.word	0x37aec33e
+20000338:	44029cbc 	.word	0x44029cbc
+2000033c:	0800f100 	.word	0x0800f100
+20000340:	0800f764 	.word	0x0800f764
+20000344:	46b8ff49 	.word	0x46b8ff49
+20000348:	3efae148 	.word	0x3efae148
+2000034c:	3c4ccccd 	.word	0x3c4ccccd
+20000350:	4f000000 	.word	0x4f000000
+
+20000354 <_hook_on>:
+
+void OSC_NOTEON(const user_osc_param_t *const params) {
+	// Reset oscillator phase for new note
+	VPSLJ2D::State &s = vpslj2d.state;
+	s.flags |= VPSLJ2D::flag_reset;
+20000354:	4a02      	ldr	r2, [pc, #8]	; (20000360 <_hook_on+0xc>)
+20000356:	7f13      	ldrb	r3, [r2, #28]
+20000358:	f043 0308 	orr.w	r3, r3, #8
+2000035c:	7713      	strb	r3, [r2, #28]
+2000035e:	4770      	bx	lr
+20000360:	20000658 	.word	0x20000658
+
+20000364 <_hook_off>:
+}
+
+void OSC_NOTEOFF(const user_osc_param_t *const params) {
+20000364:	4770      	bx	lr
+
+20000366 <_hook_param>:
+	
+	// Create local copies of the state and params objects.
+	VPSLJ2D::Params &p = vpslj2d.params;
+	VPSLJ2D::State &s = vpslj2d.state;
+	
+	const float valf = param_val_to_f32(value);
+20000366:	ee07 1a90 	vmov	s15, r1
+2000036a:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+	
+	switch (index) {
+2000036e:	2806      	cmp	r0, #6
+20000370:	d852      	bhi.n	20000418 <_hook_param+0xb2>
+20000372:	e8df f000 	tbb	[pc, r0]
+20000376:	1004      	.short	0x1004
+20000378:	3c342c1e 	.word	0x3c342c1e
+2000037c:	44          	.byte	0x44
+2000037d:	00          	.byte	0x00
+		case k_user_osc_param_id1:  		// User parameter 1
+			// Set base frequency of LFOs
+			p.w0LFO = value * 0.3f; 
+2000037e:	4b27      	ldr	r3, [pc, #156]	; (2000041c <_hook_param+0xb6>)
+20000380:	ed9f 7a27 	vldr	s14, [pc, #156]	; 20000420 <_hook_param+0xba>
+			s.flags |= VPSLJ2D::flag_LFO;
+20000384:	7f1a      	ldrb	r2, [r3, #28]
+	const float valf = param_val_to_f32(value);
+	
+	switch (index) {
+		case k_user_osc_param_id1:  		// User parameter 1
+			// Set base frequency of LFOs
+			p.w0LFO = value * 0.3f; 
+20000386:	ee67 7a87 	vmul.f32	s15, s15, s14
+			s.flags |= VPSLJ2D::flag_LFO;
+2000038a:	f042 0201 	orr.w	r2, r2, #1
+	const float valf = param_val_to_f32(value);
+	
+	switch (index) {
+		case k_user_osc_param_id1:  		// User parameter 1
+			// Set base frequency of LFOs
+			p.w0LFO = value * 0.3f; 
+2000038e:	edc3 7a08 	vstr	s15, [r3, #32]
+			s.flags |= VPSLJ2D::flag_LFO;
+20000392:	771a      	strb	r2, [r3, #28]
+			break;
+20000394:	4770      	bx	lr
+			
+		case k_user_osc_param_id2:			// User parameter 2
+			// Set frequency scaling of LFO-D
+			p.freq_shift_D = 1.f + (value * 0.05f);
+20000396:	eddf 6a23 	vldr	s13, [pc, #140]	; 20000424 <_hook_param+0xbe>
+2000039a:	4b20      	ldr	r3, [pc, #128]	; (2000041c <_hook_param+0xb6>)
+2000039c:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+200003a0:	eea7 7aa6 	vfma.f32	s14, s15, s13
+			s.flags |= VPSLJ2D::flag_LFOD;
+200003a4:	7f1a      	ldrb	r2, [r3, #28]
+200003a6:	f042 0202 	orr.w	r2, r2, #2
+			s.flags |= VPSLJ2D::flag_LFO;
+			break;
+			
+		case k_user_osc_param_id2:			// User parameter 2
+			// Set frequency scaling of LFO-D
+			p.freq_shift_D = 1.f + (value * 0.05f);
+200003aa:	ed83 7a0c 	vstr	s14, [r3, #48]	; 0x30
+			s.flags |= VPSLJ2D::flag_LFOD;
+200003ae:	771a      	strb	r2, [r3, #28]
+			break;
+200003b0:	4770      	bx	lr
+			
+		case k_user_osc_param_id3:  		// User parameter 3
+			// Set frequency scaling of LFO-V
+			p.freq_shift_V = 1.f + (value * 0.05f);
+200003b2:	eddf 6a1c 	vldr	s13, [pc, #112]	; 20000424 <_hook_param+0xbe>
+200003b6:	4b19      	ldr	r3, [pc, #100]	; (2000041c <_hook_param+0xb6>)
+200003b8:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+200003bc:	eea7 7aa6 	vfma.f32	s14, s15, s13
+			s.flags |= VPSLJ2D::flag_LFOV;
+200003c0:	7f1a      	ldrb	r2, [r3, #28]
+200003c2:	f042 0204 	orr.w	r2, r2, #4
+			s.flags |= VPSLJ2D::flag_LFOD;
+			break;
+			
+		case k_user_osc_param_id3:  		// User parameter 3
+			// Set frequency scaling of LFO-V
+			p.freq_shift_V = 1.f + (value * 0.05f);
+200003c6:	ed83 7a0d 	vstr	s14, [r3, #52]	; 0x34
+			s.flags |= VPSLJ2D::flag_LFOV;
+200003ca:	771a      	strb	r2, [r3, #28]
+			break;
+200003cc:	4770      	bx	lr
+			
+		case k_user_osc_param_id4:			// User parameter 4
+			// Set values for d amplitude
+			p.Amp_d = value * 0.01f;
+200003ce:	ed9f 7a16 	vldr	s14, [pc, #88]	; 20000428 <_hook_param+0xc2>
+200003d2:	4b12      	ldr	r3, [pc, #72]	; (2000041c <_hook_param+0xb6>)
+200003d4:	ee67 7a87 	vmul.f32	s15, s15, s14
+200003d8:	edc3 7a09 	vstr	s15, [r3, #36]	; 0x24
+			break;
+200003dc:	4770      	bx	lr
+			
+		case k_user_osc_param_id5:  		// User parameter 5
+			// Set values for v amplitude
+			p.Amp_v = value * 0.05f;
+200003de:	ed9f 7a11 	vldr	s14, [pc, #68]	; 20000424 <_hook_param+0xbe>
+200003e2:	4b0e      	ldr	r3, [pc, #56]	; (2000041c <_hook_param+0xb6>)
+200003e4:	ee67 7a87 	vmul.f32	s15, s15, s14
+200003e8:	edc3 7a0a 	vstr	s15, [r3, #40]	; 0x28
+			break;
+200003ec:	4770      	bx	lr
+			
+		case k_user_osc_param_id6:			// User parameter 6
+			// Set offset value
+			p.offset = value * 0.01f;
+200003ee:	ed9f 7a0e 	vldr	s14, [pc, #56]	; 20000428 <_hook_param+0xc2>
+200003f2:	4b0a      	ldr	r3, [pc, #40]	; (2000041c <_hook_param+0xb6>)
+200003f4:	ee67 7a87 	vmul.f32	s15, s15, s14
+200003f8:	edc3 7a0e 	vstr	s15, [r3, #56]	; 0x38
+			break;
+200003fc:	4770      	bx	lr
+			
+		case k_user_osc_param_shape: 		// A knob
+			// Set the frequency ratio for filters
+			p.f_ratio = 1.f + (valf * 100.f);
+200003fe:	ed9f 7a0b 	vldr	s14, [pc, #44]	; 2000042c <_hook_param+0xc6>
+20000402:	eddf 6a0b 	vldr	s13, [pc, #44]	; 20000430 <_hook_param+0xca>
+20000406:	4b05      	ldr	r3, [pc, #20]	; (2000041c <_hook_param+0xb6>)
+20000408:	ee67 7a87 	vmul.f32	s15, s15, s14
+2000040c:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+20000410:	eea7 7aa6 	vfma.f32	s14, s15, s13
+20000414:	ed83 7a0b 	vstr	s14, [r3, #44]	; 0x2c
+20000418:	4770      	bx	lr
+2000041a:	bf00      	nop
+2000041c:	20000658 	.word	0x20000658
+20000420:	3e99999a 	.word	0x3e99999a
+20000424:	3d4ccccd 	.word	0x3d4ccccd
+20000428:	3c23d70a 	.word	0x3c23d70a
+2000042c:	3a802008 	.word	0x3a802008
+20000430:	42c80000 	.word	0x42c80000
+
+20000434 <_ZN7VPSLJ2DC1Ev>:
+			phi = ZEROF;
+		}
+	};
+
+	VPSLJ2D(void) {
+		state = State();
+20000434:	7f01      	ldrb	r1, [r0, #28]
+		inline void reset(void) {
+			phi = ZEROF;
+		}
+	};
+
+	VPSLJ2D(void) {
+20000436:	b510      	push	{r4, lr}
+      /**
+       * Default constructor
+       */
+      Coeffs() :
+        ff0(0), ff1(0), ff2(0),
+        fb1(0), fb2(0)
+20000438:	2200      	movs	r2, #0
+		state = State();
+2000043a:	f362 0103 	bfi	r1, r2, #0, #4
+2000043e:	7701      	strb	r1, [r0, #28]
+		params = Params();
+20000440:	f04f 517c 	mov.w	r1, #1056964608	; 0x3f000000
+20000444:	6201      	str	r1, [r0, #32]
+20000446:	f04f 517e 	mov.w	r1, #1065353216	; 0x3f800000
+2000044a:	63c2      	str	r2, [r0, #60]	; 0x3c
+2000044c:	6402      	str	r2, [r0, #64]	; 0x40
+2000044e:	6442      	str	r2, [r0, #68]	; 0x44
+20000450:	6482      	str	r2, [r0, #72]	; 0x48
+20000452:	64c2      	str	r2, [r0, #76]	; 0x4c
+    /*=====================================================================*/
+
+    /**
+     * Default constructor
+     */
+    BiQuad(void) : mZ1(0), mZ2(0)
+20000454:	6502      	str	r2, [r0, #80]	; 0x50
+20000456:	6542      	str	r2, [r0, #84]	; 0x54
+      /**
+       * Default constructor
+       */
+      Coeffs() :
+        ff0(0), ff1(0), ff2(0),
+        fb1(0), fb2(0)
+20000458:	6582      	str	r2, [r0, #88]	; 0x58
+2000045a:	65c2      	str	r2, [r0, #92]	; 0x5c
+2000045c:	6602      	str	r2, [r0, #96]	; 0x60
+2000045e:	6642      	str	r2, [r0, #100]	; 0x64
+20000460:	6682      	str	r2, [r0, #104]	; 0x68
+    /*=====================================================================*/
+
+    /**
+     * Default constructor
+     */
+    BiQuad(void) : mZ1(0), mZ2(0)
+20000462:	66c2      	str	r2, [r0, #108]	; 0x6c
+20000464:	6702      	str	r2, [r0, #112]	; 0x70
+			phi = ZEROF;
+		}
+	};
+
+	VPSLJ2D(void) {
+		state = State();
+20000466:	6002      	str	r2, [r0, #0]
+20000468:	6042      	str	r2, [r0, #4]
+2000046a:	6082      	str	r2, [r0, #8]
+2000046c:	60c2      	str	r2, [r0, #12]
+2000046e:	6102      	str	r2, [r0, #16]
+20000470:	6142      	str	r2, [r0, #20]
+20000472:	6182      	str	r2, [r0, #24]
+		params = Params();
+20000474:	6241      	str	r1, [r0, #36]	; 0x24
+20000476:	6281      	str	r1, [r0, #40]	; 0x28
+20000478:	62c1      	str	r1, [r0, #44]	; 0x2c
+2000047a:	6301      	str	r1, [r0, #48]	; 0x30
+2000047c:	6341      	str	r1, [r0, #52]	; 0x34
+2000047e:	6382      	str	r2, [r0, #56]	; 0x38
+	}
+20000480:	bd10      	pop	{r4, pc}
+	...
+
+20000484 <_ZN7VPSLJ2D11PhaseShaperEfff>:
+   *
+   * @param   x  Value in [0, 1.0].
+   * @return     Result of cos(2*pi*x).
+   */
+  __fast_inline float osc_cosf(float x) {
+    return osc_sinf(x+0.25f);
+20000484:	edd0 7a0e 	vldr	s15, [r0, #56]	; 0x38
+    const uint32_t x0p = (uint32_t)x0f;
+
+    const uint32_t x0 = x0p & k_wt_sine_mask;
+    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
+    
+    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
+20000488:	4b6d      	ldr	r3, [pc, #436]	; (20000640 <_ZN7VPSLJ2D11PhaseShaperEfff+0x1bc>)
+   *
+   * @param   x  Value in [0, 1.0].
+   * @return     Result of cos(2*pi*x).
+   */
+  __fast_inline float osc_cosf(float x) {
+    return osc_sinf(x+0.25f);
+2000048a:	ee70 0aa7 	vadd.f32	s1, s1, s15
+2000048e:	eeb5 7a00 	vmov.f32	s14, #80	; 0x3e800000  0.250
+20000492:	ee70 0a87 	vadd.f32	s1, s1, s14
+   */
+  __fast_inline float osc_sinf(float x) {
+    const float p = x - (uint32_t)x;
+    
+    // half period stored -- wrap around and invert
+    const float x0f = 2.f * p * k_wt_sine_size;
+20000496:	eddf 7a6b 	vldr	s15, [pc, #428]	; 20000644 <_ZN7VPSLJ2D11PhaseShaperEfff+0x1c0>
+2000049a:	eefc 6ae0 	vcvt.u32.f32	s13, s1
+	inline float updatePhase(float *phi, float w0) {
+		*phi += w0;
+		*phi -= (uint32_t)*phi;
+	}
+	
+	inline float PhaseShaper(float phi, float phiLFOD, float phiLFOV) {
+2000049e:	b510      	push	{r4, lr}
+200004a0:	eef8 6a66 	vcvt.f32.u32	s13, s13
+200004a4:	eef0 5a67 	vmov.f32	s11, s15
+200004a8:	ee70 0ae6 	vsub.f32	s1, s1, s13
+200004ac:	eeb0 5a47 	vmov.f32	s10, s14
+200004b0:	ee60 0aa7 	vmul.f32	s1, s1, s15
+		
+		float phase_d = phiLFOD + params.offset;
+		float Osc_d = 0.5f + 0.5f * osc_cosf(phase_d);
+		float d = params.Amp_d * Osc_d;
+200004b4:	eef6 7a00 	vmov.f32	s15, #96	; 0x3f000000  0.5
+    const uint32_t x0p = (uint32_t)x0f;
+200004b8:	eefc 6ae0 	vcvt.u32.f32	s13, s1
+200004bc:	eeb0 7a67 	vmov.f32	s14, s15
+200004c0:	ee16 1a90 	vmov	r1, s13
+
+    const uint32_t x0 = x0p & k_wt_sine_mask;
+200004c4:	f001 027f 	and.w	r2, r1, #127	; 0x7f
+
+/** Linear interpolation
+ */
+static inline __attribute__((optimize("Ofast"), always_inline))
+float linintf(const float fr, const float x0, const float x1) {
+  return x0 + fr * (x1 - x0);
+200004c8:	ee06 1a10 	vmov	s12, r1
+    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
+    
+    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
+200004cc:	eb03 0482 	add.w	r4, r3, r2, lsl #2
+200004d0:	3201      	adds	r2, #1
+200004d2:	eeb8 6a46 	vcvt.f32.u32	s12, s12
+200004d6:	f002 027f 	and.w	r2, r2, #127	; 0x7f
+200004da:	eb03 0282 	add.w	r2, r3, r2, lsl #2
+200004de:	edd4 6a00 	vldr	s13, [r4]
+200004e2:	ee70 0ac6 	vsub.f32	s1, s1, s12
+200004e6:	ed92 6a00 	vldr	s12, [r2]
+200004ea:	ee36 6a66 	vsub.f32	s12, s12, s13
+    return (x0p < k_wt_sine_size)?y0:-y0;
+200004ee:	297f      	cmp	r1, #127	; 0x7f
+200004f0:	eee0 6a86 	vfma.f32	s13, s1, s12
+   *
+   * @param   x  Value in [0, 1.0].
+   * @return     Result of cos(2*pi*x).
+   */
+  __fast_inline float osc_cosf(float x) {
+    return osc_sinf(x+0.25f);
+200004f4:	ee31 1a05 	vadd.f32	s2, s2, s10
+
+    const uint32_t x0 = x0p & k_wt_sine_mask;
+    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
+    
+    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
+    return (x0p < k_wt_sine_size)?y0:-y0;
+200004f8:	bf88      	it	hi
+200004fa:	eef1 6a66 	vneghi.f32	s13, s13
+200004fe:	eea6 7aa7 	vfma.f32	s14, s13, s15
+20000502:	eef0 6a47 	vmov.f32	s13, s14
+20000506:	ed90 7a09 	vldr	s14, [r0, #36]	; 0x24
+2000050a:	ee66 6a87 	vmul.f32	s13, s13, s14
+   */
+  __fast_inline float osc_sinf(float x) {
+    const float p = x - (uint32_t)x;
+    
+    // half period stored -- wrap around and invert
+    const float x0f = 2.f * p * k_wt_sine_size;
+2000050e:	eebc 7ac1 	vcvt.u32.f32	s14, s2
+		
+		float Osc_v = 0.5f + 0.5f * osc_cosf(phiLFOV);
+		float v = params.Amp_v * Osc_v;
+		
+		float ps;
+		if(phi < d) {
+20000512:	eef4 6ac0 	vcmpe.f32	s13, s0
+20000516:	eeb8 7a47 	vcvt.f32.u32	s14, s14
+2000051a:	ee31 1a47 	vsub.f32	s2, s2, s14
+2000051e:	ee21 1a25 	vmul.f32	s2, s2, s11
+    const uint32_t x0p = (uint32_t)x0f;
+20000522:	eebc 7ac1 	vcvt.u32.f32	s14, s2
+20000526:	ee17 1a10 	vmov	r1, s14
+
+    const uint32_t x0 = x0p & k_wt_sine_mask;
+2000052a:	f001 027f 	and.w	r2, r1, #127	; 0x7f
+    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
+    
+    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
+2000052e:	eb03 0482 	add.w	r4, r3, r2, lsl #2
+20000532:	3201      	adds	r2, #1
+20000534:	eeb8 7a47 	vcvt.f32.u32	s14, s14
+20000538:	f002 027f 	and.w	r2, r2, #127	; 0x7f
+2000053c:	eb03 0282 	add.w	r2, r3, r2, lsl #2
+20000540:	ed94 6a00 	vldr	s12, [r4]
+20000544:	ee31 1a47 	vsub.f32	s2, s2, s14
+20000548:	ed92 7a00 	vldr	s14, [r2]
+2000054c:	ee37 7a46 	vsub.f32	s14, s14, s12
+    return (x0p < k_wt_sine_size)?y0:-y0;
+20000550:	297f      	cmp	r1, #127	; 0x7f
+20000552:	eea1 6a07 	vfma.f32	s12, s2, s14
+		float phase_d = phiLFOD + params.offset;
+		float Osc_d = 0.5f + 0.5f * osc_cosf(phase_d);
+		float d = params.Amp_d * Osc_d;
+		
+		float Osc_v = 0.5f + 0.5f * osc_cosf(phiLFOV);
+		float v = params.Amp_v * Osc_v;
+20000556:	ed90 7a0a 	vldr	s14, [r0, #40]	; 0x28
+2000055a:	bf88      	it	hi
+2000055c:	eeb1 6a46 	vneghi.f32	s12, s12
+20000560:	eee6 7a27 	vfma.f32	s15, s12, s15
+		
+		float ps;
+		if(phi < d) {
+20000564:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+		float phase_d = phiLFOD + params.offset;
+		float Osc_d = 0.5f + 0.5f * osc_cosf(phase_d);
+		float d = params.Amp_d * Osc_d;
+		
+		float Osc_v = 0.5f + 0.5f * osc_cosf(phiLFOV);
+		float v = params.Amp_v * Osc_v;
+20000568:	ee67 7a87 	vmul.f32	s15, s15, s14
+		if(phi < d) {
+			ps = phi / d;
+			ps *= v;
+		} else {
+			ps = phi - d;
+			ps /= (1.f - d);
+2000056c:	bfdd      	ittte	le
+2000056e:	eeb7 7a00 	vmovle.f32	s14, #112	; 0x3f800000  1.0
+		float ps;
+		if(phi < d) {
+			ps = phi / d;
+			ps *= v;
+		} else {
+			ps = phi - d;
+20000572:	ee70 4a66 	vsuble.f32	s9, s0, s13
+			ps /= (1.f - d);
+20000576:	ee77 6a66 	vsuble.f32	s13, s14, s13
+		float Osc_v = 0.5f + 0.5f * osc_cosf(phiLFOV);
+		float v = params.Amp_v * Osc_v;
+		
+		float ps;
+		if(phi < d) {
+			ps = phi / d;
+2000057a:	ee80 7a26 	vdivgt.f32	s14, s0, s13
+			ps *= v;
+		} else {
+			ps = phi - d;
+			ps /= (1.f - d);
+2000057e:	bfdb      	ittet	le
+20000580:	ee84 6aa6 	vdivle.f32	s12, s9, s13
+			ps *= (1.f - v);
+			ps += v;
+20000584:	ee37 7a67 	vsuble.f32	s14, s14, s15
+		float v = params.Amp_v * Osc_v;
+		
+		float ps;
+		if(phi < d) {
+			ps = phi / d;
+			ps *= v;
+20000588:	ee67 7a87 	vmulgt.f32	s15, s15, s14
+		} else {
+			ps = phi - d;
+			ps /= (1.f - d);
+			ps *= (1.f - v);
+			ps += v;
+2000058c:	eee6 7a07 	vfmale.f32	s15, s12, s14
+     */
+    inline __attribute__((optimize("Ofast"),always_inline))
+    float process_fo(const float xn) {
+      float acc = mCoeffs.ff0 * xn + mZ1;
+      mZ1 = mCoeffs.ff1 * xn;
+      mZ1 -= mCoeffs.fb1 * acc;
+20000590:	ed90 6a10 	vldr	s12, [r0, #64]	; 0x40
+   *
+   * @param   x  Value in [0, 1.0].
+   * @return     Result of cos(2*pi*x).
+   */
+  __fast_inline float osc_cosf(float x) {
+    return osc_sinf(x+0.25f);
+20000594:	ee37 7a85 	vadd.f32	s14, s15, s10
+   */
+  __fast_inline float osc_sinf(float x) {
+    const float p = x - (uint32_t)x;
+    
+    // half period stored -- wrap around and invert
+    const float x0f = 2.f * p * k_wt_sine_size;
+20000598:	eefc 7ac7 	vcvt.u32.f32	s15, s14
+2000059c:	eef8 7a67 	vcvt.f32.u32	s15, s15
+200005a0:	ee37 7a67 	vsub.f32	s14, s14, s15
+200005a4:	ee67 7a25 	vmul.f32	s15, s14, s11
+    const uint32_t x0p = (uint32_t)x0f;
+200005a8:	eebc 7ae7 	vcvt.u32.f32	s14, s15
+200005ac:	ee17 1a10 	vmov	r1, s14
+
+    const uint32_t x0 = x0p & k_wt_sine_mask;
+200005b0:	f001 027f 	and.w	r2, r1, #127	; 0x7f
+200005b4:	ee06 1a90 	vmov	s13, r1
+    const uint32_t x1 = (x0 + 1) & k_wt_sine_mask;
+    
+    const float y0 = linintf(x0f - x0p, wt_sine_lut_f[x0], wt_sine_lut_f[x1]);
+200005b8:	eb03 0482 	add.w	r4, r3, r2, lsl #2
+200005bc:	3201      	adds	r2, #1
+200005be:	eef8 6a66 	vcvt.f32.u32	s13, s13
+200005c2:	f002 027f 	and.w	r2, r2, #127	; 0x7f
+200005c6:	eb03 0382 	add.w	r3, r3, r2, lsl #2
+200005ca:	ed94 7a00 	vldr	s14, [r4]
+200005ce:	ee77 7ae6 	vsub.f32	s15, s15, s13
+200005d2:	edd3 6a00 	vldr	s13, [r3]
+200005d6:	ee76 6ac7 	vsub.f32	s13, s13, s14
+    return (x0p < k_wt_sine_size)?y0:-y0;
+200005da:	297f      	cmp	r1, #127	; 0x7f
+200005dc:	eea7 7aa6 	vfma.f32	s14, s15, s13
+     *
+     * @return Output sample
+     */
+    inline __attribute__((optimize("Ofast"),always_inline))
+    float process_fo(const float xn) {
+      float acc = mCoeffs.ff0 * xn + mZ1;
+200005e0:	edd0 6a14 	vldr	s13, [r0, #80]	; 0x50
+200005e4:	eef0 7a47 	vmov.f32	s15, s14
+200005e8:	bf88      	it	hi
+200005ea:	eef1 7a47 	vneghi.f32	s15, s14
+200005ee:	ed90 7a0f 	vldr	s14, [r0, #60]	; 0x3c
+		}
+		
+		float sig = -osc_cosf(ps);
+200005f2:	eef1 7a67 	vneg.f32	s15, s15
+200005f6:	eee7 6a87 	vfma.f32	s13, s15, s14
+      mZ1 = mCoeffs.ff1 * xn;
+      mZ1 -= mCoeffs.fb1 * acc;
+200005fa:	ed90 7a12 	vldr	s14, [r0, #72]	; 0x48
+200005fe:	ee27 7a66 	vnmul.f32	s14, s14, s13
+20000602:	eea7 7a86 	vfma.f32	s14, s15, s12
+     *
+     * @return Output sample
+     */
+    inline __attribute__((optimize("Ofast"),always_inline))
+    float process_fo(const float xn) {
+      float acc = mCoeffs.ff0 * xn + mZ1;
+20000606:	edd0 7a1b 	vldr	s15, [r0, #108]	; 0x6c
+      mZ1 = mCoeffs.ff1 * xn;
+      mZ1 -= mCoeffs.fb1 * acc;
+2000060a:	ed80 7a14 	vstr	s14, [r0, #80]	; 0x50
+     *
+     * @return Output sample
+     */
+    inline __attribute__((optimize("Ofast"),always_inline))
+    float process_fo(const float xn) {
+      float acc = mCoeffs.ff0 * xn + mZ1;
+2000060e:	ed90 7a16 	vldr	s14, [r0, #88]	; 0x58
+      mZ1 = mCoeffs.ff1 * xn;
+      mZ1 -= mCoeffs.fb1 * acc;
+20000612:	ed90 6a17 	vldr	s12, [r0, #92]	; 0x5c
+     *
+     * @return Output sample
+     */
+    inline __attribute__((optimize("Ofast"),always_inline))
+    float process_fo(const float xn) {
+      float acc = mCoeffs.ff0 * xn + mZ1;
+20000616:	eee7 7a26 	vfma.f32	s15, s14, s13
+      mZ1 = mCoeffs.ff1 * xn;
+      mZ1 -= mCoeffs.fb1 * acc;
+2000061a:	ed90 7a19 	vldr	s14, [r0, #100]	; 0x64
+2000061e:	ee27 7a67 	vnmul.f32	s14, s14, s15
+20000622:	eea6 7a26 	vfma.f32	s14, s12, s13
+20000626:	ed80 7a1b 	vstr	s14, [r0, #108]	; 0x6c
+		sig = LPF.process_fo(sig);
+		sig = HPF.process_fo(sig);
+		sig = linintf(phi, state.last, sig);
+2000062a:	ed90 7a06 	vldr	s14, [r0, #24]
+2000062e:	ee77 7ac7 	vsub.f32	s15, s15, s14
+20000632:	eea0 7a27 	vfma.f32	s14, s0, s15
+20000636:	eeb0 0a47 	vmov.f32	s0, s14
+		state.last = sig;
+2000063a:	ed80 7a06 	vstr	s14, [r0, #24]
+		return sig;
+	}
+2000063e:	bd10      	pop	{r4, pc}
+20000640:	08012bdc 	.word	0x08012bdc
+20000644:	43800000 	.word	0x43800000
+
+20000648 <_GLOBAL__sub_I__hook_init>:
+		case k_user_osc_param_shiftshape:	// B knob	
+			break;
+			
+		default: break;
+	}
+}
+20000648:	b508      	push	{r3, lr}
+ */
+
+# include "userosc.h"
+# include "vpslj_1.hpp"
+
+static VPSLJ2D vpslj2d;
+2000064a:	4802      	ldr	r0, [pc, #8]	; (20000654 <_GLOBAL__sub_I__hook_init+0xc>)
+2000064c:	f7ff fef2 	bl	20000434 <_ZN7VPSLJ2DC1Ev>
+20000650:	bd08      	pop	{r3, pc}
+20000652:	bf00      	nop
+20000654:	20000658 	.word	0x20000658
