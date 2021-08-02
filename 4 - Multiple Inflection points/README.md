@@ -52,3 +52,4 @@ This program shares the same six user parameters as MVPS as well as the shape pa
 This parameter can be accessed via the primary function of the **B** knob.
 
 # 4 - Project Build
+- [Vector Phaseshaping Synthesis](https://korgnts1beginnersguide.wordpress.com/?p=760)
