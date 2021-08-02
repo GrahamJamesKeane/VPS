@@ -1,7 +1,7 @@
 # 1 - VPS with Multiple Inflection Points (MVPS)
 
 This custom oscillator was designed for the **Korg NTS-1 Nu:Tekt digital synthesizer**. The programs implements multiple inflection points for Vector Phaseshaping (VPS) 
-synthesis. technique. It also utilises pitch-tracked filters from the BiQuad utility and interpolation to reduce noise in the output.
+synthesis technique. It also utilises pitch-tracked filters from the BiQuad utility and interpolation to reduce noise in the output.
 
 - [MVPS Program Files](https://github.com/GrahamJamesKeane/VPS/tree/main/4%20-%20Multiple%20Inflection%20points/mvps)
 
