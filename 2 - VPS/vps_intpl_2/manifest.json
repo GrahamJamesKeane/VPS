@@ -1,0 +1,18 @@
+{
+    "header" : 
+    {
+        "platform" : "nutekt-digital",
+        "module" : "osc",
+        "api" : "1.1-0",
+        "dev_id" : 0,
+        "prg_id" : 0,
+        "version" : "1.0-2",
+        "name" : "vps_intpl_2",
+        "num_param" : 3,
+        "params" : [  
+			["D Value", -100, 100, "%"],
+			["V Value", -100, 100, "%"],
+			["F Ratio", 0, 100, "%"]
+        ]
+    }
+}
