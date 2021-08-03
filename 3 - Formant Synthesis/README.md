@@ -1,6 +1,6 @@
 # 1 - Formant Synthesis with VPS (VPSF)
 
-This custom oscillator was designed for the **Korg NTS-1 Nu:Tekt digital synthesizer**. This programs implements formant peak synthesis using the Vector Phaseshaping (VPS) technique. It also utilises pitch-tracked filters from the BiQuad utility to reduce noise in the output.
+This custom oscillator was designed for the **Korg NTS-1 Nu:Tekt digital synthesizer**. This programs implements formant peak synthesis using the Vector Phaseshaping (VPS) technique. The program utilises pitch-tracked filters from the BiQuad utility to reduce noise in the output. It also uses bipolar parameters to increase the precision of the sweep for the inflection point components.
 
 - [VPSF Program Files](https://github.com/GrahamJamesKeane/VPS/tree/main/3%20-%20Formant%20Synthesis/vpsf_1)
 
@@ -18,7 +18,7 @@ These parameters can be accessed via the **shift** function of the **OSC** butto
 
 # 2 - VPSF with Interpolation Gain (VPSFI)
 
-This version of the VPSF introduces an interpolation gain to tackle discontinuities in the waveform.
+This version of VPSF introduces an interpolation gain to tackle discontinuities in the waveform by linearly mixing two separate VPS signals that are scaled by this interpolation gain. There is high and low-pass processing at the generation point of each signal as well as separate linear interpolation to mask the aliasing produced by the abrupt phase shifts resulting from interval gaps in the d and v parameter ranges.
 
 - [VPSFI Program Files](https://github.com/GrahamJamesKeane/VPS/tree/main/3%20-%20Formant%20Synthesis/vpsf_2)
 
