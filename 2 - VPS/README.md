@@ -26,4 +26,17 @@ This version of the basic VPS program introduces linear interpolation to help sm
 ## 2.1 - Basic VPS with Interpolation Controls 
 This program shares the same controls as the Basic version above.
 
-# 3 - Project Build
+# 3 - Updated Programs
+The following programs function exactly the same as their counterparts above, including controls. The difference in these programs is in the use of bipolar parameters to increase the precision of the sweep of the d and v parameter ranges. The principle here is to minimise the abruptness of the phase shift between adjacent steps in a given parameters range which should reduce audible aliasing.
+
+## 3.1 - Basic VPS with Bipolar Parameters (BP)
+- [Basic VPS with BP Program Files](https://github.com/GrahamJamesKeane/VPS/tree/main/2%20-%20VPS/vps_basic_2)
+
+- [Basic VPS with BP unit file](https://github.com/GrahamJamesKeane/VPS/blob/main/2%20-%20VPS/vps_basic_2/vps_basic_2.ntkdigunit)
+
+## 3.2 - Basic VPS with Interpolation and BP
+- [VPS with Interpolation and BP Program Files](https://github.com/GrahamJamesKeane/VPS/tree/main/2%20-%20VPS/vps_intpl_2)
+
+- [VPS with Interpolation and BP Unit File](https://github.com/GrahamJamesKeane/VPS/blob/main/2%20-%20VPS/vps_intpl_2/vps_intpl_2.ntkdigunit)
+
+# 4 - Project Build
