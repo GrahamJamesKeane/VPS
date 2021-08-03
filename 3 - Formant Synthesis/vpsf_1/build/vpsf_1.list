@@ -114,8 +114,8 @@ void _entry(uint32_t platform, uint32_t api)
 2000008a:	f000 f80b 	bl	200000a4 <_hook_init>
 2000008e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
 20000092:	bf00      	nop
-20000094:	20000467 	.word	0x20000467
-20000098:	200004bf 	.word	0x200004bf
+20000094:	200004b7 	.word	0x200004b7
+20000098:	2000050f 	.word	0x2000050f
 2000009c:	20000040 	.word	0x20000040
 200000a0:	20000044 	.word	0x20000044
 
@@ -468,7 +468,7 @@ float linintf(const float fr, const float x0, const float x1) {
 	// Set pole for filters
 	vpsf.setFilters(w0);
 	
-	// Local copy of the current phase and pointer.
+	// Local copy of the current phase and its pointer.
 	float phi = s.phi;
 20000228:	ed93 6a00 	vldr	s12, [r3]
 2000022c:	eef0 7a47 	vmov.f32	s15, s14
@@ -678,7 +678,7 @@ float fsel(const float a, const float b, const float c) {
 	
 }
 20000366:	bd70      	pop	{r4, r5, r6, pc}
-20000368:	20000468 	.word	0x20000468
+20000368:	200004b8 	.word	0x200004b8
 2000036c:	00000000 	.word	0x00000000
 20000370:	3b808081 	.word	0x3b808081
 20000374:	44029cbc 	.word	0x44029cbc
@@ -703,7 +703,7 @@ void OSC_NOTEON(const user_osc_param_t *const params) {
 200003a0:	f043 0301 	orr.w	r3, r3, #1
 200003a4:	7313      	strb	r3, [r2, #12]
 200003a6:	4770      	bx	lr
-200003a8:	20000468 	.word	0x20000468
+200003a8:	200004b8 	.word	0x200004b8
 
 200003ac <_hook_off>:
 }
@@ -723,147 +723,169 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 	
 	switch (index) {
 200003b2:	2803      	cmp	r0, #3
-200003b4:	d82e      	bhi.n	20000414 <_hook_param+0x66>
+200003b4:	d852      	bhi.n	2000045c <_hook_param+0xae>
 200003b6:	e8df f000 	tbb	[pc, r0]
-200003ba:	0c02      	.short	0x0c02
-200003bc:	241a      	.short	0x241a
+200003ba:	1d02      	.short	0x1d02
+200003bc:	483c      	.short	0x483c
 		case k_user_osc_param_id1: // User parameter 1
 			// Set d values scale in [0-1]
-			p.d = value * 0.01f;
+			p.d = clip01f(value * 0.005f);
 200003be:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-200003c2:	ed9f 7a15 	vldr	s14, [pc, #84]	; 20000418 <_hook_param+0x6a>
-200003c6:	4b15      	ldr	r3, [pc, #84]	; (2000041c <_hook_param+0x6e>)
-200003c8:	ee67 7a87 	vmul.f32	s15, s15, s14
-200003cc:	edc3 7a04 	vstr	s15, [r3, #16]
+200003c2:	ed9f 7a27 	vldr	s14, [pc, #156]	; 20000460 <_hook_param+0xb2>
+200003c6:	ee67 7a87 	vmul.f32	s15, s15, s14
+200003ca:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+200003ce:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200003d2:	db09      	blt.n	200003e8 <_hook_param+0x3a>
+200003d4:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+200003d8:	eef4 7ac7 	vcmpe.f32	s15, s14
+200003dc:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200003e0:	bfa8      	it	ge
+200003e2:	eef0 7a47 	vmovge.f32	s15, s14
+200003e6:	e001      	b.n	200003ec <_hook_param+0x3e>
+200003e8:	eddf 7a1e 	vldr	s15, [pc, #120]	; 20000464 <_hook_param+0xb6>
+200003ec:	4b1e      	ldr	r3, [pc, #120]	; (20000468 <_hook_param+0xba>)
+200003ee:	edc3 7a04 	vstr	s15, [r3, #16]
 			break;
-200003d0:	4770      	bx	lr
+200003f2:	4770      	bx	lr
 			
 		case k_user_osc_param_id2: // User parameter 2
 			// Set v values
-			p.v = (value * 0.01f) * p.v_range; 	
-200003d2:	4b12      	ldr	r3, [pc, #72]	; (2000041c <_hook_param+0x6e>)
-200003d4:	ed9f 7a10 	vldr	s14, [pc, #64]	; 20000418 <_hook_param+0x6a>
-200003d8:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-200003dc:	ee67 7a87 	vmul.f32	s15, s15, s14
-200003e0:	ed93 7a06 	vldr	s14, [r3, #24]
-200003e4:	ee67 7a87 	vmul.f32	s15, s15, s14
-200003e8:	edc3 7a05 	vstr	s15, [r3, #20]
+			p.v = clip01f(value * 0.005f) * p.v_range; 	
+200003f4:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+200003f8:	ed9f 7a19 	vldr	s14, [pc, #100]	; 20000460 <_hook_param+0xb2>
+200003fc:	ee67 7a87 	vmul.f32	s15, s15, s14
+20000400:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+20000404:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+20000408:	db09      	blt.n	2000041e <_hook_param+0x70>
+2000040a:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+2000040e:	eef4 7ac7 	vcmpe.f32	s15, s14
+20000412:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+20000416:	bfa8      	it	ge
+20000418:	eef0 7a47 	vmovge.f32	s15, s14
+2000041c:	e001      	b.n	20000422 <_hook_param+0x74>
+2000041e:	eddf 7a11 	vldr	s15, [pc, #68]	; 20000464 <_hook_param+0xb6>
+20000422:	4b11      	ldr	r3, [pc, #68]	; (20000468 <_hook_param+0xba>)
+20000424:	ed93 7a06 	vldr	s14, [r3, #24]
+20000428:	ee67 7a27 	vmul.f32	s15, s14, s15
+2000042c:	edc3 7a05 	vstr	s15, [r3, #20]
 			break;
-200003ec:	4770      	bx	lr
+20000430:	4770      	bx	lr
 			
 		case k_user_osc_param_id3: // User parameter 3
 			// Set range of v [1-10]
-			p.v_range = value * 0.1f;
-200003ee:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-200003f2:	ed9f 7a0b 	vldr	s14, [pc, #44]	; 20000420 <_hook_param+0x72>
-200003f6:	4b09      	ldr	r3, [pc, #36]	; (2000041c <_hook_param+0x6e>)
-200003f8:	ee67 7a87 	vmul.f32	s15, s15, s14
-200003fc:	edc3 7a06 	vstr	s15, [r3, #24]
+			p.v_range = 1.f + value * 0.09f;
+20000432:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+20000436:	eddf 6a0d 	vldr	s13, [pc, #52]	; 2000046c <_hook_param+0xbe>
+2000043a:	4b0b      	ldr	r3, [pc, #44]	; (20000468 <_hook_param+0xba>)
+2000043c:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+20000440:	eea7 7aa6 	vfma.f32	s14, s15, s13
+20000444:	ed83 7a06 	vstr	s14, [r3, #24]
 			break;
-20000400:	4770      	bx	lr
+20000448:	4770      	bx	lr
 			
 		case k_user_osc_param_id4: // User parameter 4
 			// Set the frequency ratio for filters
 			p.f_ratio = 1.f + (value * 1.f);
-20000402:	eef8 7ae7 	vcvt.f32.s32	s15, s15
-20000406:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-2000040a:	ee77 7a87 	vadd.f32	s15, s15, s14
-2000040e:	4b03      	ldr	r3, [pc, #12]	; (2000041c <_hook_param+0x6e>)
-20000410:	edc3 7a07 	vstr	s15, [r3, #28]
-20000414:	4770      	bx	lr
-20000416:	bf00      	nop
-20000418:	3c23d70a 	.word	0x3c23d70a
-2000041c:	20000468 	.word	0x20000468
-20000420:	3dcccccd 	.word	0x3dcccccd
+2000044a:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+2000044e:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+20000452:	ee77 7a87 	vadd.f32	s15, s15, s14
+20000456:	4b04      	ldr	r3, [pc, #16]	; (20000468 <_hook_param+0xba>)
+20000458:	edc3 7a07 	vstr	s15, [r3, #28]
+2000045c:	4770      	bx	lr
+2000045e:	bf00      	nop
+20000460:	3ba3d70a 	.word	0x3ba3d70a
+20000464:	00000000 	.word	0x00000000
+20000468:	200004b8 	.word	0x200004b8
+2000046c:	3db851ec 	.word	0x3db851ec
 
-20000424 <_GLOBAL__sub_I__hook_init>:
+20000470 <_GLOBAL__sub_I__hook_init>:
 		
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			last(ZEROF),
 			flags(flags_none)
-20000424:	4b0f      	ldr	r3, [pc, #60]	; (20000464 <_GLOBAL__sub_I__hook_init+0x40>)
-20000426:	7b19      	ldrb	r1, [r3, #12]
-20000428:	f36f 0100 	bfc	r1, #0, #1
-2000042c:	7319      	strb	r1, [r3, #12]
+20000470:	4b0f      	ldr	r3, [pc, #60]	; (200004b0 <_GLOBAL__sub_I__hook_init+0x40>)
+20000472:	7b19      	ldrb	r1, [r3, #12]
+20000474:	f36f 0100 	bfc	r1, #0, #1
+20000478:	7319      	strb	r1, [r3, #12]
     
 		Params(void) :
 			d(DEFAULT),
 			v(DEFAULT), 
 			v_range(ONEF),
 			f_ratio(ONEF)
-2000042e:	f04f 517c 	mov.w	r1, #1056964608	; 0x3f000000
+2000047a:	f04f 517c 	mov.w	r1, #1056964608	; 0x3f000000
 		
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			last(ZEROF),
 			flags(flags_none)
-20000432:	2200      	movs	r2, #0
+2000047e:	2200      	movs	r2, #0
     
 		Params(void) :
 			d(DEFAULT),
 			v(DEFAULT), 
 			v_range(ONEF),
 			f_ratio(ONEF)
-20000434:	6119      	str	r1, [r3, #16]
-20000436:	6159      	str	r1, [r3, #20]
-20000438:	f04f 517e 	mov.w	r1, #1065353216	; 0x3f800000
+20000480:	6119      	str	r1, [r3, #16]
+20000482:	6159      	str	r1, [r3, #20]
+20000484:	f04f 517e 	mov.w	r1, #1065353216	; 0x3f800000
 		
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
 			last(ZEROF),
 			flags(flags_none)
-2000043c:	601a      	str	r2, [r3, #0]
-2000043e:	605a      	str	r2, [r3, #4]
-20000440:	609a      	str	r2, [r3, #8]
+20000488:	601a      	str	r2, [r3, #0]
+2000048a:	605a      	str	r2, [r3, #4]
+2000048c:	609a      	str	r2, [r3, #8]
     
 		Params(void) :
 			d(DEFAULT),
 			v(DEFAULT), 
 			v_range(ONEF),
 			f_ratio(ONEF)
-20000442:	6199      	str	r1, [r3, #24]
-20000444:	61d9      	str	r1, [r3, #28]
+2000048e:	6199      	str	r1, [r3, #24]
+20000490:	61d9      	str	r1, [r3, #28]
       /**
        * Default constructor
        */
       Coeffs() :
         ff0(0), ff1(0), ff2(0),
         fb1(0), fb2(0)
-20000446:	621a      	str	r2, [r3, #32]
-20000448:	625a      	str	r2, [r3, #36]	; 0x24
-2000044a:	629a      	str	r2, [r3, #40]	; 0x28
-2000044c:	62da      	str	r2, [r3, #44]	; 0x2c
-2000044e:	631a      	str	r2, [r3, #48]	; 0x30
+20000492:	621a      	str	r2, [r3, #32]
+20000494:	625a      	str	r2, [r3, #36]	; 0x24
+20000496:	629a      	str	r2, [r3, #40]	; 0x28
+20000498:	62da      	str	r2, [r3, #44]	; 0x2c
+2000049a:	631a      	str	r2, [r3, #48]	; 0x30
     /*=====================================================================*/
 
     /**
      * Default constructor
      */
     BiQuad(void) : mZ1(0), mZ2(0)
-20000450:	635a      	str	r2, [r3, #52]	; 0x34
-20000452:	639a      	str	r2, [r3, #56]	; 0x38
+2000049c:	635a      	str	r2, [r3, #52]	; 0x34
+2000049e:	639a      	str	r2, [r3, #56]	; 0x38
       /**
        * Default constructor
        */
       Coeffs() :
         ff0(0), ff1(0), ff2(0),
         fb1(0), fb2(0)
-20000454:	63da      	str	r2, [r3, #60]	; 0x3c
-20000456:	641a      	str	r2, [r3, #64]	; 0x40
-20000458:	645a      	str	r2, [r3, #68]	; 0x44
-2000045a:	649a      	str	r2, [r3, #72]	; 0x48
-2000045c:	64da      	str	r2, [r3, #76]	; 0x4c
+200004a0:	63da      	str	r2, [r3, #60]	; 0x3c
+200004a2:	641a      	str	r2, [r3, #64]	; 0x40
+200004a4:	645a      	str	r2, [r3, #68]	; 0x44
+200004a6:	649a      	str	r2, [r3, #72]	; 0x48
+200004a8:	64da      	str	r2, [r3, #76]	; 0x4c
     /*=====================================================================*/
 
     /**
      * Default constructor
      */
     BiQuad(void) : mZ1(0), mZ2(0)
-2000045e:	651a      	str	r2, [r3, #80]	; 0x50
-20000460:	655a      	str	r2, [r3, #84]	; 0x54
-20000462:	4770      	bx	lr
-20000464:	20000468 	.word	0x20000468
+200004aa:	651a      	str	r2, [r3, #80]	; 0x50
+200004ac:	655a      	str	r2, [r3, #84]	; 0x54
+200004ae:	4770      	bx	lr
+200004b0:	200004b8 	.word	0x200004b8

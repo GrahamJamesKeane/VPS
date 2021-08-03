@@ -39,6 +39,7 @@ struct VPSFI {
 	struct State {
 		float    	phi; 		// Oscillator phase
 		float    	w0;			// Oscillator pitch
+		float 		last;		// Last signal
 		float 		last_1;     // Last VPS-1 signal (for interpolation gain)
 		float 		last_2;     // Last VPS-2 signal (for interpolation gain)
 		uint8_t 	flags: 1;	// Bit field for flags
@@ -46,6 +47,7 @@ struct VPSFI {
 		State(void) :
 			phi(ZEROF),
 			w0(ZEROF),
+			last(ZEROF),
 			last_1(ZEROF),
 			last_2(ZEROF),
 			flags(flags_none)
@@ -58,7 +60,6 @@ struct VPSFI {
 		}
 		
 	};
-	
 	
 	VPSFI(void) {
 		state = State();
@@ -131,7 +132,10 @@ struct VPSFI {
 		state.last_2 = sig_2;
 		
 		float sig = sig_1 + sig_2;
-		
+		sig = LPF.process_fo(sig);
+		sig = HPF.process_fo(sig);
+		sig = linintf(phi, state.last, sig);
+		state.last = sig;
 		return sig;
 	}
 	

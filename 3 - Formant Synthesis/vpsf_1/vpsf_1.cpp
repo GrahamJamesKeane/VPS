@@ -41,7 +41,7 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 	// Set pole for filters
 	vpsf.setFilters(w0);
 	
-	// Local copy of the current phase and pointer.
+	// Local copy of the current phase and its pointer.
 	float phi = s.phi;
 	float *Phi = &phi;
 	
@@ -90,17 +90,17 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 	switch (index) {
 		case k_user_osc_param_id1: // User parameter 1
 			// Set d values scale in [0-1]
-			p.d = value * 0.01f;
+			p.d = clip01f(value * 0.005f);
 			break;
 			
 		case k_user_osc_param_id2: // User parameter 2
 			// Set v values
-			p.v = (value * 0.01f) * p.v_range; 	
+			p.v = clip01f(value * 0.005f) * p.v_range; 	
 			break;
 			
 		case k_user_osc_param_id3: // User parameter 3
 			// Set range of v [1-10]
-			p.v_range = value * 0.1f;
+			p.v_range = 1.f + value * 0.09f;
 			break;
 			
 		case k_user_osc_param_id4: // User parameter 4
