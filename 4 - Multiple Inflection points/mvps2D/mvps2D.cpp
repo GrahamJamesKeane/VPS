@@ -110,33 +110,33 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 	
 	switch (index) {
 		case k_user_osc_param_id1: // User parameter 1
-			// Set Values for Inflection Point 1: d0
-			p.d0 = clip01f(value * 0.01f); 		
+			// Set Values for Inflection Point 1: d0 (Bipolar)
+			p.d0 = clip01f(value * 0.005f);		
 			break;
 			
 		case k_user_osc_param_id2: // User parameter 2
-			// Set Values for Inflection Point 1: v0
-			p.v0 = clip01f(value * 0.01f); 
+			// Set Values for Inflection Point 1: v0 (Bipolar)
+			p.d0 = clip01f(value * 0.005f); 
 			break;
 			
 		case k_user_osc_param_id3: // User parameter 3
-			// Set Values for Inflection Point 2: d1
-			p.d1 = clip01f(value * 0.01f); 
+			// Set Values for Inflection Point 2: d1 (Bipolar)
+			p.d0 = clip01f(value * 0.005f); 
 			break;
 			
 		case k_user_osc_param_id4: // User parameter 4
-			// Set Values for Inflection Point 2: v1
-			p.v1 = clip01f(value * 0.01f); 
+			// Set Values for Inflection Point 2: v1 (Bipolar)
+			p.d0 = clip01f(value * 0.005f); 
 			break;
 			
 		case k_user_osc_param_id5: // User parameter 5
-			// Set Values for Inflection Point 3: d2
-			p.d2 = clip01f(value * 0.01f);			
+			// Set Values for Inflection Point 3: d2 (Bipolar)
+			p.d0 = clip01f(value * 0.005f);			
 			break;
 			
 		case k_user_osc_param_id6: // User parameter 6
-			// Set Values for Inflection Point 3: v2
-			p.v2 = clip01f(value * 0.01f); 
+			// Set Values for Inflection Point 3: v2 (Bipolar)
+			p.d0 = clip01f(value * 0.005f); 
 			break;
 			
 		case k_user_osc_param_shape: // A knob

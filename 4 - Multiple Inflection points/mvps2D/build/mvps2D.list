@@ -114,8 +114,8 @@ void _entry(uint32_t platform, uint32_t api)
 2000008a:	f000 f80b 	bl	200000a4 <_hook_init>
 2000008e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
 20000092:	bf00      	nop
-20000094:	200006af 	.word	0x200006af
-20000098:	20000723 	.word	0x20000723
+20000094:	200005af 	.word	0x200005af
+20000098:	20000623 	.word	0x20000623
 2000009c:	20000040 	.word	0x20000040
 200000a0:	20000044 	.word	0x20000044
 
@@ -872,7 +872,7 @@ float fsel(const float a, const float b, const float c) {
 }
 20000470:	bdf0      	pop	{r4, r5, r6, r7, pc}
 20000472:	bf00      	nop
-20000474:	200006b0 	.word	0x200006b0
+20000474:	200005b0 	.word	0x200005b0
 20000478:	00000000 	.word	0x00000000
 2000047c:	3b808081 	.word	0x3b808081
 20000480:	44029cbc 	.word	0x44029cbc
@@ -897,7 +897,7 @@ void OSC_NOTEON(const user_osc_param_t *const params) {
 200004ac:	f043 0301 	orr.w	r3, r3, #1
 200004b0:	7713      	strb	r3, [r2, #28]
 200004b2:	4770      	bx	lr
-200004b4:	200006b0 	.word	0x200006b0
+200004b4:	200005b0 	.word	0x200005b0
 
 200004b8 <_hook_off>:
 }
@@ -913,257 +913,161 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 	
 	const float valf = param_val_to_f32(value);
 200004ba:	ee07 1a90 	vmov	s15, r1
-200004be:	ed9f 7a5d 	vldr	s14, [pc, #372]	; 20000634 <_hook_param+0x17a>
+200004be:	ed9f 7a1e 	vldr	s14, [pc, #120]	; 20000538 <_hook_param+0x7e>
 200004c2:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 200004c6:	ee27 7a87 	vmul.f32	s14, s15, s14
 	
 	switch (index) {
 200004ca:	2807      	cmp	r0, #7
-200004cc:	f200 80b1 	bhi.w	20000632 <_hook_param+0x178>
-200004d0:	e8df f000 	tbb	[pc, r0]
-200004d4:	4f361d04 	.word	0x4f361d04
-200004d8:	a49a8168 	.word	0xa49a8168
-		case k_user_osc_param_id1: // User parameter 1
-			// Set Values for Inflection Point 1: d0
-			p.d0 = clip01f(value * 0.01f); 		
-200004dc:	ed9f 7a56 	vldr	s14, [pc, #344]	; 20000638 <_hook_param+0x17e>
-200004e0:	ee67 7a87 	vmul.f32	s15, s15, s14
-200004e4:	eef5 7ac0 	vcmpe.f32	s15, #0.0
-200004e8:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200004ec:	db09      	blt.n	20000502 <_hook_param+0x48>
-200004ee:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-200004f2:	eef4 7ac7 	vcmpe.f32	s15, s14
-200004f6:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200004fa:	bfa8      	it	ge
-200004fc:	eef0 7a47 	vmovge.f32	s15, s14
-20000500:	e001      	b.n	20000506 <_hook_param+0x4c>
-20000502:	eddf 7a4e 	vldr	s15, [pc, #312]	; 2000063c <_hook_param+0x182>
-20000506:	4b4e      	ldr	r3, [pc, #312]	; (20000640 <_hook_param+0x186>)
-20000508:	edc3 7a08 	vstr	s15, [r3, #32]
+200004cc:	d833      	bhi.n	20000536 <_hook_param+0x7c>
+200004ce:	e8df f000 	tbb	[pc, r0]
+200004d2:	0404      	.short	0x0404
+200004d4:	04040404 	.word	0x04040404
+200004d8:	271d      	.short	0x271d
+			p.d0 = clip01f(value * 0.005f);			
 			break;
-2000050c:	4770      	bx	lr
-			
-		case k_user_osc_param_id2: // User parameter 2
-			// Set Values for Inflection Point 1: v0
-			p.v0 = clip01f(value * 0.01f); 
-2000050e:	ed9f 7a4a 	vldr	s14, [pc, #296]	; 20000638 <_hook_param+0x17e>
-20000512:	ee67 7a87 	vmul.f32	s15, s15, s14
-20000516:	eef5 7ac0 	vcmpe.f32	s15, #0.0
-2000051a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-2000051e:	db09      	blt.n	20000534 <_hook_param+0x7a>
-20000520:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-20000524:	eef4 7ac7 	vcmpe.f32	s15, s14
-20000528:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-2000052c:	bfa8      	it	ge
-2000052e:	eef0 7a47 	vmovge.f32	s15, s14
-20000532:	e001      	b.n	20000538 <_hook_param+0x7e>
-20000534:	eddf 7a41 	vldr	s15, [pc, #260]	; 2000063c <_hook_param+0x182>
-20000538:	4b41      	ldr	r3, [pc, #260]	; (20000640 <_hook_param+0x186>)
-2000053a:	edc3 7a0b 	vstr	s15, [r3, #44]	; 0x2c
-			break;
-2000053e:	4770      	bx	lr
-			
-		case k_user_osc_param_id3: // User parameter 3
-			// Set Values for Inflection Point 2: d1
-			p.d1 = clip01f(value * 0.01f); 
-20000540:	ed9f 7a3d 	vldr	s14, [pc, #244]	; 20000638 <_hook_param+0x17e>
-20000544:	ee67 7a87 	vmul.f32	s15, s15, s14
-20000548:	eef5 7ac0 	vcmpe.f32	s15, #0.0
-2000054c:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-20000550:	db09      	blt.n	20000566 <_hook_param+0xac>
-20000552:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-20000556:	eef4 7ac7 	vcmpe.f32	s15, s14
-2000055a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-2000055e:	bfa8      	it	ge
-20000560:	eef0 7a47 	vmovge.f32	s15, s14
-20000564:	e001      	b.n	2000056a <_hook_param+0xb0>
-20000566:	eddf 7a35 	vldr	s15, [pc, #212]	; 2000063c <_hook_param+0x182>
-2000056a:	4b35      	ldr	r3, [pc, #212]	; (20000640 <_hook_param+0x186>)
-2000056c:	edc3 7a09 	vstr	s15, [r3, #36]	; 0x24
-			break;
-20000570:	4770      	bx	lr
-			
-		case k_user_osc_param_id4: // User parameter 4
-			// Set Values for Inflection Point 2: v1
-			p.v1 = clip01f(value * 0.01f); 
-20000572:	ed9f 7a31 	vldr	s14, [pc, #196]	; 20000638 <_hook_param+0x17e>
-20000576:	ee67 7a87 	vmul.f32	s15, s15, s14
-2000057a:	eef5 7ac0 	vcmpe.f32	s15, #0.0
-2000057e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-20000582:	db09      	blt.n	20000598 <_hook_param+0xde>
-20000584:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-20000588:	eef4 7ac7 	vcmpe.f32	s15, s14
-2000058c:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-20000590:	bfa8      	it	ge
-20000592:	eef0 7a47 	vmovge.f32	s15, s14
-20000596:	e001      	b.n	2000059c <_hook_param+0xe2>
-20000598:	eddf 7a28 	vldr	s15, [pc, #160]	; 2000063c <_hook_param+0x182>
-2000059c:	4b28      	ldr	r3, [pc, #160]	; (20000640 <_hook_param+0x186>)
-2000059e:	edc3 7a0c 	vstr	s15, [r3, #48]	; 0x30
-			break;
-200005a2:	4770      	bx	lr
-			
-		case k_user_osc_param_id5: // User parameter 5
-			// Set Values for Inflection Point 3: d2
-			p.d2 = clip01f(value * 0.01f);			
-200005a4:	ed9f 7a24 	vldr	s14, [pc, #144]	; 20000638 <_hook_param+0x17e>
-200005a8:	ee67 7a87 	vmul.f32	s15, s15, s14
-200005ac:	eef5 7ac0 	vcmpe.f32	s15, #0.0
-200005b0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200005b4:	db09      	blt.n	200005ca <_hook_param+0x110>
-200005b6:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-200005ba:	eef4 7ac7 	vcmpe.f32	s15, s14
-200005be:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200005c2:	bfa8      	it	ge
-200005c4:	eef0 7a47 	vmovge.f32	s15, s14
-200005c8:	e001      	b.n	200005ce <_hook_param+0x114>
-200005ca:	eddf 7a1c 	vldr	s15, [pc, #112]	; 2000063c <_hook_param+0x182>
-200005ce:	4b1c      	ldr	r3, [pc, #112]	; (20000640 <_hook_param+0x186>)
-200005d0:	edc3 7a0a 	vstr	s15, [r3, #40]	; 0x28
-			break;
-200005d4:	4770      	bx	lr
 			
 		case k_user_osc_param_id6: // User parameter 6
-			// Set Values for Inflection Point 3: v2
-			p.v2 = clip01f(value * 0.01f); 
-200005d6:	ed9f 7a18 	vldr	s14, [pc, #96]	; 20000638 <_hook_param+0x17e>
-200005da:	ee67 7a87 	vmul.f32	s15, s15, s14
-200005de:	eef5 7ac0 	vcmpe.f32	s15, #0.0
-200005e2:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200005e6:	db09      	blt.n	200005fc <_hook_param+0x142>
-200005e8:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
-200005ec:	eef4 7ac7 	vcmpe.f32	s15, s14
-200005f0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200005f4:	bfa8      	it	ge
-200005f6:	eef0 7a47 	vmovge.f32	s15, s14
-200005fa:	e001      	b.n	20000600 <_hook_param+0x146>
-200005fc:	eddf 7a0f 	vldr	s15, [pc, #60]	; 2000063c <_hook_param+0x182>
-20000600:	4b0f      	ldr	r3, [pc, #60]	; (20000640 <_hook_param+0x186>)
-20000602:	edc3 7a0d 	vstr	s15, [r3, #52]	; 0x34
+			// Set Values for Inflection Point 3: v2 (Bipolar)
+			p.d0 = clip01f(value * 0.005f); 
+200004da:	ed9f 7a18 	vldr	s14, [pc, #96]	; 2000053c <_hook_param+0x82>
+200004de:	ee67 7a87 	vmul.f32	s15, s15, s14
+200004e2:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+200004e6:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200004ea:	db09      	blt.n	20000500 <_hook_param+0x46>
+200004ec:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
+200004f0:	eef4 7ac7 	vcmpe.f32	s15, s14
+200004f4:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200004f8:	bfa8      	it	ge
+200004fa:	eef0 7a47 	vmovge.f32	s15, s14
+200004fe:	e001      	b.n	20000504 <_hook_param+0x4a>
+20000500:	eddf 7a0f 	vldr	s15, [pc, #60]	; 20000540 <_hook_param+0x86>
+20000504:	4b0f      	ldr	r3, [pc, #60]	; (20000544 <_hook_param+0x8a>)
+20000506:	edc3 7a08 	vstr	s15, [r3, #32]
 			break;
-20000606:	4770      	bx	lr
+2000050a:	4770      	bx	lr
 			
 		case k_user_osc_param_shape: // A knob
 			// Set the frequency ratio for filters
 			p.f_ratio = 1.f + (valf * 100.f);
-20000608:	eddf 6a0e 	vldr	s13, [pc, #56]	; 20000644 <_hook_param+0x18a>
-2000060c:	4b0c      	ldr	r3, [pc, #48]	; (20000640 <_hook_param+0x186>)
-2000060e:	eef7 7a00 	vmov.f32	s15, #112	; 0x3f800000  1.0
-20000612:	eee7 7a26 	vfma.f32	s15, s14, s13
-20000616:	edc3 7a0e 	vstr	s15, [r3, #56]	; 0x38
+2000050c:	eddf 6a0e 	vldr	s13, [pc, #56]	; 20000548 <_hook_param+0x8e>
+20000510:	4b0c      	ldr	r3, [pc, #48]	; (20000544 <_hook_param+0x8a>)
+20000512:	eef7 7a00 	vmov.f32	s15, #112	; 0x3f800000  1.0
+20000516:	eee7 7a26 	vfma.f32	s15, s14, s13
+2000051a:	edc3 7a0e 	vstr	s15, [r3, #56]	; 0x38
 			break;
-2000061a:	4770      	bx	lr
+2000051e:	4770      	bx	lr
 			
 		case k_user_osc_param_shiftshape: // B knob	
 			// Frequency of LFO2
 			s.w0_lfo2 = (valf * 30.f) * k_samplerate_recipf;
-2000061c:	eef3 7a0e 	vmov.f32	s15, #62	; 0x41f00000  30.0
-20000620:	ee27 7a27 	vmul.f32	s14, s14, s15
-20000624:	eddf 7a08 	vldr	s15, [pc, #32]	; 20000648 <_hook_param+0x18e>
-20000628:	4b05      	ldr	r3, [pc, #20]	; (20000640 <_hook_param+0x186>)
-2000062a:	ee27 7a27 	vmul.f32	s14, s14, s15
-2000062e:	ed83 7a05 	vstr	s14, [r3, #20]
-20000632:	4770      	bx	lr
-20000634:	3a802008 	.word	0x3a802008
-20000638:	3c23d70a 	.word	0x3c23d70a
-2000063c:	00000000 	.word	0x00000000
-20000640:	200006b0 	.word	0x200006b0
-20000644:	42c80000 	.word	0x42c80000
-20000648:	37aec33e 	.word	0x37aec33e
+20000520:	eef3 7a0e 	vmov.f32	s15, #62	; 0x41f00000  30.0
+20000524:	ee27 7a27 	vmul.f32	s14, s14, s15
+20000528:	eddf 7a08 	vldr	s15, [pc, #32]	; 2000054c <_hook_param+0x92>
+2000052c:	4b05      	ldr	r3, [pc, #20]	; (20000544 <_hook_param+0x8a>)
+2000052e:	ee27 7a27 	vmul.f32	s14, s14, s15
+20000532:	ed83 7a05 	vstr	s14, [r3, #20]
+20000536:	4770      	bx	lr
+20000538:	3a802008 	.word	0x3a802008
+2000053c:	3ba3d70a 	.word	0x3ba3d70a
+20000540:	00000000 	.word	0x00000000
+20000544:	200005b0 	.word	0x200005b0
+20000548:	42c80000 	.word	0x42c80000
+2000054c:	37aec33e 	.word	0x37aec33e
 
-2000064c <_ZN6MVPS2DC1Ev>:
+20000550 <_ZN6MVPS2DC1Ev>:
       /**
        * Default constructor
        */
       Coeffs() :
         ff0(0), ff1(0), ff2(0),
         fb1(0), fb2(0)
-2000064c:	2200      	movs	r2, #0
+20000550:	2200      	movs	r2, #0
 			phi = ZEROF;
 		}
 	};
 
 	MVPS2D(void) {
 		state = State();
-2000064e:	4611      	mov	r1, r2
-20000650:	63c2      	str	r2, [r0, #60]	; 0x3c
-20000652:	6402      	str	r2, [r0, #64]	; 0x40
-20000654:	6442      	str	r2, [r0, #68]	; 0x44
-20000656:	6482      	str	r2, [r0, #72]	; 0x48
-20000658:	64c2      	str	r2, [r0, #76]	; 0x4c
+20000552:	4611      	mov	r1, r2
+20000554:	63c2      	str	r2, [r0, #60]	; 0x3c
+20000556:	6402      	str	r2, [r0, #64]	; 0x40
+20000558:	6442      	str	r2, [r0, #68]	; 0x44
+2000055a:	6482      	str	r2, [r0, #72]	; 0x48
+2000055c:	64c2      	str	r2, [r0, #76]	; 0x4c
     /*=====================================================================*/
 
     /**
      * Default constructor
      */
     BiQuad(void) : mZ1(0), mZ2(0)
-2000065a:	6502      	str	r2, [r0, #80]	; 0x50
-2000065c:	6542      	str	r2, [r0, #84]	; 0x54
+2000055e:	6502      	str	r2, [r0, #80]	; 0x50
+20000560:	6542      	str	r2, [r0, #84]	; 0x54
       /**
        * Default constructor
        */
       Coeffs() :
         ff0(0), ff1(0), ff2(0),
         fb1(0), fb2(0)
-2000065e:	6582      	str	r2, [r0, #88]	; 0x58
-20000660:	65c2      	str	r2, [r0, #92]	; 0x5c
-20000662:	6602      	str	r2, [r0, #96]	; 0x60
-20000664:	6642      	str	r2, [r0, #100]	; 0x64
-20000666:	6682      	str	r2, [r0, #104]	; 0x68
+20000562:	6582      	str	r2, [r0, #88]	; 0x58
+20000564:	65c2      	str	r2, [r0, #92]	; 0x5c
+20000566:	6602      	str	r2, [r0, #96]	; 0x60
+20000568:	6642      	str	r2, [r0, #100]	; 0x64
+2000056a:	6682      	str	r2, [r0, #104]	; 0x68
     /*=====================================================================*/
 
     /**
      * Default constructor
      */
     BiQuad(void) : mZ1(0), mZ2(0)
-20000668:	66c2      	str	r2, [r0, #108]	; 0x6c
-2000066a:	6702      	str	r2, [r0, #112]	; 0x70
-2000066c:	6002      	str	r2, [r0, #0]
-2000066e:	6042      	str	r2, [r0, #4]
-20000670:	6082      	str	r2, [r0, #8]
-20000672:	60c2      	str	r2, [r0, #12]
-20000674:	6102      	str	r2, [r0, #16]
-20000676:	6142      	str	r2, [r0, #20]
-20000678:	6182      	str	r2, [r0, #24]
+2000056c:	66c2      	str	r2, [r0, #108]	; 0x6c
+2000056e:	6702      	str	r2, [r0, #112]	; 0x70
+20000570:	6002      	str	r2, [r0, #0]
+20000572:	6042      	str	r2, [r0, #4]
+20000574:	6082      	str	r2, [r0, #8]
+20000576:	60c2      	str	r2, [r0, #12]
+20000578:	6102      	str	r2, [r0, #16]
+2000057a:	6142      	str	r2, [r0, #20]
+2000057c:	6182      	str	r2, [r0, #24]
 		inline void reset(void) {
 			phi = ZEROF;
 		}
 	};
 
 	MVPS2D(void) {
-2000067a:	b510      	push	{r4, lr}
+2000057e:	b510      	push	{r4, lr}
 		state = State();
-2000067c:	7f02      	ldrb	r2, [r0, #28]
-2000067e:	f361 0200 	bfi	r2, r1, #0, #1
-20000682:	7702      	strb	r2, [r0, #28]
+20000580:	7f02      	ldrb	r2, [r0, #28]
+20000582:	f361 0200 	bfi	r2, r1, #0, #1
+20000586:	7702      	strb	r2, [r0, #28]
 		params = Params();
-20000684:	f04f 527c 	mov.w	r2, #1056964608	; 0x3f000000
-20000688:	6202      	str	r2, [r0, #32]
-2000068a:	6242      	str	r2, [r0, #36]	; 0x24
-2000068c:	6282      	str	r2, [r0, #40]	; 0x28
-2000068e:	62c2      	str	r2, [r0, #44]	; 0x2c
-20000690:	6302      	str	r2, [r0, #48]	; 0x30
-20000692:	6342      	str	r2, [r0, #52]	; 0x34
-20000694:	f04f 527e 	mov.w	r2, #1065353216	; 0x3f800000
-20000698:	6382      	str	r2, [r0, #56]	; 0x38
+20000588:	f04f 527c 	mov.w	r2, #1056964608	; 0x3f000000
+2000058c:	6202      	str	r2, [r0, #32]
+2000058e:	6242      	str	r2, [r0, #36]	; 0x24
+20000590:	6282      	str	r2, [r0, #40]	; 0x28
+20000592:	62c2      	str	r2, [r0, #44]	; 0x2c
+20000594:	6302      	str	r2, [r0, #48]	; 0x30
+20000596:	6342      	str	r2, [r0, #52]	; 0x34
+20000598:	f04f 527e 	mov.w	r2, #1065353216	; 0x3f800000
+2000059c:	6382      	str	r2, [r0, #56]	; 0x38
 	}
-2000069a:	bd10      	pop	{r4, pc}
+2000059e:	bd10      	pop	{r4, pc}
 
-2000069c <_GLOBAL__sub_I__hook_init>:
+200005a0 <_GLOBAL__sub_I__hook_init>:
 			break;
 			
 		default: break;
 	}
 }
-2000069c:	b508      	push	{r3, lr}
+200005a0:	b508      	push	{r3, lr}
  */
 
 #include "userosc.h"
 #include "mvps2D.hpp"
 
 static MVPS2D mvps2D;
-2000069e:	4802      	ldr	r0, [pc, #8]	; (200006a8 <_GLOBAL__sub_I__hook_init+0xc>)
-200006a0:	f7ff ffd4 	bl	2000064c <_ZN6MVPS2DC1Ev>
-200006a4:	bd08      	pop	{r3, pc}
-200006a6:	bf00      	nop
-200006a8:	200006b0 	.word	0x200006b0
+200005a2:	4802      	ldr	r0, [pc, #8]	; (200005ac <_GLOBAL__sub_I__hook_init+0xc>)
+200005a4:	f7ff ffd4 	bl	20000550 <_ZN6MVPS2DC1Ev>
+200005a8:	bd08      	pop	{r3, pc}
+200005aa:	bf00      	nop
+200005ac:	200005b0 	.word	0x200005b0

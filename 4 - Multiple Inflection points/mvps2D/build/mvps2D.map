@@ -31,7 +31,7 @@ LOAD ./build/obj/mvps2D.o
                 0x20000044                . = ALIGN (0x4)
                 0x20000044                PROVIDE (__init_array_end, .)
 
-.text           0x20000044      0x668
+.text           0x20000044      0x56c
                 0x20000044                . = ALIGN (0x4)
                 0x20000044                _text_start = .
  *(.text)
@@ -39,7 +39,7 @@ LOAD ./build/obj/mvps2D.o
                 0x20000046                _hook_mute
                 0x20000048                _hook_value
                 0x20000052                _entry
- .text          0x200000a4      0x5a8 ./build/obj/mvps2D.o
+ .text          0x200000a4      0x4ac ./build/obj/mvps2D.o
                 0x200000a4                _hook_init
                 0x200000a6                _hook_cycle
                 0x200004a8                _hook_on
@@ -47,87 +47,87 @@ LOAD ./build/obj/mvps2D.o
                 0x200004ba                _hook_param
  *(.text.*)
  .text._ZN6MVPS2DC2Ev
-                0x2000064c       0x50 ./build/obj/mvps2D.o
-                0x2000064c                MVPS2D::MVPS2D()
-                0x2000064c                MVPS2D::MVPS2D()
- .text.startup  0x2000069c       0x10 ./build/obj/mvps2D.o
+                0x20000550       0x50 ./build/obj/mvps2D.o
+                0x20000550                MVPS2D::MVPS2D()
+                0x20000550                MVPS2D::MVPS2D()
+ .text.startup  0x200005a0       0x10 ./build/obj/mvps2D.o
  *(.glue_7)
- .glue_7        0x200006ac        0x0 linker stubs
+ .glue_7        0x200005b0        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x200006ac        0x0 linker stubs
+ .glue_7t       0x200005b0        0x0 linker stubs
  *(.gcc*)
-                0x200006ac                . = ALIGN (0x4)
-                0x200006ac                _text_end = .
+                0x200005b0                . = ALIGN (0x4)
+                0x200005b0                _text_end = .
 
-.vfp11_veneer   0x200006ac        0x0
- .vfp11_veneer  0x200006ac        0x0 linker stubs
+.vfp11_veneer   0x200005b0        0x0
+ .vfp11_veneer  0x200005b0        0x0 linker stubs
 
-.v4_bx          0x200006ac        0x0
- .v4_bx         0x200006ac        0x0 linker stubs
+.v4_bx          0x200005b0        0x0
+ .v4_bx         0x200005b0        0x0 linker stubs
 
-.iplt           0x200006ac        0x0
- .iplt          0x200006ac        0x0 ./build/obj/_unit.o
+.iplt           0x200005b0        0x0
+ .iplt          0x200005b0        0x0 ./build/obj/_unit.o
 
-.rel.dyn        0x200006ac        0x0
- .rel.iplt      0x200006ac        0x0 ./build/obj/_unit.o
+.rel.dyn        0x200005b0        0x0
+ .rel.iplt      0x200005b0        0x0 ./build/obj/_unit.o
 
-.rodata         0x200006ac        0x0
-                0x200006ac                . = ALIGN (0x4)
-                0x200006ac                _rodata_start = .
+.rodata         0x200005b0        0x0
+                0x200005b0                . = ALIGN (0x4)
+                0x200005b0                _rodata_start = .
  *(.rodata)
  *(.rodata.*)
-                0x200006ac                . = ALIGN (0x4)
-                0x200006ac                _rodata_end = .
+                0x200005b0                . = ALIGN (0x4)
+                0x200005b0                _rodata_end = .
 
-.data           0x200006b0        0x0
-                0x200006b0                . = ALIGN (0x8)
-                0x200006b0                _data_start = .
+.data           0x200005b0        0x0
+                0x200005b0                . = ALIGN (0x8)
+                0x200005b0                _data_start = .
  *(.data)
- .data          0x200006b0        0x0 ./build/obj/_unit.o
- .data          0x200006b0        0x0 ./build/obj/mvps2D.o
+ .data          0x200005b0        0x0 ./build/obj/_unit.o
+ .data          0x200005b0        0x0 ./build/obj/mvps2D.o
  *(.data.*)
-                0x200006b0                . = ALIGN (0x8)
-                0x200006b0                _data_end = .
+                0x200005b0                . = ALIGN (0x8)
+                0x200005b0                _data_end = .
 
-.igot.plt       0x200006b0        0x0
- .igot.plt      0x200006b0        0x0 ./build/obj/_unit.o
+.igot.plt       0x200005b0        0x0
+ .igot.plt      0x200005b0        0x0 ./build/obj/_unit.o
 
-.bss            0x200006b0       0x74
-                0x200006b0                . = ALIGN (0x4)
-                0x200006b0                _bss_start = .
+.bss            0x200005b0       0x74
+                0x200005b0                . = ALIGN (0x4)
+                0x200005b0                _bss_start = .
  *(.bss)
- .bss           0x200006b0        0x0 ./build/obj/_unit.o
- .bss           0x200006b0       0x74 ./build/obj/mvps2D.o
+ .bss           0x200005b0        0x0 ./build/obj/_unit.o
+ .bss           0x200005b0       0x74 ./build/obj/mvps2D.o
  *(.bss.*)
  *(COMMON)
-                0x20000724                . = ALIGN (0x4)
-                0x20000724                _bss_end = .
+                0x20000624                . = ALIGN (0x4)
+                0x20000624                _bss_end = .
 
-.ARM.extab      0x20000724        0x0
-                0x20000724                . = ALIGN (0x4)
-                0x20000724                __extab_start = .
+.ARM.extab      0x20000624        0x0
+                0x20000624                . = ALIGN (0x4)
+                0x20000624                __extab_start = .
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x20000724                . = ALIGN (0x4)
-                0x20000724                __extab_end = .
+                0x20000624                . = ALIGN (0x4)
+                0x20000624                __extab_end = .
 
-.ARM.exidx      0x20000724        0x0
-                0x20000724                __exidx_start = .
+.ARM.exidx      0x20000624        0x0
+                0x20000624                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x20000724                __exidx_end = .
+                0x20000624                __exidx_end = .
 
-.eh_frame_hdr   0x20000724        0x0
-                0x20000724                . = ALIGN (0x4)
-                0x20000724                _eh_frame_hdr_start = .
+.eh_frame_hdr   0x20000624        0x0
+                0x20000624                . = ALIGN (0x4)
+                0x20000624                _eh_frame_hdr_start = .
  *(.eh_frame_hdr)
-                0x20000724                . = ALIGN (0x4)
-                0x20000724                _eh_frame_hdr_end = .
+                0x20000624                . = ALIGN (0x4)
+                0x20000624                _eh_frame_hdr_end = .
 
-.eh_frame       0x20000724        0x0
-                0x20000724                . = ALIGN (0x4)
-                0x20000724                _eh_frame_start = .
+.eh_frame       0x20000624        0x0
+                0x20000624                . = ALIGN (0x4)
+                0x20000624                _eh_frame_start = .
  *(.eh_frame)
-                0x20000724                . = ALIGN (0x4)
-                0x20000724                _eh_frame_end = .
+                0x20000624                . = ALIGN (0x4)
+                0x20000624                _eh_frame_end = .
 LOAD ./ld/osc_api.syms
                 0x0800f000                k_osc_api_version = 0x800f000
                 0x0800f004                k_osc_api_platform = 0x800f004
@@ -165,17 +165,17 @@ LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/
 END GROUP
 OUTPUT(build/mvps2D.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x2351
+.debug_info     0x00000000     0x202c
  .debug_info    0x00000000      0x6a4 ./build/obj/_unit.o
- .debug_info    0x000006a4     0x1cad ./build/obj/mvps2D.o
+ .debug_info    0x000006a4     0x1988 ./build/obj/mvps2D.o
 
 .debug_abbrev   0x00000000      0x641
  .debug_abbrev  0x00000000      0x20e ./build/obj/_unit.o
  .debug_abbrev  0x0000020e      0x433 ./build/obj/mvps2D.o
 
-.debug_loc      0x00000000     0x160a
+.debug_loc      0x00000000      0xfbb
  .debug_loc     0x00000000       0xb9 ./build/obj/_unit.o
- .debug_loc     0x000000b9     0x1551 ./build/obj/mvps2D.o
+ .debug_loc     0x000000b9      0xf02 ./build/obj/mvps2D.o
 
 .debug_aranges  0x00000000       0x50
  .debug_aranges
@@ -183,9 +183,9 @@ OUTPUT(build/mvps2D.elf elf32-littlearm)
  .debug_aranges
                 0x00000020       0x30 ./build/obj/mvps2D.o
 
-.debug_line     0x00000000      0x7b9
+.debug_line     0x00000000      0x773
  .debug_line    0x00000000      0x204 ./build/obj/_unit.o
- .debug_line    0x00000204      0x5b5 ./build/obj/mvps2D.o
+ .debug_line    0x00000204      0x56f ./build/obj/mvps2D.o
 
 .debug_str      0x00000000      0xe2a
  .debug_str     0x00000000      0x602 ./build/obj/_unit.o
@@ -209,8 +209,8 @@ OUTPUT(build/mvps2D.elf elf32-littlearm)
  .debug_frame   0x00000000       0xa8 ./build/obj/_unit.o
  .debug_frame   0x000000a8      0x124 ./build/obj/mvps2D.o
 
-.debug_ranges   0x00000000      0x5f0
- .debug_ranges  0x00000000      0x5f0 ./build/obj/mvps2D.o
+.debug_ranges   0x00000000      0x578
+ .debug_ranges  0x00000000      0x578 ./build/obj/mvps2D.o
 
 Cross Reference Table
 
