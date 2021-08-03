@@ -188,10 +188,10 @@ OUTPUT(build/mvps1D.elf elf32-littlearm)
  .debug_line    0x00000000      0x204 ./build/obj/_unit.o
  .debug_line    0x00000204      0x552 ./build/obj/mvps1D.o
 
-.debug_str      0x00000000      0xdff
+.debug_str      0x00000000      0xdf8
  .debug_str     0x00000000      0x602 ./build/obj/_unit.o
                                 0x68f (size before relaxing)
- .debug_str     0x00000602      0x7fd ./build/obj/mvps1D.o
+ .debug_str     0x00000602      0x7f6 ./build/obj/mvps1D.o
                                 0xb34 (size before relaxing)
 
 .comment        0x00000000       0x6e

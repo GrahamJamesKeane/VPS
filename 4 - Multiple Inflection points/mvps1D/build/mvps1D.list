@@ -846,8 +846,8 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 2000043e:	a6          	.byte	0xa6
 2000043f:	00          	.byte	0x00
 		case k_user_osc_param_id1: // User parameter 1
-			// Set Values for Inflection Point 1: d0
-			p.d0 = clip01f(value * 0.01f); 					
+			// Set Values for Inflection Point 1: d0 (Bipolar)
+			p.d0 = clip01f(value * 0.005f); 		
 20000440:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 20000444:	ed9f 7a57 	vldr	s14, [pc, #348]	; 200005a4 <_hook_param+0x17a>
 20000448:	ee67 7a87 	vmul.f32	s15, s15, s14
@@ -866,9 +866,9 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 			break;
 20000474:	4770      	bx	lr
 			
-		case k_user_osc_param_id2:	// User parameter 2
-			// Set Values for Inflection Point 1: v0
-			p.v0 = clip01f(value * 0.01f); 
+		case k_user_osc_param_id2: // User parameter 2
+			// Set Values for Inflection Point 1: v0 (Bipolar)
+			p.v0 = clip01f(value * 0.005f); 
 20000476:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 2000047a:	ed9f 7a4a 	vldr	s14, [pc, #296]	; 200005a4 <_hook_param+0x17a>
 2000047e:	ee67 7a87 	vmul.f32	s15, s15, s14
@@ -887,9 +887,9 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 			break;
 200004aa:	4770      	bx	lr
 			
-		case k_user_osc_param_id3:  // User parameter 3
-			// Set Values for Inflection Point 2: d1
-			p.d1 = clip01f(value * 0.01f); 		
+		case k_user_osc_param_id3: // User parameter 3
+			// Set Values for Inflection Point 2: d1 (Bipolar)
+			p.d1 = clip01f(value * 0.005f); 
 200004ac:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 200004b0:	ed9f 7a3c 	vldr	s14, [pc, #240]	; 200005a4 <_hook_param+0x17a>
 200004b4:	ee67 7a87 	vmul.f32	s15, s15, s14
@@ -908,9 +908,9 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 			break;
 200004e0:	4770      	bx	lr
 			
-		case k_user_osc_param_id4:	// User parameter 4
-			// Set Values for Inflection Point 2: v1
-			p.v1 = clip01f(value * 0.01f); 
+		case k_user_osc_param_id4: // User parameter 4
+			// Set Values for Inflection Point 2: v1 (Bipolar)
+			p.v1 = clip01f(value * 0.005f); 
 200004e2:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 200004e6:	ed9f 7a2f 	vldr	s14, [pc, #188]	; 200005a4 <_hook_param+0x17a>
 200004ea:	ee67 7a87 	vmul.f32	s15, s15, s14
@@ -929,9 +929,9 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 			break;
 20000516:	4770      	bx	lr
 			
-		case k_user_osc_param_id5:  // User parameter 5
-			// Set Values for Inflection Point 3: x2
-			p.d2 = clip01f(value * 0.01f); 			
+		case k_user_osc_param_id5: // User parameter 5
+			// Set Values for Inflection Point 3: d2 (Bipolar)
+			p.d2 = clip01f(value * 0.005f); 		
 20000518:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 2000051c:	ed9f 7a21 	vldr	s14, [pc, #132]	; 200005a4 <_hook_param+0x17a>
 20000520:	ee67 7a87 	vmul.f32	s15, s15, s14
@@ -950,9 +950,9 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 			break;
 2000054c:	4770      	bx	lr
 			
-		case k_user_osc_param_id6:	// User parameter 6
-			// Set Values for Inflection Point 3: v2
-			p.v2 = clip01f(value * 0.01f); 
+		case k_user_osc_param_id6: // User parameter 6
+			// Set Values for Inflection Point 3: v2 (Bipolar)
+			p.v2 = clip01f(value * 0.005f);  
 2000054e:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 20000552:	ed9f 7a14 	vldr	s14, [pc, #80]	; 200005a4 <_hook_param+0x17a>
 20000556:	ee67 7a87 	vmul.f32	s15, s15, s14
@@ -983,7 +983,7 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 2000059a:	eea7 7aa6 	vfma.f32	s14, s15, s13
 2000059e:	ed83 7a0b 	vstr	s14, [r3, #44]	; 0x2c
 200005a2:	4770      	bx	lr
-200005a4:	3c23d70a 	.word	0x3c23d70a
+200005a4:	3ba3d70a 	.word	0x3ba3d70a
 200005a8:	00000000 	.word	0x00000000
 200005ac:	20000618 	.word	0x20000618
 200005b0:	3a802008 	.word	0x3a802008

@@ -1,4 +1,4 @@
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
   55              		.size	_hook_mute, .-_hook_mute
   56              		.align	1
   57              		.weak	_hook_value
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 2
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 2
 
 
   58              		.thumb
@@ -118,7 +118,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  112              		.cfi_startproc
  113              		@ args = 0, pretend = 0, frame = 0
  114              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 3
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 3
 
 
  115              		@ link register save eliminated.
@@ -178,7 +178,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  169 001e 02D0     		beq	.L18
  170              	.LVL7:
  171              		.loc 1 107 0
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 4
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 4
 
 
  172 0020 03F8011F 		strb	r1, [r3, #1]!
@@ -238,7 +238,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  226              		.type	s_hook_table, %object
  227              		.size	s_hook_table, 64
  228              	s_hook_table:
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 5
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 5
 
 
  229 0000 55       		.byte	85
@@ -279,8 +279,8 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  260 000b 01       		.uleb128 0x1
  261 000c 60010000 		.4byte	.LASF94
  262 0010 0C       		.byte	0xc
- 263 0011 8F000000 		.4byte	.LASF95
- 264 0015 CB000000 		.4byte	.LASF96
+ 263 0011 06010000 		.4byte	.LASF95
+ 264 0015 25000000 		.4byte	.LASF96
  265 0019 00000000 		.4byte	.Ltext0
  266 001d 60000000 		.4byte	.Letext0-.Ltext0
  267 0021 00000000 		.4byte	.Ldebug_line0
@@ -298,12 +298,12 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  279 0039 08       		.byte	0x8
  280 003a 80030000 		.4byte	.LASF1
  281 003e 02       		.uleb128 0x2
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 6
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 6
 
 
  282 003f 02       		.byte	0x2
  283 0040 05       		.byte	0x5
- 284 0041 73000000 		.4byte	.LASF2
+ 284 0041 EA000000 		.4byte	.LASF2
  285 0045 03       		.uleb128 0x3
  286 0046 4F010000 		.4byte	.LASF4
  287 004a 02       		.byte	0x2
@@ -358,7 +358,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  336 00a8 24       		.byte	0x24
  337 00a9 45000000 		.4byte	0x45
  338 00ad 03       		.uleb128 0x3
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 7
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 7
 
 
  339 00ae 1C050000 		.4byte	.LASF15
@@ -371,7 +371,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  346 00be 30       		.byte	0x30
  347 00bf 69000000 		.4byte	0x69
  348 00c3 03       		.uleb128 0x3
- 349 00c4 7D000000 		.4byte	.LASF17
+ 349 00c4 F4000000 		.4byte	.LASF17
  350 00c8 04       		.byte	0x4
  351 00c9 D8       		.byte	0xd8
  352 00ca 90000000 		.4byte	0x90
@@ -418,7 +418,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  393 0117 7B060000 		.4byte	.LASF25
  394 011b 02       		.byte	0x2
  395 011c 08       		.uleb128 0x8
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 8
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 8
 
 
  396 011d 70050000 		.4byte	.LASF26
@@ -449,7 +449,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  421 0151 EC050000 		.4byte	.LASF32
  422 0155 0203     		.2byte	0x302
  423 0157 09       		.uleb128 0x9
- 424 0158 41000000 		.4byte	.LASF33
+ 424 0158 B8000000 		.4byte	.LASF33
  425 015c 0303     		.2byte	0x303
  426 015e 09       		.uleb128 0x9
  427 015f E3020000 		.4byte	.LASF34
@@ -475,10 +475,10 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  447 018c 3C       		.byte	0x3c
  448 018d CE010000 		.4byte	0x1ce
  449 0191 0C       		.uleb128 0xc
- 450 0192 37000000 		.4byte	.LASF37
+ 450 0192 AE000000 		.4byte	.LASF37
  451 0196 06       		.byte	0x6
  452 0197 3E       		.byte	0x3e
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 9
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 9
 
 
  453 0198 AD000000 		.4byte	0xad
@@ -538,7 +538,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  507 020a 03       		.uleb128 0x3
  508 020b 0D000000 		.4byte	.LASF44
  509 020f 06       		.byte	0x6
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 10
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 10
 
 
  510 0210 69       		.byte	0x69
@@ -598,7 +598,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  564 0288 0F       		.uleb128 0xf
  565 0289 93020000 		.4byte	0x293
  566 028d 10       		.uleb128 0x10
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 11
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 11
 
 
  567 028e A2000000 		.4byte	0xa2
@@ -624,7 +624,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  587 02ba 75       		.byte	0x75
  588 02bb E3000000 		.4byte	0xe3
  589 02bf 0B       		.uleb128 0xb
- 590 02c0 AC000000 		.4byte	.LASF52
+ 590 02c0 23010000 		.4byte	.LASF52
  591 02c4 40       		.byte	0x40
  592 02c5 06       		.byte	0x6
  593 02c6 79       		.byte	0x79
@@ -658,12 +658,12 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  621 0300 06       		.byte	0x6
  622 0301 7F       		.byte	0x7f
  623 0302 FF010000 		.4byte	0x1ff
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 12
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 12
 
 
  624 0306 10       		.byte	0x10
  625 0307 0C       		.uleb128 0xc
- 626 0308 84000000 		.4byte	.LASF56
+ 626 0308 FB000000 		.4byte	.LASF56
  627 030c 06       		.byte	0x6
  628 030d 80       		.byte	0x80
  629 030e 0A020000 		.4byte	0x20a
@@ -675,7 +675,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  635 031a 45020000 		.4byte	0x245
  636 031e 18       		.byte	0x18
  637 031f 0C       		.uleb128 0xc
- 638 0320 63000000 		.4byte	.LASF58
+ 638 0320 DA000000 		.4byte	.LASF58
  639 0324 06       		.byte	0x6
  640 0325 82       		.byte	0x82
  641 0326 61020000 		.4byte	0x261
@@ -718,7 +718,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  678 0375 0E       		.uleb128 0xe
  679 0376 D5000000 		.4byte	0xd5
  680 037a 06       		.byte	0x6
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 13
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 13
 
 
  681 037b 00       		.byte	0
@@ -763,7 +763,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  720 03ce 01       		.uleb128 0x1
  721 03cf 51       		.byte	0x51
  722 03d0 14       		.uleb128 0x14
- 723 03d1 25000000 		.4byte	.LASF66
+ 723 03d1 9C000000 		.4byte	.LASF66
  724 03d5 01       		.byte	0x1
  725 03d6 81       		.byte	0x81
  726 03d7 40020000 		.4byte	0x240
@@ -771,14 +771,14 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  728 03dc 52       		.byte	0x52
  729 03dd 00       		.byte	0
  730 03de 16       		.uleb128 0x16
- 731 03df C0000000 		.4byte	.LASF97
+ 731 03df 37010000 		.4byte	.LASF97
  732 03e3 01       		.byte	0x1
  733 03e4 95       		.byte	0x95
  734 03e5 01       		.byte	0x1
  735 03e6 F6030000 		.4byte	0x3f6
  736 03ea 17       		.uleb128 0x17
  737 03eb 79030000 		.4byte	.LASF65
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 14
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 14
 
 
  738 03ef 01       		.byte	0x1
@@ -838,11 +838,11 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  792 0461 01       		.uleb128 0x1
  793 0462 51       		.byte	0x51
  794 0463 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 15
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 15
 
 
  795 0464 13       		.uleb128 0x13
- 796 0465 2C000000 		.4byte	.LASF72
+ 796 0465 A3000000 		.4byte	.LASF72
  797 0469 01       		.byte	0x1
  798 046a 7A       		.byte	0x7a
  799 046b 0C000000 		.4byte	.LFB240
@@ -866,7 +866,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  817 0492 51       		.byte	0x51
  818 0493 00       		.byte	0
  819 0494 1A       		.uleb128 0x1a
- 820 0495 6C000000 		.4byte	.LASF73
+ 820 0495 E3000000 		.4byte	.LASF73
  821 0499 01       		.byte	0x1
  822 049a 64       		.byte	0x64
  823 049b 0E000000 		.4byte	.LFB239
@@ -898,7 +898,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  849 04dc 68       		.byte	0x68
  850 04dd 4D050000 		.4byte	0x54d
  851 04e1 1E       		.uleb128 0x1e
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 16
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 16
 
 
  852 04e2 CB050000 		.4byte	.LASF75
@@ -958,7 +958,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  906 0552 11       		.uleb128 0x11
  907 0553 C3000000 		.4byte	0xc3
  908 0557 25       		.uleb128 0x25
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 17
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 17
 
 
  909 0558 9B040000 		.4byte	.LASF78
@@ -1018,7 +1018,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  963 05d4 00000000 		.4byte	.LASF82
  964 05d8 07       		.byte	0x7
  965 05d9 3201     		.2byte	0x132
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 18
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 18
 
 
  966 05db DF050000 		.4byte	0x5df
@@ -1060,7 +1060,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1002 0634 11       		.uleb128 0x11
  1003 0635 F5050000 		.4byte	0x5f5
  1004 0639 28       		.uleb128 0x28
- 1005 063a 9D000000 		.4byte	.LASF87
+ 1005 063a 14010000 		.4byte	.LASF87
  1006 063e 07       		.byte	0x7
  1007 063f A402     		.2byte	0x2a4
  1008 0641 45060000 		.4byte	0x645
@@ -1078,7 +1078,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1020 0660 07       		.byte	0x7
  1021 0661 D602     		.2byte	0x2d6
  1022 0663 67060000 		.4byte	0x667
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 19
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 19
 
 
  1023 0667 11       		.uleb128 0x11
@@ -1138,7 +1138,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1077 0018 3E       		.uleb128 0x3e
  1078 0019 0B       		.uleb128 0xb
  1079 001a 03       		.uleb128 0x3
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 20
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 20
 
 
  1080 001b 0E       		.uleb128 0xe
@@ -1198,7 +1198,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1134 0051 01       		.uleb128 0x1
  1135 0052 13       		.uleb128 0x13
  1136 0053 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 21
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 21
 
 
  1137 0054 00       		.byte	0
@@ -1258,7 +1258,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1191 008a 38       		.uleb128 0x38
  1192 008b 0B       		.uleb128 0xb
  1193 008c 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 22
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 22
 
 
  1194 008d 00       		.byte	0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1248 00c3 0B       		.uleb128 0xb
  1249 00c4 00       		.byte	0
  1250 00c5 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 23
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 23
 
 
  1251 00c6 13       		.uleb128 0x13
@@ -1378,7 +1378,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1305 00fd 00       		.byte	0
  1306 00fe 16       		.uleb128 0x16
  1307 00ff 2E       		.uleb128 0x2e
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 24
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 24
 
 
  1308 0100 01       		.byte	0x1
@@ -1438,7 +1438,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1362 0137 00       		.byte	0
  1363 0138 00       		.byte	0
  1364 0139 1A       		.uleb128 0x1a
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 25
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 25
 
 
  1365 013a 2E       		.uleb128 0x2e
@@ -1498,7 +1498,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1419 0171 1D       		.uleb128 0x1d
  1420 0172 34       		.uleb128 0x34
  1421 0173 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 26
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 26
 
 
  1422 0174 03       		.uleb128 0x3
@@ -1558,7 +1558,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1476 01aa 11       		.uleb128 0x11
  1477 01ab 01       		.uleb128 0x1
  1478 01ac 12       		.uleb128 0x12
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 27
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 27
 
 
  1479 01ad 06       		.uleb128 0x6
@@ -1618,7 +1618,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1533 01e8 3F       		.uleb128 0x3f
  1534 01e9 19       		.uleb128 0x19
  1535 01ea 3C       		.uleb128 0x3c
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 28
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 28
 
 
  1536 01eb 19       		.uleb128 0x19
@@ -1678,7 +1678,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1590 0028 00000000 		.4byte	0
  1591              	.LLST1:
  1592 002c 0E000000 		.4byte	.LVL5-.Ltext0
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 29
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 29
 
 
  1593 0030 1C000000 		.4byte	.LVL6-.Ltext0
@@ -1738,7 +1738,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1647 00b1 00000000 		.4byte	0
  1648 00b5 00000000 		.4byte	0
  1649              		.section	.debug_aranges,"",%progbits
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 30
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 30
 
 
  1650 0000 1C000000 		.4byte	0x1c
@@ -1773,80 +1773,80 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1668              	.LASF39:
  1669 001e 6375746F 		.ascii	"cutoff\000"
  1669      666600
- 1670              	.LASF66:
- 1671 0025 6672616D 		.ascii	"frames\000"
- 1671      657300
- 1672              	.LASF72:
- 1673 002c 5F686F6F 		.ascii	"_hook_init\000"
- 1673      6B5F696E 
- 1673      697400
- 1674              	.LASF37:
- 1675 0037 73686170 		.ascii	"shape_lfo\000"
- 1675      655F6C66 
- 1675      6F00
- 1676              	.LASF33:
- 1677 0041 6B5F7573 		.ascii	"k_user_target_nutektdigital_revfx\000"
- 1677      65725F74 
- 1677      61726765 
- 1677      745F6E75 
- 1677      74656B74 
- 1678              	.LASF58:
- 1679 0063 66756E63 		.ascii	"func_off\000"
- 1679      5F6F6666 
- 1679      00
- 1680              	.LASF73:
- 1681 006c 5F656E74 		.ascii	"_entry\000"
- 1681      727900
- 1682              	.LASF2:
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 31
+ 1670              	.LASF96:
+ 1671 0025 433A5C6D 		.ascii	"C:\\msys64\\home\\logue-sdk\\platform\\nutekt-digit"
+ 1671      73797336 
+ 1671      345C686F 
+ 1671      6D655C6C 
+ 1671      6F677565 
+ 1672 0053 616C5C43 		.ascii	"al\\Custom-Projects\\osc\\VPS_Project\\4 - Multiple"
+ 1672      7573746F 
+ 1672      6D2D5072 
+ 1672      6F6A6563 
+ 1672      74735C6F 
+ 1673 0082 20496E66 		.ascii	" Inflection Points\\mvps1D\000"
+ 1673      6C656374 
+ 1673      696F6E20 
+ 1673      506F696E 
+ 1673      74735C6D 
+ 1674              	.LASF66:
+ 1675 009c 6672616D 		.ascii	"frames\000"
+ 1675      657300
+ 1676              	.LASF72:
+ 1677 00a3 5F686F6F 		.ascii	"_hook_init\000"
+ 1677      6B5F696E 
+ 1677      697400
+ 1678              	.LASF37:
+ 1679 00ae 73686170 		.ascii	"shape_lfo\000"
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 31
 
 
- 1683 0073 73686F72 		.ascii	"short int\000"
- 1683      7420696E 
- 1683      7400
- 1684              	.LASF17:
- 1685 007d 73697A65 		.ascii	"size_t\000"
- 1685      5F7400
- 1686              	.LASF56:
- 1687 0084 66756E63 		.ascii	"func_cycle\000"
- 1687      5F637963 
- 1687      6C6500
- 1688              	.LASF95:
- 1689 008f 2E2F7470 		.ascii	"./tpl/_unit.c\000"
- 1689      6C2F5F75 
- 1689      6E69742E 
- 1689      6300
- 1690              	.LASF87:
- 1691 009d 63756269 		.ascii	"cubicsat_lut_f\000"
- 1691      63736174 
- 1691      5F6C7574 
- 1691      5F6600
- 1692              	.LASF52:
- 1693 00ac 75736572 		.ascii	"user_osc_hook_table\000"
- 1693      5F6F7363 
- 1693      5F686F6F 
- 1693      6B5F7461 
- 1693      626C6500 
- 1694              	.LASF97:
- 1695 00c0 5F686F6F 		.ascii	"_hook_mute\000"
- 1695      6B5F6D75 
- 1695      746500
- 1696              	.LASF96:
- 1697 00cb 433A5C6D 		.ascii	"C:\\msys64\\home\\logue-sdk\\platform\\nutekt-digit"
- 1697      73797336 
- 1697      345C686F 
- 1697      6D655C6C 
- 1697      6F677565 
- 1698 00f9 616C5C43 		.ascii	"al\\Custom-Projects\\osc\\VPS_Project\\4 - Multiple"
- 1698      7573746F 
- 1698      6D2D5072 
- 1698      6F6A6563 
- 1698      74735C6F 
- 1699 0128 20496E66 		.ascii	" Inflection Points\\mvps1d\000"
- 1699      6C656374 
- 1699      696F6E20 
- 1699      506F696E 
- 1699      74735C6D 
+ 1679      655F6C66 
+ 1679      6F00
+ 1680              	.LASF33:
+ 1681 00b8 6B5F7573 		.ascii	"k_user_target_nutektdigital_revfx\000"
+ 1681      65725F74 
+ 1681      61726765 
+ 1681      745F6E75 
+ 1681      74656B74 
+ 1682              	.LASF58:
+ 1683 00da 66756E63 		.ascii	"func_off\000"
+ 1683      5F6F6666 
+ 1683      00
+ 1684              	.LASF73:
+ 1685 00e3 5F656E74 		.ascii	"_entry\000"
+ 1685      727900
+ 1686              	.LASF2:
+ 1687 00ea 73686F72 		.ascii	"short int\000"
+ 1687      7420696E 
+ 1687      7400
+ 1688              	.LASF17:
+ 1689 00f4 73697A65 		.ascii	"size_t\000"
+ 1689      5F7400
+ 1690              	.LASF56:
+ 1691 00fb 66756E63 		.ascii	"func_cycle\000"
+ 1691      5F637963 
+ 1691      6C6500
+ 1692              	.LASF95:
+ 1693 0106 2E2F7470 		.ascii	"./tpl/_unit.c\000"
+ 1693      6C2F5F75 
+ 1693      6E69742E 
+ 1693      6300
+ 1694              	.LASF87:
+ 1695 0114 63756269 		.ascii	"cubicsat_lut_f\000"
+ 1695      63736174 
+ 1695      5F6C7574 
+ 1695      5F6600
+ 1696              	.LASF52:
+ 1697 0123 75736572 		.ascii	"user_osc_hook_table\000"
+ 1697      5F6F7363 
+ 1697      5F686F6F 
+ 1697      6B5F7461 
+ 1697      626C6500 
+ 1698              	.LASF97:
+ 1699 0137 5F686F6F 		.ascii	"_hook_mute\000"
+ 1699      6B5F6D75 
+ 1699      746500
  1700              	.LASF89:
  1701 0142 62697472 		.ascii	"bitres_lut_f\000"
  1701      65735F6C 
@@ -1858,7 +1858,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1703      5F7400
  1704              	.LASF69:
  1705 015a 76616C75 		.ascii	"value\000"
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 32
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 32
 
 
  1705      6500
@@ -1918,7 +1918,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1725 02a4 666C6F61 		.ascii	"float\000"
  1725      7400
  1726              	.LASF88:
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 33
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 33
 
 
  1727 02aa 73636865 		.ascii	"schetzen_lut_f\000"
@@ -1978,7 +1978,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1749 0359 6C6F675F 		.ascii	"log_lut_f\000"
  1749      6C75745F 
  1749      6600
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 34
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 34
 
 
  1750              	.LASF8:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1772              	.LASF79:
  1773 0421 6D696469 		.ascii	"midi_to_hz_lut_f\000"
  1773      5F746F5F 
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 35
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 35
 
 
  1773      687A5F6C 
@@ -2098,7 +2098,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1794              	.LASF5:
  1795 04cb 73686F72 		.ascii	"short unsigned int\000"
  1795      7420756E 
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 36
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 36
 
 
  1795      7369676E 
@@ -2158,7 +2158,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1821      61775F6C 
  1821      75745F66 
  1821      00
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 37
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 37
 
 
  1822              	.LASF26:
@@ -2218,7 +2218,7 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1845      5F6F7363 
  1845      5F706172 
  1845      616D5F74 
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 38
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 38
 
 
  1845      00
@@ -2263,23 +2263,23 @@ ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 1
  1865      655F6465 
  1865      6C667800 
  1866              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  C:\msys64\tmp\ccgzGic3.s 			page 39
+ARM GAS  C:\msys64\tmp\ccOvwipP.s 			page 39
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 _unit.c
-C:\msys64\tmp\ccgzGic3.s:21     .text:00000000 $t
-C:\msys64\tmp\ccgzGic3.s:26     .text:00000000 _hook_cycle
-C:\msys64\tmp\ccgzGic3.s:44     .text:00000002 _hook_mute
-C:\msys64\tmp\ccgzGic3.s:61     .text:00000004 _hook_value
-C:\msys64\tmp\ccgzGic3.s:78     .text:00000006 _hook_param
-C:\msys64\tmp\ccgzGic3.s:95     .text:00000008 _hook_off
-C:\msys64\tmp\ccgzGic3.s:110    .text:0000000a _hook_on
-C:\msys64\tmp\ccgzGic3.s:125    .text:0000000c _hook_init
-C:\msys64\tmp\ccgzGic3.s:142    .text:0000000e _entry
-C:\msys64\tmp\ccgzGic3.s:218    .text:00000050 $d
-C:\msys64\tmp\ccgzGic3.s:228    .hooks:00000000 s_hook_table
-C:\msys64\tmp\ccgzGic3.s:236    .hooks:0000000a $d
+C:\msys64\tmp\ccOvwipP.s:21     .text:00000000 $t
+C:\msys64\tmp\ccOvwipP.s:26     .text:00000000 _hook_cycle
+C:\msys64\tmp\ccOvwipP.s:44     .text:00000002 _hook_mute
+C:\msys64\tmp\ccOvwipP.s:61     .text:00000004 _hook_value
+C:\msys64\tmp\ccOvwipP.s:78     .text:00000006 _hook_param
+C:\msys64\tmp\ccOvwipP.s:95     .text:00000008 _hook_off
+C:\msys64\tmp\ccOvwipP.s:110    .text:0000000a _hook_on
+C:\msys64\tmp\ccOvwipP.s:125    .text:0000000c _hook_init
+C:\msys64\tmp\ccOvwipP.s:142    .text:0000000e _entry
+C:\msys64\tmp\ccOvwipP.s:218    .text:00000050 $d
+C:\msys64\tmp\ccOvwipP.s:228    .hooks:00000000 s_hook_table
+C:\msys64\tmp\ccOvwipP.s:236    .hooks:0000000a $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

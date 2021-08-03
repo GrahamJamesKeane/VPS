@@ -1,4 +1,4 @@
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
   55 0006 4263     		str	r2, [r0, #52]	@ float
   56 0008 8263     		str	r2, [r0, #56]	@ float
   57 000a C263     		str	r2, [r0, #60]	@ float
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 2
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 2
 
 
   58 000c 0264     		str	r2, [r0, #64]	@ float
@@ -118,7 +118,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  112 0046 C262     		str	r2, [r0, #44]	@ float
  113              	.LBE257:
  114              		.loc 1 69 0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 3
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 3
 
 
  115 0048 10BD     		pop	{r4, pc}
@@ -178,7 +178,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  169 000c D3ED0B5A 		vldr.32	s11, [r3, #44]
  170              	.LBB370:
  171              	.LBB371:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 4
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 4
 
 
  172              		.file 5 "C:/msys64/home/logue-sdk/platform/nutekt-digital/inc/osc_api.h"
@@ -238,7 +238,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  226              	.LBB382:
  227              		.loc 2 143 0
  228 002e 83ED0E5A 		vstr.32	s10, [r3, #56]
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 5
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 5
 
 
  229              	.LBE382:
@@ -298,7 +298,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  283              	.LBE362:
  284              	.LBE559:
  285              	.LBB560:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 6
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 6
 
 
  286              	.LBB445:
@@ -358,7 +358,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  340              	.LBE562:
  341              	.LBB563:
  342              	.LBB364:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 7
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 7
 
 
  343              	.LBB353:
@@ -418,7 +418,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  397              	.LBE461:
  398              	.LBE501:
  399              	.LBE506:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 8
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 8
 
 
  400              		.loc 3 70 0
@@ -478,7 +478,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  454              	.LBE395:
  455              	.LBE394:
  456              	.LBE448:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 9
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 9
 
 
  457              	.LBE569:
@@ -538,7 +538,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  511              	.LBE510:
  512              	.LBE509:
  513              	.LBE508:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 10
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 10
 
 
  514              	.LBE549:
@@ -598,7 +598,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  568              		.loc 4 193 0
  569 00f8 B0EE66CA 		vmov.f32	s24, s13
  570              	.LBE514:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 11
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 11
 
 
  571              	.LBE518:
@@ -658,7 +658,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  625 011a BAEEE05A 		vcvt.f32.s32	s10, s10, #31
  626              	.LBB578:
  627              	.LBB454:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 12
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 12
 
 
  628              	.LBB426:
@@ -718,7 +718,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  682              	.LBB429:
  683              	.LBB430:
  684              		.loc 5 615 0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 13
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 13
 
 
  685 015a 67EE047A 		vmul.f32	s15, s14, s8
@@ -778,7 +778,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  739              	.LBE477:
  740              	.LBE480:
  741              	.LBE483:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 14
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 14
 
 
  742              	.LBE503:
@@ -838,7 +838,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  796 01b8 D3ED0A1A 		vldr.32	s3, [r3, #40]
  797 01bc 93ED114A 		vldr.32	s8, [r3, #68]
  798 01c0 D3ED184A 		vldr.32	s9, [r3, #96]
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 15
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 15
 
 
  799 01c4 D3ED025A 		vldr.32	s11, [r3, #8]
@@ -898,7 +898,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  853              	.L38:
  854              	.LBE485:
  855              	.LBE484:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 16
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 16
 
 
  856              		.loc 1 103 0
@@ -958,7 +958,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  910 025e FCEEE7CA 		vcvt.u32.f32	s25, s15
  911 0262 F8EE6CCA 		vcvt.f32.u32	s25, s25
  912 0266 77EEEC7A 		vsub.f32	s15, s15, s25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 17
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 17
 
 
  913              	.LVL67:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  967              	.LVL76:
  968 02a6 F0EE6C7A 		vmov.f32	s15, s25
  969              	.LVL77:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 18
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 18
 
 
  970              	.LBE470:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1024              	.LVL86:
  1025              	.LBE498:
  1026              	.LBE500:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 19
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 19
 
 
  1027              	.LBE505:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1081              	.LBB525:
  1082              	.LBB521:
  1083              	.LBB517:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 20
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 20
 
 
  1084              		.loc 4 193 0
@@ -1198,7 +1198,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1138              	.LVL94:
  1139              		.loc 3 76 0
  1140 033c 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 21
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 21
 
 
  1141              	.L43:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1195              		@ args = 0, pretend = 0, frame = 0
  1196              		@ frame_needed = 0, uses_anonymous_args = 0
  1197              		@ link register save eliminated.
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 22
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 22
 
 
  1198              	.LVL96:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1252              	.LBE588:
  1253              	.LBB590:
  1254              	.LBB587:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 23
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 23
 
 
  1255 03b6 F4EEC77A 		vcmpe.f32	s15, s14
@@ -1378,7 +1378,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1309              	.L60:
  1310              	.LBE595:
  1311              	.LBE598:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 24
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 24
 
 
  1312              	.LBE592:
@@ -1438,7 +1438,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1366 0442 9FED2F7A 		vldr.32	s14, .L94
  1367 0446 67EE877A 		vmul.f32	s15, s15, s14
  1368              	.LVL113:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 25
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 25
 
 
  1369              	.LBB607:
@@ -1498,7 +1498,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1423              	.LBE617:
  1424              	.LBB620:
  1425              	.LBB621:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 26
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 26
 
 
  1426 048a B7EE007A 		vmov.f32	s14, #1.0e+0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1480 04d2 01E0     		b	.L68
  1481              	.LVL126:
  1482              	.L93:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 27
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 27
 
 
  1483 04d4 DFED0B7A 		vldr.32	s15, .L94+4
@@ -1588,7 +1588,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1507              	.L95:
  1508              		.align	2
  1509              	.L94:
- 1510 0500 0AD7233C 		.word	1008981770
+ 1510 0500 0AD7A33B 		.word	1000593162
  1511 0504 00000000 		.word	0
  1512 0508 00000000 		.word	.LANCHOR0
  1513 050c 0820803A 		.word	981475336
@@ -1618,7 +1618,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1537 0002 0248     		ldr	r0, .L97
  1538 0004 FFF7FEFF 		bl	_ZN6MVPS1DC1Ev
  1539              	.LVL129:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 28
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 28
 
 
  1540 0008 08BD     		pop	{r3, pc}
@@ -1660,17 +1660,17 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1572 0006 00000000 		.4byte	.Ldebug_abbrev0
  1573 000a 04       		.byte	0x4
  1574 000b 01       		.uleb128 0x1
- 1575 000c 91000000 		.4byte	.LASF155
+ 1575 000c 8A000000 		.4byte	.LASF155
  1576 0010 04       		.byte	0x4
  1577 0011 C50A0000 		.4byte	.LASF156
- 1578 0015 AE050000 		.4byte	.LASF157
+ 1578 0015 85050000 		.4byte	.LASF157
  1579 0019 60050000 		.4byte	.Ldebug_ranges0+0x560
  1580 001d 00000000 		.4byte	0
  1581 0021 00000000 		.4byte	.Ldebug_line0
  1582 0025 02       		.uleb128 0x2
  1583 0026 04       		.byte	0x4
  1584 0027 04       		.byte	0x4
- 1585 0028 63030000 		.4byte	.LASF0
+ 1585 0028 5C030000 		.4byte	.LASF0
  1586 002c 03       		.uleb128 0x3
  1587 002d 04       		.byte	0x4
  1588 002e 05       		.byte	0x5
@@ -1678,10 +1678,10 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1590 0033 02       		.uleb128 0x2
  1591 0034 04       		.byte	0x4
  1592 0035 07       		.byte	0x7
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 29
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 29
 
 
- 1593 0036 A9010000 		.4byte	.LASF1
+ 1593 0036 A2010000 		.4byte	.LASF1
  1594 003a 02       		.uleb128 0x2
  1595 003b 01       		.byte	0x1
  1596 003c 06       		.byte	0x6
@@ -1700,7 +1700,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1609 0055 05       		.byte	0x5
  1610 0056 C6070000 		.4byte	.LASF4
  1611 005a 04       		.uleb128 0x4
- 1612 005b A7030000 		.4byte	.LASF6
+ 1612 005b A0030000 		.4byte	.LASF6
  1613 005f 06       		.byte	0x6
  1614 0060 2B       		.byte	0x2b
  1615 0061 65000000 		.4byte	0x65
@@ -1709,7 +1709,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1618 0067 07       		.byte	0x7
  1619 0068 6F0A0000 		.4byte	.LASF7
  1620 006c 04       		.uleb128 0x4
- 1621 006d E4010000 		.4byte	.LASF8
+ 1621 006d DD010000 		.4byte	.LASF8
  1622 0071 06       		.byte	0x6
  1623 0072 3F       		.byte	0x3f
  1624 0073 77000000 		.4byte	0x77
@@ -1729,16 +1729,16 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1638 0090 02       		.uleb128 0x2
  1639 0091 08       		.byte	0x8
  1640 0092 05       		.byte	0x5
- 1641 0093 95050000 		.4byte	.LASF12
+ 1641 0093 05060000 		.4byte	.LASF12
  1642 0097 02       		.uleb128 0x2
  1643 0098 08       		.byte	0x8
  1644 0099 07       		.byte	0x7
- 1645 009a 90030000 		.4byte	.LASF13
+ 1645 009a 89030000 		.4byte	.LASF13
  1646 009e 04       		.uleb128 0x4
- 1647 009f 03050000 		.4byte	.LASF14
+ 1647 009f FC040000 		.4byte	.LASF14
  1648 00a3 07       		.byte	0x7
  1649 00a4 18       		.byte	0x18
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 30
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 30
 
 
  1650 00a5 41000000 		.4byte	0x41
@@ -1753,7 +1753,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1659 00ba 2C       		.byte	0x2c
  1660 00bb 6C000000 		.4byte	0x6c
  1661 00bf 04       		.uleb128 0x4
- 1662 00c0 49030000 		.4byte	.LASF17
+ 1662 00c0 42030000 		.4byte	.LASF17
  1663 00c4 07       		.byte	0x7
  1664 00c5 30       		.byte	0x30
  1665 00c6 7E000000 		.4byte	0x7e
@@ -1770,7 +1770,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1676 00dd 02       		.uleb128 0x2
  1677 00de 01       		.byte	0x1
  1678 00df 08       		.byte	0x8
- 1679 00e0 AD040000 		.4byte	.LASF20
+ 1679 00e0 A6040000 		.4byte	.LASF20
  1680 00e4 02       		.uleb128 0x2
  1681 00e5 08       		.byte	0x8
  1682 00e6 04       		.byte	0x4
@@ -1798,7 +1798,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1704 0115 35       		.byte	0x35
  1705 0116 3F010000 		.4byte	0x13f
  1706 011a 0A       		.uleb128 0xa
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 31
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 31
 
 
  1707 011b 9F090000 		.4byte	.LASF23
@@ -1807,10 +1807,10 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1710 0121 F5070000 		.4byte	.LASF24
  1711 0125 01       		.byte	0x1
  1712 0126 0A       		.uleb128 0xa
- 1713 0127 6F030000 		.4byte	.LASF25
+ 1713 0127 68030000 		.4byte	.LASF25
  1714 012b 02       		.byte	0x2
  1715 012c 0A       		.uleb128 0xa
- 1716 012d 1C040000 		.4byte	.LASF26
+ 1716 012d 15040000 		.4byte	.LASF26
  1717 0131 03       		.byte	0x3
  1718 0132 0A       		.uleb128 0xa
  1719 0133 03070000 		.4byte	.LASF27
@@ -1820,7 +1820,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1723 013d 05       		.byte	0x5
  1724 013e 00       		.byte	0
  1725 013f 0B       		.uleb128 0xb
- 1726 0140 07040000 		.4byte	.LASF45
+ 1726 0140 00040000 		.4byte	.LASF45
  1727 0144 10       		.byte	0x10
  1728 0145 09       		.byte	0x9
  1729 0146 3C       		.byte	0x3c
@@ -1832,13 +1832,13 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1735 0152 B4000000 		.4byte	0xb4
  1736 0156 00       		.byte	0
  1737 0157 0C       		.uleb128 0xc
- 1738 0158 F7010000 		.4byte	.LASF30
+ 1738 0158 F0010000 		.4byte	.LASF30
  1739 015c 09       		.byte	0x9
  1740 015d 40       		.byte	0x40
  1741 015e A9000000 		.4byte	0xa9
  1742 0162 04       		.byte	0x4
  1743 0163 0C       		.uleb128 0xc
- 1744 0164 A6040000 		.4byte	.LASF31
+ 1744 0164 9F040000 		.4byte	.LASF31
  1745 0168 09       		.byte	0x9
  1746 0169 42       		.byte	0x42
  1747 016a A9000000 		.4byte	0xa9
@@ -1858,7 +1858,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1761 0187 00       		.byte	0
  1762 0188 0D       		.uleb128 0xd
  1763 0189 A9000000 		.4byte	0xa9
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 32
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 32
 
 
  1764 018d 98010000 		.4byte	0x198
@@ -1879,22 +1879,22 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1779 01ab 98080000 		.4byte	.LASF159
  1780 01af EA010000 		.4byte	0x1ea
  1781 01b3 0A       		.uleb128 0xa
- 1782 01b4 4E020000 		.4byte	.LASF35
+ 1782 01b4 47020000 		.4byte	.LASF35
  1783 01b8 00       		.byte	0
  1784 01b9 0A       		.uleb128 0xa
- 1785 01ba 63020000 		.4byte	.LASF36
+ 1785 01ba 5C020000 		.4byte	.LASF36
  1786 01be 01       		.byte	0x1
  1787 01bf 0A       		.uleb128 0xa
- 1788 01c0 78020000 		.4byte	.LASF37
+ 1788 01c0 71020000 		.4byte	.LASF37
  1789 01c4 02       		.byte	0x2
  1790 01c5 0A       		.uleb128 0xa
- 1791 01c6 8D020000 		.4byte	.LASF38
+ 1791 01c6 86020000 		.4byte	.LASF38
  1792 01ca 03       		.byte	0x3
  1793 01cb 0A       		.uleb128 0xa
- 1794 01cc A2020000 		.4byte	.LASF39
+ 1794 01cc 9B020000 		.4byte	.LASF39
  1795 01d0 04       		.byte	0x4
  1796 01d1 0A       		.uleb128 0xa
- 1797 01d2 B7020000 		.4byte	.LASF40
+ 1797 01d2 B0020000 		.4byte	.LASF40
  1798 01d6 05       		.byte	0x5
  1799 01d7 0A       		.uleb128 0xa
  1800 01d8 29080000 		.4byte	.LASF41
@@ -1903,11 +1903,11 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1803 01de 78070000 		.4byte	.LASF42
  1804 01e2 07       		.byte	0x7
  1805 01e3 0A       		.uleb128 0xa
- 1806 01e4 EC020000 		.4byte	.LASF43
+ 1806 01e4 E5020000 		.4byte	.LASF43
  1807 01e8 08       		.byte	0x8
  1808 01e9 00       		.byte	0
  1809 01ea 04       		.uleb128 0x4
- 1810 01eb 08020000 		.4byte	.LASF44
+ 1810 01eb 01020000 		.4byte	.LASF44
  1811 01ef 09       		.byte	0x9
  1812 01f0 5D       		.byte	0x5d
  1813 01f1 A3010000 		.4byte	0x1a3
@@ -1918,14 +1918,14 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1818 01fc 98010000 		.4byte	0x198
  1819 0200 10       		.uleb128 0x10
  1820 0201 64737000 		.ascii	"dsp\000"
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 33
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 33
 
 
  1821 0205 02       		.byte	0x2
  1822 0206 31       		.byte	0x31
  1823 0207 4D050000 		.4byte	0x54d
  1824 020b 11       		.uleb128 0x11
- 1825 020c B2040000 		.4byte	.LASF76
+ 1825 020c AB040000 		.4byte	.LASF76
  1826 0210 1C       		.byte	0x1c
  1827 0211 02       		.byte	0x2
  1828 0212 36       		.byte	0x36
@@ -1978,7 +1978,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1875 0277 00       		.byte	0
  1876 0278 15       		.uleb128 0x15
  1877 0279 776300   		.ascii	"wc\000"
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 34
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 34
 
 
  1878 027c 02       		.byte	0x2
@@ -2004,7 +2004,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1898 02ae 25000000 		.4byte	0x25
  1899 02b2 00       		.byte	0
  1900 02b3 17       		.uleb128 0x17
- 1901 02b4 FD030000 		.4byte	.LASF48
+ 1901 02b4 F6030000 		.4byte	.LASF48
  1902 02b8 02       		.byte	0x2
  1903 02b9 71       		.byte	0x71
  1904 02ba 57060000 		.4byte	.LASF50
@@ -2019,7 +2019,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1913 02d2 79060000 		.4byte	.LASF51
  1914 02d6 02       		.byte	0x2
  1915 02d7 7D       		.byte	0x7d
- 1916 02d8 B2030000 		.4byte	.LASF52
+ 1916 02d8 AB030000 		.4byte	.LASF52
  1917 02dc E4020000 		.4byte	0x2e4
  1918 02e0 EF020000 		.4byte	0x2ef
  1919 02e4 14       		.uleb128 0x14
@@ -2028,17 +2028,17 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1922 02ea 25000000 		.4byte	0x25
  1923 02ee 00       		.byte	0
  1924 02ef 17       		.uleb128 0x17
- 1925 02f0 C3010000 		.4byte	.LASF53
+ 1925 02f0 BC010000 		.4byte	.LASF53
  1926 02f4 02       		.byte	0x2
  1927 02f5 8A       		.byte	0x8a
- 1928 02f6 5B000000 		.4byte	.LASF54
+ 1928 02f6 54000000 		.4byte	.LASF54
  1929 02fa 02030000 		.4byte	0x302
  1930 02fe 0D030000 		.4byte	0x30d
  1931 0302 14       		.uleb128 0x14
  1932 0303 4D050000 		.4byte	0x54d
  1933 0307 16       		.uleb128 0x16
  1934 0308 25000000 		.4byte	0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 35
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 35
 
 
  1935 030c 00       		.byte	0
@@ -2055,7 +2055,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1946 0326 25000000 		.4byte	0x25
  1947 032a 00       		.byte	0
  1948 032b 17       		.uleb128 0x17
- 1949 032c 52040000 		.4byte	.LASF57
+ 1949 032c 4B040000 		.4byte	.LASF57
  1950 0330 02       		.byte	0x2
  1951 0331 A8       		.byte	0xa8
  1952 0332 09080000 		.4byte	.LASF58
@@ -2079,10 +2079,10 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1970 0362 25000000 		.4byte	0x25
  1971 0366 00       		.byte	0
  1972 0367 17       		.uleb128 0x17
- 1973 0368 7B000000 		.4byte	.LASF61
+ 1973 0368 74000000 		.4byte	.LASF61
  1974 036c 02       		.byte	0x2
  1975 036d C8       		.byte	0xc8
- 1976 036e CC020000 		.4byte	.LASF62
+ 1976 036e C5020000 		.4byte	.LASF62
  1977 0372 7A030000 		.4byte	0x37a
  1978 0376 85030000 		.4byte	0x385
  1979 037a 14       		.uleb128 0x14
@@ -2098,7 +2098,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1989 0390 98030000 		.4byte	0x398
  1990 0394 A8030000 		.4byte	0x3a8
  1991 0398 14       		.uleb128 0x14
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 36
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 36
 
 
  1992 0399 4D050000 		.4byte	0x54d
@@ -2108,10 +2108,10 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  1996 03a3 25000000 		.4byte	0x25
  1997 03a7 00       		.byte	0
  1998 03a8 17       		.uleb128 0x17
- 1999 03a9 30040000 		.4byte	.LASF65
+ 1999 03a9 29040000 		.4byte	.LASF65
  2000 03ad 02       		.byte	0x2
  2001 03ae E8       		.byte	0xe8
- 2002 03af 62050000 		.4byte	.LASF66
+ 2002 03af 5B050000 		.4byte	.LASF66
  2003 03b3 BB030000 		.4byte	0x3bb
  2004 03b7 CB030000 		.4byte	0x3cb
  2005 03bb 14       		.uleb128 0x14
@@ -2150,15 +2150,15 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2038 040d 25000000 		.4byte	0x25
  2039 0411 00       		.byte	0
  2040 0412 18       		.uleb128 0x18
- 2041 0413 59050000 		.4byte	.LASF70
+ 2041 0413 52050000 		.4byte	.LASF70
  2042 0417 02       		.byte	0x2
  2043 0418 1E01     		.2byte	0x11e
- 2044 041a D2030000 		.4byte	.LASF72
+ 2044 041a CB030000 		.4byte	.LASF72
  2045 041e 26040000 		.4byte	0x426
  2046 0422 36040000 		.4byte	0x436
  2047 0426 14       		.uleb128 0x14
  2048 0427 4D050000 		.4byte	0x54d
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 37
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 37
 
 
  2049 042b 16       		.uleb128 0x16
@@ -2170,7 +2170,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2055 0437 C8080000 		.4byte	.LASF73
  2056 043b 02       		.byte	0x2
  2057 043c 3201     		.2byte	0x132
- 2058 043e 19030000 		.4byte	.LASF74
+ 2058 043e 12030000 		.4byte	.LASF74
  2059 0442 4A040000 		.4byte	0x44a
  2060 0446 5A040000 		.4byte	0x45a
  2061 044a 14       		.uleb128 0x14
@@ -2181,10 +2181,10 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2066 0455 25000000 		.4byte	0x25
  2067 0459 00       		.byte	0
  2068 045a 19       		.uleb128 0x19
- 2069 045b 83050000 		.4byte	.LASF96
+ 2069 045b 7C050000 		.4byte	.LASF96
  2070 045f 02       		.byte	0x2
  2071 0460 4501     		.2byte	0x145
- 2072 0462 B9040000 		.4byte	.LASF161
+ 2072 0462 B2040000 		.4byte	.LASF161
  2073 0466 6A040000 		.4byte	0x46a
  2074 046a 14       		.uleb128 0x14
  2075 046b 4D050000 		.4byte	0x54d
@@ -2218,13 +2218,13 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2103 04a9 25000000 		.4byte	0x25
  2104 04ad 18       		.byte	0x18
  2105 04ae 1C       		.uleb128 0x1c
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 38
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 38
 
 
- 2106 04af B2040000 		.4byte	.LASF76
+ 2106 04af AB040000 		.4byte	.LASF76
  2107 04b3 02       		.byte	0x2
  2108 04b4 5801     		.2byte	0x158
- 2109 04b6 5A040000 		.4byte	.LASF80
+ 2109 04b6 53040000 		.4byte	.LASF80
  2110 04ba 53050000 		.4byte	0x553
  2111 04be C6040000 		.4byte	0x4c6
  2112 04c2 CC040000 		.4byte	0x4cc
@@ -2245,7 +2245,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2127 04e7 78080000 		.4byte	.LASF79
  2128 04eb 02       		.byte	0x2
  2129 04ec 6F01     		.2byte	0x16f
- 2130 04ee 89040000 		.4byte	.LASF81
+ 2130 04ee 82040000 		.4byte	.LASF81
  2131 04f2 25000000 		.4byte	0x25
  2132 04f6 FE040000 		.4byte	0x4fe
  2133 04fa 09050000 		.4byte	0x509
@@ -2268,7 +2268,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2150 0527 25000000 		.4byte	0x25
  2151 052b 00       		.byte	0
  2152 052c 1D       		.uleb128 0x1d
- 2153 052d 89000000 		.4byte	.LASF84
+ 2153 052d 82000000 		.4byte	.LASF84
  2154 0531 02       		.byte	0x2
  2155 0532 8F01     		.2byte	0x18f
  2156 0534 50090000 		.4byte	.LASF85
@@ -2278,7 +2278,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2160 0541 53050000 		.4byte	0x553
  2161 0545 16       		.uleb128 0x16
  2162 0546 25000000 		.4byte	0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 39
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 39
 
 
  2163 054a 00       		.byte	0
@@ -2291,7 +2291,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2170 0554 04       		.byte	0x4
  2171 0555 0B020000 		.4byte	0x20b
  2172 0559 0B       		.uleb128 0xb
- 2173 055a 54000000 		.4byte	.LASF86
+ 2173 055a 1E060000 		.4byte	.LASF86
  2174 055e 68       		.byte	0x68
  2175 055f 01       		.byte	0x1
  2176 0560 12       		.byte	0x12
@@ -2303,10 +2303,10 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2182 056c 14       		.byte	0x14
  2183 056d 7E050000 		.4byte	0x57e
  2184 0571 0A       		.uleb128 0xa
- 2185 0572 0B050000 		.4byte	.LASF87
+ 2185 0572 04050000 		.4byte	.LASF87
  2186 0576 00       		.byte	0
  2187 0577 0A       		.uleb128 0xa
- 2188 0578 A3050000 		.4byte	.LASF88
+ 2188 0578 13060000 		.4byte	.LASF88
  2189 057c 01       		.byte	0x1
  2190 057d 00       		.byte	0
  2191 057e 0B       		.uleb128 0xb
@@ -2338,7 +2338,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2217 05af 01       		.byte	0x1
  2218 05b0 1D       		.byte	0x1d
  2219 05b1 25000000 		.4byte	0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 40
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 40
 
 
  2220 05b5 0C       		.byte	0xc
@@ -2355,7 +2355,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2231 05c7 25000000 		.4byte	0x25
  2232 05cb 14       		.byte	0x14
  2233 05cc 0C       		.uleb128 0xc
- 2234 05cd 3A020000 		.4byte	.LASF90
+ 2234 05cd 33020000 		.4byte	.LASF90
  2235 05d1 01       		.byte	0x1
  2236 05d2 20       		.byte	0x20
  2237 05d3 25000000 		.4byte	0x25
@@ -2372,7 +2372,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2248 05f0 00       		.byte	0
  2249 05f1 00       		.byte	0
  2250 05f2 0B       		.uleb128 0xb
- 2251 05f3 48020000 		.4byte	.LASF92
+ 2251 05f3 41020000 		.4byte	.LASF92
  2252 05f7 14       		.byte	0x14
  2253 05f8 01       		.byte	0x1
  2254 05f9 2D       		.byte	0x2d
@@ -2398,14 +2398,14 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2274 0621 12       		.uleb128 0x12
  2275 0622 6C666F00 		.ascii	"lfo\000"
  2276 0626 01       		.byte	0x1
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 41
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 41
 
 
  2277 0627 31       		.byte	0x31
  2278 0628 25000000 		.4byte	0x25
  2279 062c 0C       		.byte	0xc
  2280 062d 1F       		.uleb128 0x1f
- 2281 062e 83000000 		.4byte	.LASF135
+ 2281 062e 7C000000 		.4byte	.LASF135
  2282 0632 01       		.byte	0x1
  2283 0633 32       		.byte	0x32
  2284 0634 9E000000 		.4byte	0x9e
@@ -2414,7 +2414,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2287 063a 07       		.byte	0x7
  2288 063b 10       		.byte	0x10
  2289 063c 13       		.uleb128 0x13
- 2290 063d 48020000 		.4byte	.LASF92
+ 2290 063d 41020000 		.4byte	.LASF92
  2291 0641 01       		.byte	0x1
  2292 0642 33       		.byte	0x33
  2293 0643 83080000 		.4byte	.LASF95
@@ -2458,14 +2458,14 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2331 0699 82       		.byte	0x82
  2332 069a 0B020000 		.4byte	0x20b
  2333 069e 4C       		.byte	0x4c
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 42
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 42
 
 
  2334 069f 13       		.uleb128 0x13
- 2335 06a0 54000000 		.4byte	.LASF86
+ 2335 06a0 1E060000 		.4byte	.LASF86
  2336 06a4 01       		.byte	0x1
  2337 06a5 42       		.byte	0x42
- 2338 06a6 7A040000 		.4byte	.LASF100
+ 2338 06a6 73040000 		.4byte	.LASF100
  2339 06aa 67070000 		.4byte	0x767
  2340 06ae B6060000 		.4byte	0x6b6
  2341 06b2 BC060000 		.4byte	0x6bc
@@ -2473,10 +2473,10 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2343 06b7 67070000 		.4byte	0x767
  2344 06bb 00       		.byte	0
  2345 06bc 17       		.uleb128 0x17
- 2346 06bd FD010000 		.4byte	.LASF101
+ 2346 06bd F6010000 		.4byte	.LASF101
  2347 06c1 01       		.byte	0x1
  2348 06c2 47       		.byte	0x47
- 2349 06c3 CB010000 		.4byte	.LASF102
+ 2349 06c3 C4010000 		.4byte	.LASF102
  2350 06c7 CF060000 		.4byte	0x6cf
  2351 06cb DA060000 		.4byte	0x6da
  2352 06cf 14       		.uleb128 0x14
@@ -2485,10 +2485,10 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2355 06d5 25000000 		.4byte	0x25
  2356 06d9 00       		.byte	0
  2357 06da 13       		.uleb128 0x13
- 2358 06db 2E020000 		.4byte	.LASF103
+ 2358 06db 27020000 		.4byte	.LASF103
  2359 06df 01       		.byte	0x1
  2360 06e0 56       		.byte	0x56
- 2361 06e1 16050000 		.4byte	.LASF104
+ 2361 06e1 0F050000 		.4byte	.LASF104
  2362 06e5 25000000 		.4byte	0x25
  2363 06e9 F1060000 		.4byte	0x6f1
  2364 06ed 01070000 		.4byte	0x701
@@ -2518,13 +2518,13 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2388 072c 16       		.uleb128 0x16
  2389 072d 25000000 		.4byte	0x25
  2390 0731 16       		.uleb128 0x16
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 43
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 43
 
 
  2391 0732 25000000 		.4byte	0x25
  2392 0736 00       		.byte	0
  2393 0737 1E       		.uleb128 0x1e
- 2394 0738 3E050000 		.4byte	.LASF107
+ 2394 0738 37050000 		.4byte	.LASF107
  2395 073c 01       		.byte	0x1
  2396 073d 62       		.byte	0x62
  2397 073e 0F0A0000 		.4byte	.LASF108
@@ -2578,7 +2578,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2445 07a4 23       		.uleb128 0x23
  2446 07a5 140B0000 		.4byte	.LASF110
  2447 07a9 04       		.byte	0x4
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 44
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 44
 
 
  2448 07aa 4901     		.2byte	0x149
@@ -2597,7 +2597,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2461 07c7 9F070000 		.4byte	0x79f
  2462 07cb 00       		.byte	0
  2463 07cc 23       		.uleb128 0x23
- 2464 07cd 6D040000 		.4byte	.LASF111
+ 2464 07cd 66040000 		.4byte	.LASF111
  2465 07d1 04       		.byte	0x4
  2466 07d2 4301     		.2byte	0x143
  2467 07d4 25000000 		.4byte	0x25
@@ -2638,7 +2638,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2502 0823 9F070000 		.4byte	0x79f
  2503 0827 00       		.byte	0
  2504 0828 21       		.uleb128 0x21
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 45
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 45
 
 
  2505 0829 4C060000 		.4byte	.LASF113
@@ -2661,7 +2661,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2522 084b 08       		.uleb128 0x8
  2523 084c BF000000 		.4byte	0xbf
  2524 0850 23       		.uleb128 0x23
- 2525 0851 8C050000 		.4byte	.LASF114
+ 2525 0851 FC050000 		.4byte	.LASF114
  2526 0855 04       		.byte	0x4
  2527 0856 8501     		.2byte	0x185
  2528 0858 25000000 		.4byte	0x25
@@ -2698,14 +2698,14 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2559 089d 24       		.uleb128 0x24
  2560 089e 783100   		.ascii	"x1\000"
  2561 08a1 04       		.byte	0x4
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 46
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 46
 
 
  2562 08a2 3903     		.2byte	0x339
  2563 08a4 9F070000 		.4byte	0x79f
  2564 08a8 00       		.byte	0
  2565 08a9 21       		.uleb128 0x21
- 2566 08aa 32050000 		.4byte	.LASF116
+ 2566 08aa 2B050000 		.4byte	.LASF116
  2567 08ae 05       		.byte	0x5
  2568 08af 6C       		.byte	0x6c
  2569 08b0 25000000 		.4byte	0x25
@@ -2718,7 +2718,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2576 08c0 9E000000 		.4byte	0x9e
  2577 08c4 00       		.byte	0
  2578 08c5 21       		.uleb128 0x21
- 2579 08c6 04030000 		.4byte	.LASF118
+ 2579 08c6 FD020000 		.4byte	.LASF118
  2580 08ca 05       		.byte	0x5
  2581 08cb 96       		.byte	0x96
  2582 08cc 25000000 		.4byte	0x25
@@ -2758,7 +2758,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2616 0912 793000   		.ascii	"y0\000"
  2617 0915 05       		.byte	0x5
  2618 0916 A0       		.byte	0xa0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 47
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 47
 
 
  2619 0917 9F070000 		.4byte	0x79f
@@ -2818,7 +2818,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2673 0996 05       		.byte	0x5
  2674 0997 6602     		.2byte	0x266
  2675 0999 25000000 		.4byte	0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 48
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 48
 
 
  2676 099d 03       		.byte	0x3
@@ -2878,7 +2878,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2730 0a17 04       		.byte	0x4
  2731 0a18 8B01     		.2byte	0x18b
  2732 0a1a 25000000 		.4byte	0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 49
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 49
 
 
  2733 0a1e 03       		.byte	0x3
@@ -2938,7 +2938,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2787 0a9a 01       		.byte	0x1
  2788 0a9b 5B       		.byte	0x5b
  2789 0a9c 25000000 		.4byte	0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 50
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 50
 
 
  2790 0aa0 22       		.uleb128 0x22
@@ -2998,7 +2998,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2844 0b14 25000000 		.4byte	0x25
  2845 0b18 03       		.byte	0x3
  2846 0b19 510B0000 		.4byte	0xb51
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 51
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 51
 
 
  2847 0b1d 25       		.uleb128 0x25
@@ -3028,7 +3028,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2871 0b4c 9F070000 		.4byte	0x79f
  2872 0b50 00       		.byte	0
  2873 0b51 23       		.uleb128 0x23
- 2874 0b52 3B030000 		.4byte	.LASF126
+ 2874 0b52 34030000 		.4byte	.LASF126
  2875 0b56 05       		.byte	0x5
  2876 0b57 9902     		.2byte	0x299
  2877 0b59 25000000 		.4byte	0x25
@@ -3046,7 +3046,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2889 0b72 25000000 		.4byte	0x25
  2890 0b76 00       		.byte	0
  2891 0b77 23       		.uleb128 0x23
- 2892 0b78 DB040000 		.4byte	.LASF127
+ 2892 0b78 D4040000 		.4byte	.LASF127
  2893 0b7c 04       		.byte	0x4
  2894 0b7d A301     		.2byte	0x1a3
  2895 0b7f 25000000 		.4byte	0x25
@@ -3058,7 +3058,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2901 0b8c A301     		.2byte	0x1a3
  2902 0b8e 9F070000 		.4byte	0x79f
  2903 0b92 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 52
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 52
 
 
  2904 0b93 2B       		.uleb128 0x2b
@@ -3066,12 +3066,12 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2906 0b98 01       		.byte	0x1
  2907 0b99 B40B0000 		.4byte	0xbb4
  2908 0b9d 25       		.uleb128 0x25
- 2909 0b9e 43040000 		.4byte	.LASF128
+ 2909 0b9e 3C040000 		.4byte	.LASF128
  2910 0ba2 03       		.byte	0x3
  2911 0ba3 86       		.byte	0x86
  2912 0ba4 2C000000 		.4byte	0x2c
  2913 0ba8 25       		.uleb128 0x25
- 2914 0ba9 38040000 		.4byte	.LASF129
+ 2914 0ba9 31040000 		.4byte	.LASF129
  2915 0bad 03       		.byte	0x3
  2916 0bae 86       		.byte	0x86
  2917 0baf 2C000000 		.4byte	0x2c
@@ -3118,7 +3118,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  2958 0c1a 9F060000 		.4byte	0x69f
  2959 0c1e 02       		.byte	0x2
  2960 0c1f 270C0000 		.4byte	0xc27
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 53
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 53
 
 
  2961 0c23 310C0000 		.4byte	0xc31
@@ -3178,7 +3178,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3015 0cb2 2F       		.uleb128 0x2f
  3016 0cb3 0F0C0000 		.4byte	0xc0f
  3017 0cb7 40000000 		.4byte	.LLST3
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 54
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 54
 
 
  3018 0cbb 00       		.byte	0
@@ -3194,7 +3194,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3028 0cce 9C       		.byte	0x9c
  3029 0ccf EE0C0000 		.4byte	0xcee
  3030 0cd3 34       		.uleb128 0x34
- 3031 0cd4 EE010000 		.4byte	.LASF131
+ 3031 0cd4 E7010000 		.4byte	.LASF131
  3032 0cd8 03       		.byte	0x3
  3033 0cd9 0E       		.byte	0xe
  3034 0cda BF000000 		.4byte	0xbf
@@ -3222,7 +3222,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3056 0d0a 47       		.byte	0x47
  3057 0d0b 25000000 		.4byte	0x25
  3058 0d0f 36       		.uleb128 0x36
- 3059 0d10 42020000 		.4byte	.LASF132
+ 3059 0d10 3B020000 		.4byte	.LASF132
  3060 0d14 01       		.byte	0x1
  3061 0d15 4E       		.byte	0x4e
  3062 0d16 25000000 		.4byte	0x25
@@ -3238,7 +3238,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3072 0d2c 25000000 		.4byte	0x25
  3073 0d30 00       		.byte	0
  3074 0d31 27       		.uleb128 0x27
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 55
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 55
 
 
  3075 0d32 37070000 		.4byte	0x737
@@ -3298,7 +3298,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3129 0da9 01       		.byte	0x1
  3130 0daa 76       		.byte	0x76
  3131 0dab 25000000 		.4byte	0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 56
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 56
 
 
  3132 0daf 00       		.byte	0
@@ -3324,7 +3324,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3152 0dda 08010000 		.4byte	0x108
  3153 0dde 77000000 		.4byte	.LLST5
  3154 0de2 37       		.uleb128 0x37
- 3155 0de3 ED040000 		.4byte	.LASF134
+ 3155 0de3 E6040000 		.4byte	.LASF134
  3156 0de7 03       		.byte	0x3
  3157 0de8 13       		.byte	0x13
  3158 0de9 4B080000 		.4byte	0x84b
@@ -3339,7 +3339,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3167 0dfc 00000000 		.4byte	_ZL6mvps1D
  3168 0e00 9F       		.byte	0x9f
  3169 0e01 3A       		.uleb128 0x3a
- 3170 0e02 83000000 		.4byte	.LASF135
+ 3170 0e02 7C000000 		.4byte	.LASF135
  3171 0e06 03       		.byte	0x3
  3172 0e07 19       		.byte	0x19
  3173 0e08 4B080000 		.4byte	0x84b
@@ -3358,7 +3358,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3186 0e29 02       		.uleb128 0x2
  3187 0e2a 90       		.byte	0x90
  3188 0e2b 4C       		.uleb128 0x4c
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 57
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 57
 
 
  3189 0e2c 3B       		.uleb128 0x3b
@@ -3418,7 +3418,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3243 0ea5 3E       		.uleb128 0x3e
  3244 0ea6 470B0000 		.4byte	0xb47
  3245 0eaa 2E       		.uleb128 0x2e
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 58
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 58
 
 
  3246 0eab 76080000 		.4byte	0x876
@@ -3478,7 +3478,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3300 0f36 B5070000 		.4byte	0x7b5
  3301 0f3a 32       		.uleb128 0x32
  3302 0f3b 73070000 		.4byte	0x773
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 59
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 59
 
 
  3303 0f3f A8000000 		.4byte	.LBB358
@@ -3538,7 +3538,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3357 0fca B8090000 		.4byte	0x9b8
  3358 0fce 7A020000 		.4byte	.LLST20
  3359 0fd2 3F       		.uleb128 0x3f
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 60
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 60
 
 
  3360 0fd3 C4090000 		.4byte	0x9c4
@@ -3598,7 +3598,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3414 105e E8010000 		.4byte	.Ldebug_ranges0+0x1e8
  3415 1062 3E       		.uleb128 0x3e
  3416 1063 75090000 		.4byte	0x975
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 61
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 61
 
 
  3417 1067 3E       		.uleb128 0x3e
@@ -3658,7 +3658,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3471 10f6 2F       		.uleb128 0x2f
  3472 10f7 2D0A0000 		.4byte	0xa2d
  3473 10fb 66030000 		.4byte	.LLST33
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 62
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 62
 
 
  3474 10ff 2F       		.uleb128 0x2f
@@ -3718,7 +3718,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3528 1191 30       		.uleb128 0x30
  3529 1192 76080000 		.4byte	0x876
  3530 1196 6E010000 		.4byte	.LBB431
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 63
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 63
 
 
  3531 119a B0020000 		.4byte	.Ldebug_ranges0+0x2b0
@@ -3778,7 +3778,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3585 1228 3F       		.uleb128 0x3f
  3586 1229 860D0000 		.4byte	0xd86
  3587 122d 57050000 		.4byte	.LLST52
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 64
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 64
 
 
  3588 1231 3F       		.uleb128 0x3f
@@ -3838,7 +3838,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3642 12c7 9D080000 		.4byte	0x89d
  3643 12cb 2F       		.uleb128 0x2f
  3644 12cc 92080000 		.4byte	0x892
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 65
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 65
 
 
  3645 12d0 A1060000 		.4byte	.LLST63
@@ -3898,7 +3898,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3699 1360 A00A0000 		.4byte	0xaa0
  3700 1364 FD070000 		.4byte	.LLST73
  3701 1368 2F       		.uleb128 0x2f
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 66
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 66
 
 
  3702 1369 960A0000 		.4byte	0xa96
@@ -3958,7 +3958,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3756 1402 77       		.byte	0x77
  3757 1403 2D140000 		.4byte	0x142d
  3758 1407 2F       		.uleb128 0x2f
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 67
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 67
 
 
  3759 1408 D60A0000 		.4byte	0xad6
@@ -4018,7 +4018,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3813 1495 43       		.byte	0x43
  3814 1496 0B150000 		.4byte	0x150b
  3815 149a 3C       		.uleb128 0x3c
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 68
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 68
 
 
  3816 149b 6C0B0000 		.4byte	0xb6c
@@ -4078,7 +4078,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3870 1528 1A0B0000 		.4byte	.LLST97
  3871 152c 2F       		.uleb128 0x2f
  3872 152d 4F0A0000 		.4byte	0xa4f
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 69
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 69
 
 
  3873 1531 2E0B0000 		.4byte	.LLST98
@@ -4106,7 +4106,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3895 155f 08       		.uleb128 0x8
  3896 1560 59150000 		.4byte	0x1559
  3897 1564 33       		.uleb128 0x33
- 3898 1565 F4030000 		.4byte	.LASF136
+ 3898 1565 ED030000 		.4byte	.LASF136
  3899 1569 03       		.byte	0x3
  3900 156a 4E       		.byte	0x4e
  3901 156b 74030000 		.4byte	.LFB297
@@ -4134,11 +4134,11 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3923 1597 08       		.uleb128 0x8
  3924 1598 59150000 		.4byte	0x1559
  3925 159c 33       		.uleb128 0x33
- 3926 159d E3040000 		.4byte	.LASF137
+ 3926 159d DC040000 		.4byte	.LASF137
  3927 15a1 03       		.byte	0x3
  3928 15a2 54       		.byte	0x54
  3929 15a3 84030000 		.4byte	.LFB298
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 70
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 70
 
 
  3930 15a7 02000000 		.4byte	.LFE298-.LFB298
@@ -4163,14 +4163,14 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3949 15cf 9C       		.byte	0x9c
  3950 15d0 C1190000 		.4byte	0x19c1
  3951 15d4 34       		.uleb128 0x34
- 3952 15d5 69030000 		.4byte	.LASF139
+ 3952 15d5 62030000 		.4byte	.LASF139
  3953 15d9 03       		.byte	0x3
  3954 15da 59       		.byte	0x59
  3955 15db A9000000 		.4byte	0xa9
  3956 15df 01       		.uleb128 0x1
  3957 15e0 50       		.byte	0x50
  3958 15e1 34       		.uleb128 0x34
- 3959 15e2 16040000 		.4byte	.LASF140
+ 3959 15e2 0F040000 		.4byte	.LASF140
  3960 15e6 03       		.byte	0x3
  3961 15e7 59       		.byte	0x59
  3962 15e8 A9000000 		.4byte	0xa9
@@ -4198,7 +4198,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  3984 161a 32       		.uleb128 0x32
  3985 161b F4070000 		.4byte	0x7f4
  3986 161f A8030000 		.4byte	.LBB584
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 71
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 71
 
 
  3987 1623 22000000 		.4byte	.LBE584-.LBB584
@@ -4258,7 +4258,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4041 16b3 880B0000 		.4byte	0xb88
  4042 16b7 4E0C0000 		.4byte	.LLST108
  4043 16bb 32       		.uleb128 0x32
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 72
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 72
 
 
  4044 16bc F4070000 		.4byte	0x7f4
@@ -4318,7 +4318,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4098 174f E1170000 		.4byte	0x17e1
  4099 1753 2F       		.uleb128 0x2f
  4100 1754 880B0000 		.4byte	0xb88
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 73
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 73
 
 
  4101 1758 560D0000 		.4byte	.LLST117
@@ -4378,7 +4378,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4155 17ee 03       		.byte	0x3
  4156 17ef 6F       		.byte	0x6f
  4157 17f0 82180000 		.4byte	0x1882
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 74
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 74
 
 
  4158 17f4 2F       		.uleb128 0x2f
@@ -4438,7 +4438,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4212 1887 80040000 		.4byte	.LBB615
  4213 188b 22000000 		.4byte	.LBE615-.LBB615
  4214 188f 03       		.byte	0x3
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 75
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 75
 
 
  4215 1890 74       		.byte	0x74
@@ -4498,7 +4498,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4269 1923 31       		.uleb128 0x31
  4270 1924 770B0000 		.4byte	0xb77
  4271 1928 B6040000 		.4byte	.LBB623
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 76
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 76
 
 
  4272 192c 22000000 		.4byte	.LBE623-.LBB623
@@ -4558,7 +4558,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4326 19bf 00       		.byte	0
  4327 19c0 00       		.byte	0
  4328 19c1 44       		.uleb128 0x44
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 77
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 77
 
 
  4329 19c2 04       		.byte	0x4
@@ -4601,7 +4601,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4366 1a17 3F       		.byte	0x3f
  4367 1a18 4B080000 		.4byte	0x84b
  4368 1a1c 49       		.uleb128 0x49
- 4369 1a1d 1C020000 		.4byte	.LASF142
+ 4369 1a1d 15020000 		.4byte	.LASF142
  4370 1a21 05       		.byte	0x5
  4371 1a22 44       		.byte	0x44
  4372 1a23 4B080000 		.4byte	0x84b
@@ -4613,12 +4613,12 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4378 1a35 97       		.byte	0x97
  4379 1a36 00       		.byte	0
  4380 1a37 49       		.uleb128 0x49
- 4381 1a38 52030000 		.4byte	.LASF143
+ 4381 1a38 4B030000 		.4byte	.LASF143
  4382 1a3c 05       		.byte	0x5
  4383 1a3d 61       		.byte	0x61
  4384 1a3e 421A0000 		.4byte	0x1a42
  4385 1a42 08       		.uleb128 0x8
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 78
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 78
 
 
  4386 1a43 271A0000 		.4byte	0x1a27
@@ -4658,7 +4658,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4420 1a94 08       		.uleb128 0x8
  4421 1a95 671A0000 		.4byte	0x1a67
  4422 1a99 4B       		.uleb128 0x4b
- 4423 1a9a 83030000 		.4byte	.LASF147
+ 4423 1a9a 7C030000 		.4byte	.LASF147
  4424 1a9e 05       		.byte	0x5
  4425 1a9f A501     		.2byte	0x1a5
  4426 1aa1 A51A0000 		.4byte	0x1aa5
@@ -4672,17 +4672,17 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4434 1ab8 0001     		.2byte	0x100
  4435 1aba 00       		.byte	0
  4436 1abb 4B       		.uleb128 0x4b
- 4437 1abc 4F050000 		.4byte	.LASF148
+ 4437 1abc 48050000 		.4byte	.LASF148
  4438 1ac0 05       		.byte	0x5
  4439 1ac1 4602     		.2byte	0x246
  4440 1ac3 C71A0000 		.4byte	0x1ac7
  4441 1ac7 08       		.uleb128 0x8
  4442 1ac8 AA1A0000 		.4byte	0x1aaa
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 79
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 79
 
 
  4443 1acc 4B       		.uleb128 0x4b
- 4444 1acd 0D030000 		.4byte	.LASF149
+ 4444 1acd 06030000 		.4byte	.LASF149
  4445 1ad1 05       		.byte	0x5
  4446 1ad2 5D02     		.2byte	0x25d
  4447 1ad4 D81A0000 		.4byte	0x1ad8
@@ -4703,14 +4703,14 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4462 1afa 08       		.uleb128 0x8
  4463 1afb 471A0000 		.4byte	0x1a47
  4464 1aff 4B       		.uleb128 0x4b
- 4465 1b00 F4040000 		.4byte	.LASF152
+ 4465 1b00 ED040000 		.4byte	.LASF152
  4466 1b04 05       		.byte	0x5
  4467 1b05 B902     		.2byte	0x2b9
  4468 1b07 0B1B0000 		.4byte	0x1b0b
  4469 1b0b 08       		.uleb128 0x8
  4470 1b0c 471A0000 		.4byte	0x1a47
  4471 1b10 4B       		.uleb128 0x4b
- 4472 1b11 B6010000 		.4byte	.LASF153
+ 4472 1b11 AF010000 		.4byte	.LASF153
  4473 1b15 05       		.byte	0x5
  4474 1b16 D602     		.2byte	0x2d6
  4475 1b18 1C1B0000 		.4byte	0x1b1c
@@ -4738,7 +4738,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4497 0008 0E       		.uleb128 0xe
  4498 0009 1B       		.uleb128 0x1b
  4499 000a 0E       		.uleb128 0xe
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 80
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 80
 
 
  4500 000b 55       		.uleb128 0x55
@@ -4798,7 +4798,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4554 0041 0E       		.uleb128 0xe
  4555 0042 3A       		.uleb128 0x3a
  4556 0043 0B       		.uleb128 0xb
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 81
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 81
 
 
  4557 0044 3B       		.uleb128 0x3b
@@ -4858,7 +4858,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4611 007a 0B       		.uleb128 0xb
  4612 007b 3B       		.uleb128 0x3b
  4613 007c 0B       		.uleb128 0xb
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 82
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 82
 
 
  4614 007d 01       		.uleb128 0x1
@@ -4918,7 +4918,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4668 00b3 10       		.uleb128 0x10
  4669 00b4 39       		.uleb128 0x39
  4670 00b5 01       		.byte	0x1
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 83
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 83
 
 
  4671 00b6 03       		.uleb128 0x3
@@ -4978,7 +4978,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4725 00ec 19       		.uleb128 0x19
  4726 00ed 64       		.uleb128 0x64
  4727 00ee 13       		.uleb128 0x13
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 84
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 84
 
 
  4728 00ef 01       		.uleb128 0x1
@@ -5038,7 +5038,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4782 0125 3C       		.uleb128 0x3c
  4783 0126 19       		.uleb128 0x19
  4784 0127 64       		.uleb128 0x64
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 85
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 85
 
 
  4785 0128 13       		.uleb128 0x13
@@ -5098,7 +5098,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4839 015e 49       		.uleb128 0x49
  4840 015f 13       		.uleb128 0x13
  4841 0160 38       		.uleb128 0x38
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 86
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 86
 
 
  4842 0161 0B       		.uleb128 0xb
@@ -5158,7 +5158,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4896 0197 49       		.uleb128 0x49
  4897 0198 13       		.uleb128 0x13
  4898 0199 3C       		.uleb128 0x3c
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 87
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 87
 
 
  4899 019a 19       		.uleb128 0x19
@@ -5218,7 +5218,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  4953 01d0 3A       		.uleb128 0x3a
  4954 01d1 0B       		.uleb128 0xb
  4955 01d2 3B       		.uleb128 0x3b
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 88
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 88
 
 
  4956 01d3 0B       		.uleb128 0xb
@@ -5278,7 +5278,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5010 0209 00       		.byte	0
  5011 020a 00       		.byte	0
  5012 020b 24       		.uleb128 0x24
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 89
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 89
 
 
  5013 020c 05       		.uleb128 0x5
@@ -5338,7 +5338,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5067 0242 03       		.uleb128 0x3
  5068 0243 0E       		.uleb128 0xe
  5069 0244 49       		.uleb128 0x49
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 90
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 90
 
 
  5070 0245 13       		.uleb128 0x13
@@ -5398,7 +5398,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5124 027b 06       		.uleb128 0x6
  5125 027c 40       		.uleb128 0x40
  5126 027d 18       		.uleb128 0x18
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 91
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 91
 
 
  5127 027e 64       		.uleb128 0x64
@@ -5458,7 +5458,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5181 02b5 59       		.uleb128 0x59
  5182 02b6 05       		.uleb128 0x5
  5183 02b7 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 92
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 92
 
 
  5184 02b8 00       		.byte	0
@@ -5518,7 +5518,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5238 02ef 34       		.uleb128 0x34
  5239 02f0 05       		.uleb128 0x5
  5240 02f1 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 93
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 93
 
 
  5241 02f2 03       		.uleb128 0x3
@@ -5578,7 +5578,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5295 0328 00       		.byte	0
  5296 0329 38       		.uleb128 0x38
  5297 032a 05       		.uleb128 0x5
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 94
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 94
 
 
  5298 032b 00       		.byte	0
@@ -5638,7 +5638,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5352 0361 02       		.uleb128 0x2
  5353 0362 17       		.uleb128 0x17
  5354 0363 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 95
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 95
 
 
  5355 0364 00       		.byte	0
@@ -5698,7 +5698,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5409 039a 00       		.byte	0
  5410 039b 42       		.uleb128 0x42
  5411 039c 1D       		.uleb128 0x1d
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 96
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 96
 
 
  5412 039d 01       		.byte	0x1
@@ -5758,7 +5758,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5466 03d3 0E       		.uleb128 0xe
  5467 03d4 34       		.uleb128 0x34
  5468 03d5 19       		.uleb128 0x19
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 97
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 97
 
 
  5469 03d6 11       		.uleb128 0x11
@@ -5818,7 +5818,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5523 0412 4B       		.uleb128 0x4b
  5524 0413 34       		.uleb128 0x34
  5525 0414 00       		.byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 98
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 98
 
 
  5526 0415 03       		.uleb128 0x3
@@ -5878,7 +5878,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5580 0034 70       		.byte	0x70
  5581 0035 CC00     		.sleb128 76
  5582 0037 9F       		.byte	0x9f
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 99
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 99
 
 
  5583 0038 00000000 		.4byte	0
@@ -5938,7 +5938,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5637 00b9 20000000 		.4byte	.LVL7
  5638 00bd 3A000000 		.4byte	.LVL8
  5639 00c1 0500     		.2byte	0x5
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 100
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 100
 
 
  5640 00c3 74       		.byte	0x74
@@ -5998,7 +5998,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5694 0125 0A       		.byte	0xa
  5695 0126 FFFF     		.2byte	0xffff
  5696 0128 1A       		.byte	0x1a
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 101
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 101
 
 
  5697 0129 38       		.byte	0x38
@@ -6058,7 +6058,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5751 01ae 00000000 		.4byte	0
  5752 01b2 00000000 		.4byte	0
  5753              	.LLST15:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 102
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 102
 
 
  5754 01b6 A4000000 		.4byte	.LVL16
@@ -6118,7 +6118,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5808 023a 25       		.uleb128 0x25
  5809 023b 04       		.byte	0x4
  5810 023c 48E1FA3E 		.4byte	0x3efae148
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 103
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 103
 
 
  5811 0240 F5       		.byte	0xf5
@@ -6178,7 +6178,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5865              	.LLST23:
  5866 02a1 32010000 		.4byte	.LVL30
  5867 02a5 3A010000 		.4byte	.LVL31
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 104
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 104
 
 
  5868 02a9 0B00     		.2byte	0xb
@@ -6238,7 +6238,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5922              	.LLST32:
  5923 0326 CE000000 		.4byte	.LVL21
  5924 032a D6000000 		.4byte	.LVL22
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 105
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 105
 
 
  5925 032e 0C00     		.2byte	0xc
@@ -6298,7 +6298,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  5979 03a3 F5       		.byte	0xf5
  5980 03a4 4B       		.uleb128 0x4b
  5981 03a5 25       		.uleb128 0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 106
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 106
 
 
  5982 03a6 1C       		.byte	0x1c
@@ -6358,7 +6358,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6036 041f 76       		.byte	0x76
  6037 0420 00       		.sleb128 0
  6038 0421 00000000 		.4byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 107
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 107
 
 
  6039 0425 00000000 		.4byte	0
@@ -6418,7 +6418,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6093              	.LLST47:
  6094 0490 CE010000 		.4byte	.LVL44
  6095 0494 DC020000 		.4byte	.LVL86
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 108
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 108
 
 
  6096 0498 0600     		.2byte	0x6
@@ -6478,7 +6478,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6150 0501 9F       		.byte	0x9f
  6151 0502 00000000 		.4byte	0
  6152 0506 00000000 		.4byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 109
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 109
 
 
  6153              	.LLST49:
@@ -6538,7 +6538,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6207 0585 00000000 		.4byte	0
  6208 0589 00000000 		.4byte	0
  6209              	.LLST54:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 110
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 110
 
 
  6210 058d E0010000 		.4byte	.LVL46
@@ -6598,7 +6598,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6264              	.LLST59:
  6265 0607 6E020000 		.4byte	.LVL68
  6266 060b 94020000 		.4byte	.LVL74
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 111
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 111
 
 
  6267 060f 0200     		.2byte	0x2
@@ -6658,7 +6658,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6321 0682 90020000 		.4byte	.LVL73
  6322 0686 0100     		.2byte	0x1
  6323 0688 50       		.byte	0x50
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 112
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 112
 
 
  6324 0689 90020000 		.4byte	.LVL73
@@ -6718,7 +6718,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6378 0712 4A       		.uleb128 0x4a
  6379 0713 25       		.uleb128 0x25
  6380 0714 03       		.byte	0x3
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 113
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 113
 
 
  6381 0715 18000000 		.4byte	_ZL6mvps1D+24
@@ -6778,7 +6778,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6435 0779 45       		.uleb128 0x45
  6436 077a 25       		.uleb128 0x25
  6437 077b 1C       		.byte	0x1c
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 114
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 114
 
 
  6438 077c 1E       		.byte	0x1e
@@ -6838,7 +6838,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6492 07c0 F5       		.byte	0xf5
  6493 07c1 45       		.uleb128 0x45
  6494 07c2 25       		.uleb128 0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 115
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 115
 
 
  6495 07c3 1C       		.byte	0x1c
@@ -6898,7 +6898,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6549 0841 18000000 		.4byte	_ZL6mvps1D+24
  6550 0845 F6       		.byte	0xf6
  6551 0846 04       		.byte	0x4
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 116
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 116
 
 
  6552 0847 25       		.uleb128 0x25
@@ -6958,7 +6958,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6606 089c 1B       		.byte	0x1b
  6607 089d F5       		.byte	0xf5
  6608 089e 43       		.uleb128 0x43
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 117
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 117
 
 
  6609 089f 25       		.uleb128 0x25
@@ -7018,7 +7018,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6663 08e3 25       		.uleb128 0x25
  6664 08e4 F5       		.byte	0xf5
  6665 08e5 54       		.uleb128 0x54
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 118
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 118
 
 
  6666 08e6 25       		.uleb128 0x25
@@ -7078,7 +7078,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6720 0955 25       		.uleb128 0x25
  6721 0956 03       		.byte	0x3
  6722 0957 1C000000 		.4byte	_ZL6mvps1D+28
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 119
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 119
 
 
  6723 095b F6       		.byte	0xf6
@@ -7138,7 +7138,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6777 09b9 F5       		.byte	0xf5
  6778 09ba 54       		.uleb128 0x54
  6779 09bb 25       		.uleb128 0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 120
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 120
 
 
  6780 09bc 22       		.byte	0x22
@@ -7198,7 +7198,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6834 0a0a C4020000 		.4byte	.LVL82
  6835 0a0e 0600     		.2byte	0x6
  6836 0a10 03       		.byte	0x3
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 121
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 121
 
 
  6837 0a11 30000000 		.4byte	_ZL6mvps1D+48
@@ -7258,7 +7258,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6891 0a9c 9E       		.byte	0x9e
  6892 0a9d 04       		.uleb128 0x4
  6893 0a9e CDCC4C3D 		.4byte	0x3d4ccccd
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 122
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 122
 
 
  6894 0aa2 00000000 		.4byte	0
@@ -7318,7 +7318,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6948 0b32 F4020000 		.4byte	.LVL88
  6949 0b36 0600     		.2byte	0x6
  6950 0b38 F2       		.byte	0xf2
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 123
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 123
 
 
  6951 0b39 2C0E0000 		.4byte	.Ldebug_info0+3628
@@ -7343,7 +7343,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  6970 0b62 F4       		.byte	0xf4
  6971 0b63 25       		.uleb128 0x25
  6972 0b64 04       		.byte	0x4
- 6973 0b65 0AD7233C 		.4byte	0x3c23d70a
+ 6973 0b65 0AD7A33B 		.4byte	0x3ba3d70a
  6974 0b69 1E       		.byte	0x1e
  6975 0b6a 9F       		.byte	0x9f
  6976 0b6b C6030000 		.4byte	.LVL101
@@ -7378,7 +7378,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7005              	.LLST102:
  7006 0bb7 A8030000 		.4byte	.LVL98
  7007 0bbb CA030000 		.4byte	.LVL102
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 124
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 124
 
 
  7008 0bbf 0600     		.2byte	0x6
@@ -7436,9 +7436,9 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7060 0c35 F4       		.byte	0xf4
  7061 0c36 25       		.uleb128 0x25
  7062 0c37 04       		.byte	0x4
- 7063 0c38 0AD7233C 		.4byte	0x3c23d70a
+ 7063 0c38 0AD7A33B 		.4byte	0x3ba3d70a
  7064 0c3c 1E       		.byte	0x1e
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 125
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 125
 
 
  7065 0c3d F4       		.byte	0xf4
@@ -7467,7 +7467,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7088 0c6a F4       		.byte	0xf4
  7089 0c6b 25       		.uleb128 0x25
  7090 0c6c 04       		.byte	0x4
- 7091 0c6d 0AD7233C 		.4byte	0x3c23d70a
+ 7091 0c6d 0AD7A33B 		.4byte	0x3ba3d70a
  7092 0c71 1E       		.byte	0x1e
  7093 0c72 9F       		.byte	0x9f
  7094 0c73 FC030000 		.4byte	.LVL106
@@ -7498,7 +7498,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7119 0cb5 90       		.byte	0x90
  7120 0cb6 4F       		.uleb128 0x4f
  7121 0cb7 00000000 		.4byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 126
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 126
 
 
  7122 0cbb 00000000 		.4byte	0
@@ -7558,12 +7558,12 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7176 0d3b F7       		.byte	0xf7
  7177 0d3c 25       		.uleb128 0x25
  7178 0d3d F4       		.byte	0xf4
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 127
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 127
 
 
  7179 0d3e 25       		.uleb128 0x25
  7180 0d3f 04       		.byte	0x4
- 7181 0d40 0AD7233C 		.4byte	0x3c23d70a
+ 7181 0d40 0AD7A33B 		.4byte	0x3ba3d70a
  7182 0d44 1E       		.byte	0x1e
  7183 0d45 F4       		.byte	0xf4
  7184 0d46 25       		.uleb128 0x25
@@ -7591,7 +7591,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7206 0d72 F4       		.byte	0xf4
  7207 0d73 25       		.uleb128 0x25
  7208 0d74 04       		.byte	0x4
- 7209 0d75 0AD7233C 		.4byte	0x3c23d70a
+ 7209 0d75 0AD7A33B 		.4byte	0x3ba3d70a
  7210 0d79 1E       		.byte	0x1e
  7211 0d7a 9F       		.byte	0x9f
  7212 0d7b 32040000 		.4byte	.LVL111
@@ -7618,7 +7618,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7233 0db2 4F       		.uleb128 0x4f
  7234 0db3 32040000 		.4byte	.LVL111
  7235 0db7 36040000 		.4byte	.LVL112
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 128
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 128
 
 
  7236 0dbb 0200     		.2byte	0x2
@@ -7678,7 +7678,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7290 0e3f 71       		.byte	0x71
  7291 0e40 00       		.sleb128 0
  7292 0e41 F7       		.byte	0xf7
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 129
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 129
 
 
  7293 0e42 2C       		.uleb128 0x2c
@@ -7687,7 +7687,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7296 0e45 F4       		.byte	0xf4
  7297 0e46 25       		.uleb128 0x25
  7298 0e47 04       		.byte	0x4
- 7299 0e48 0AD7233C 		.4byte	0x3c23d70a
+ 7299 0e48 0AD7A33B 		.4byte	0x3ba3d70a
  7300 0e4c 1E       		.byte	0x1e
  7301 0e4d F4       		.byte	0xf4
  7302 0e4e 25       		.uleb128 0x25
@@ -7715,7 +7715,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7324 0e7a F4       		.byte	0xf4
  7325 0e7b 25       		.uleb128 0x25
  7326 0e7c 04       		.byte	0x4
- 7327 0e7d 0AD7233C 		.4byte	0x3c23d70a
+ 7327 0e7d 0AD7A33B 		.4byte	0x3ba3d70a
  7328 0e81 1E       		.byte	0x1e
  7329 0e82 9F       		.byte	0x9f
  7330 0e83 68040000 		.4byte	.LVL116
@@ -7738,7 +7738,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7347 0eaf 4A040000 		.4byte	.LVL113
  7348 0eb3 54040000 		.4byte	.LVL114
  7349 0eb7 0200     		.2byte	0x2
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 130
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 130
 
 
  7350 0eb9 90       		.byte	0x90
@@ -7798,7 +7798,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7404 0f3c 9F       		.byte	0x9f
  7405 0f3d 66040000 		.4byte	.LVL115
  7406 0f41 68040000 		.4byte	.LVL116
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 131
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 131
 
 
  7407 0f45 1700     		.2byte	0x17
@@ -7811,7 +7811,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7414 0f4d F4       		.byte	0xf4
  7415 0f4e 25       		.uleb128 0x25
  7416 0f4f 04       		.byte	0x4
- 7417 0f50 0AD7233C 		.4byte	0x3c23d70a
+ 7417 0f50 0AD7A33B 		.4byte	0x3ba3d70a
  7418 0f54 1E       		.byte	0x1e
  7419 0f55 F4       		.byte	0xf4
  7420 0f56 25       		.uleb128 0x25
@@ -7839,7 +7839,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7442 0f82 F4       		.byte	0xf4
  7443 0f83 25       		.uleb128 0x25
  7444 0f84 04       		.byte	0x4
- 7445 0f85 0AD7233C 		.4byte	0x3c23d70a
+ 7445 0f85 0AD7A33B 		.4byte	0x3ba3d70a
  7446 0f89 1E       		.byte	0x1e
  7447 0f8a 9F       		.byte	0x9f
  7448 0f8b 9E040000 		.4byte	.LVL121
@@ -7858,7 +7858,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7461 0fab 0000803F 		.4byte	0x3f800000
  7462 0faf 00000000 		.4byte	0
  7463 0fb3 00000000 		.4byte	0
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 132
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 132
 
 
  7464              	.LLST137:
@@ -7918,7 +7918,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7518 103d 25       		.uleb128 0x25
  7519 103e 04       		.byte	0x4
  7520 103f 0000803F 		.4byte	0x3f800000
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 133
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 133
 
 
  7521 1043 1C       		.byte	0x1c
@@ -7935,7 +7935,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7532 1055 F4       		.byte	0xf4
  7533 1056 25       		.uleb128 0x25
  7534 1057 04       		.byte	0x4
- 7535 1058 0AD7233C 		.4byte	0x3c23d70a
+ 7535 1058 0AD7A33B 		.4byte	0x3ba3d70a
  7536 105c 1E       		.byte	0x1e
  7537 105d F4       		.byte	0xf4
  7538 105e 25       		.uleb128 0x25
@@ -7963,7 +7963,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7560 108a F4       		.byte	0xf4
  7561 108b 25       		.uleb128 0x25
  7562 108c 04       		.byte	0x4
- 7563 108d 0AD7233C 		.4byte	0x3c23d70a
+ 7563 108d 0AD7A33B 		.4byte	0x3ba3d70a
  7564 1091 1E       		.byte	0x1e
  7565 1092 9F       		.byte	0x9f
  7566 1093 D4040000 		.4byte	.LVL126
@@ -7978,7 +7978,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7575 10ab D8040000 		.4byte	.LVL127
  7576 10af 0600     		.2byte	0x6
  7577 10b1 9E       		.byte	0x9e
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 134
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 134
 
 
  7578 10b2 04       		.uleb128 0x4
@@ -8038,7 +8038,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7632 1141 F5       		.byte	0xf5
  7633 1142 4F       		.uleb128 0x4f
  7634 1143 25       		.uleb128 0x25
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 135
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 135
 
 
  7635 1144 F4       		.byte	0xf4
@@ -8059,7 +8059,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7650 115d F4       		.byte	0xf4
  7651 115e 25       		.uleb128 0x25
  7652 115f 04       		.byte	0x4
- 7653 1160 0AD7233C 		.4byte	0x3c23d70a
+ 7653 1160 0AD7A33B 		.4byte	0x3ba3d70a
  7654 1164 1E       		.byte	0x1e
  7655 1165 F4       		.byte	0xf4
  7656 1166 25       		.uleb128 0x25
@@ -8098,7 +8098,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7689 0014 14050000 		.4byte	.Letext0-.Ltext0
  7690 0018 00000000 		.4byte	.LFB289
  7691 001c 4A000000 		.4byte	.LFE289-.LFB289
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 136
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 136
 
 
  7692 0020 00000000 		.4byte	.LFB301
@@ -8158,7 +8158,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7746 00c0 66000000 		.4byte	.LBB350
  7747 00c4 6A000000 		.4byte	.LBE350
  7748 00c8 6E000000 		.4byte	.LBB352
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 137
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 137
 
 
  7749 00cc 72000000 		.4byte	.LBE352
@@ -8218,7 +8218,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7803 01a4 2A010000 		.4byte	.LBE372
  7804 01a8 36010000 		.4byte	.LBB375
  7805 01ac 46010000 		.4byte	.LBE375
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 138
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 138
 
 
  7806 01b0 00000000 		.4byte	0
@@ -8278,7 +8278,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7860 0288 5A010000 		.4byte	.LBB429
  7861 028c 5E010000 		.4byte	.LBE429
  7862 0290 62010000 		.4byte	.LBB439
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 139
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 139
 
 
  7863 0294 66010000 		.4byte	.LBE439
@@ -8338,7 +8338,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7917 036c 00000000 		.4byte	0
  7918 0370 94000000 		.4byte	.LBB463
  7919 0374 98000000 		.4byte	.LBE463
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 140
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 140
 
 
  7920 0378 7E010000 		.4byte	.LBB477
@@ -8398,7 +8398,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  7974 0450 D6000000 		.4byte	.LBB511
  7975 0454 DA000000 		.4byte	.LBE511
  7976 0458 F8000000 		.4byte	.LBB522
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 141
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 141
 
 
  7977 045c FC000000 		.4byte	.LBE522
@@ -8458,7 +8458,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8031 0534 8A040000 		.4byte	.LBE617
  8032 0538 8E040000 		.4byte	.LBB622
  8033 053c A2040000 		.4byte	.LBE622
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 142
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 142
 
 
  8034 0540 00000000 		.4byte	0
@@ -8510,410 +8510,410 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8064      31443567 
  8064      65745053 
  8064      45666666 
- 8065              	.LASF86:
- 8066 0054 4D565053 		.ascii	"MVPS1D\000"
- 8066      314400
- 8067              	.LASF54:
- 8068 005b 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setFOLPEf\000"
- 8068      64737036 
- 8068      42695175 
- 8068      61643643 
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 143
+ 8065              	.LASF54:
+ 8066 0054 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setFOLPEf\000"
+ 8066      64737036 
+ 8066      42695175 
+ 8066      61643643 
+ 8066      6F656666 
+ 8067              	.LASF61:
+ 8068 0074 73657453 		.ascii	"setSODC\000"
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 143
 
 
- 8068      6F656666 
- 8069              	.LASF61:
- 8070 007b 73657453 		.ascii	"setSODC\000"
- 8070      4F444300 
- 8071              	.LASF135:
- 8072 0083 666C6167 		.ascii	"flags\000"
- 8072      7300
- 8073              	.LASF84:
- 8074 0089 70726F63 		.ascii	"process\000"
- 8074      65737300 
- 8075              	.LASF155:
- 8076 0091 474E5520 		.ascii	"GNU C++11 5.4.1 20160919 (release) [ARM/embedded-5-"
- 8076      432B2B31 
- 8076      3120352E 
- 8076      342E3120 
- 8076      32303136 
- 8077 00c4 6272616E 		.ascii	"branch revision 240496] -mcpu=cortex-m4 -mthumb -mn"
- 8077      63682072 
- 8077      65766973 
- 8077      696F6E20 
- 8077      32343034 
- 8078 00f7 6F2D7468 		.ascii	"o-thumb-interwork -mlittle-endian -mfloat-abi=hard "
- 8078      756D622D 
- 8078      696E7465 
- 8078      72776F72 
- 8078      6B202D6D 
- 8079 012a 2D6D6670 		.ascii	"-mfpu=fpv4-sp-d16 -g -Os -std=c++11 -fsingle-precis"
- 8079      753D6670 
- 8079      76342D73 
- 8079      702D6431 
- 8079      36202D67 
- 8080 015d 696F6E2D 		.ascii	"ion-constant -fcheck-new -fno-rtti -fno-exceptions "
- 8080      636F6E73 
- 8080      74616E74 
- 8080      202D6663 
- 8080      6865636B 
- 8081 0190 2D666E6F 		.ascii	"-fno-non-call-exceptions\000"
- 8081      2D6E6F6E 
- 8081      2D63616C 
- 8081      6C2D6578 
- 8081      63657074 
- 8082              	.LASF1:
- 8083 01a9 756E7369 		.ascii	"unsigned int\000"
- 8083      676E6564 
- 8083      20696E74 
+ 8068      4F444300 
+ 8069              	.LASF135:
+ 8070 007c 666C6167 		.ascii	"flags\000"
+ 8070      7300
+ 8071              	.LASF84:
+ 8072 0082 70726F63 		.ascii	"process\000"
+ 8072      65737300 
+ 8073              	.LASF155:
+ 8074 008a 474E5520 		.ascii	"GNU C++11 5.4.1 20160919 (release) [ARM/embedded-5-"
+ 8074      432B2B31 
+ 8074      3120352E 
+ 8074      342E3120 
+ 8074      32303136 
+ 8075 00bd 6272616E 		.ascii	"branch revision 240496] -mcpu=cortex-m4 -mthumb -mn"
+ 8075      63682072 
+ 8075      65766973 
+ 8075      696F6E20 
+ 8075      32343034 
+ 8076 00f0 6F2D7468 		.ascii	"o-thumb-interwork -mlittle-endian -mfloat-abi=hard "
+ 8076      756D622D 
+ 8076      696E7465 
+ 8076      72776F72 
+ 8076      6B202D6D 
+ 8077 0123 2D6D6670 		.ascii	"-mfpu=fpv4-sp-d16 -g -Os -std=c++11 -fsingle-precis"
+ 8077      753D6670 
+ 8077      76342D73 
+ 8077      702D6431 
+ 8077      36202D67 
+ 8078 0156 696F6E2D 		.ascii	"ion-constant -fcheck-new -fno-rtti -fno-exceptions "
+ 8078      636F6E73 
+ 8078      74616E74 
+ 8078      202D6663 
+ 8078      6865636B 
+ 8079 0189 2D666E6F 		.ascii	"-fno-non-call-exceptions\000"
+ 8079      2D6E6F6E 
+ 8079      2D63616C 
+ 8079      6C2D6578 
+ 8079      63657074 
+ 8080              	.LASF1:
+ 8081 01a2 756E7369 		.ascii	"unsigned int\000"
+ 8081      676E6564 
+ 8081      20696E74 
+ 8081      00
+ 8082              	.LASF153:
+ 8083 01af 62697472 		.ascii	"bitres_lut_f\000"
+ 8083      65735F6C 
+ 8083      75745F66 
  8083      00
- 8084              	.LASF153:
- 8085 01b6 62697472 		.ascii	"bitres_lut_f\000"
- 8085      65735F6C 
- 8085      75745F66 
- 8085      00
- 8086              	.LASF53:
- 8087 01c3 73657446 		.ascii	"setFOLP\000"
- 8087      4F4C5000 
- 8088              	.LASF102:
- 8089 01cb 5F5A4E36 		.ascii	"_ZN6MVPS1D10setFiltersEf\000"
- 8089      4D565053 
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 144
+ 8084              	.LASF53:
+ 8085 01bc 73657446 		.ascii	"setFOLP\000"
+ 8085      4F4C5000 
+ 8086              	.LASF102:
+ 8087 01c4 5F5A4E36 		.ascii	"_ZN6MVPS1D10setFiltersEf\000"
+ 8087      4D565053 
+ 8087      31443130 
+ 8087      73657446 
+ 8087      696C7465 
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 144
 
 
- 8089      31443130 
- 8089      73657446 
- 8089      696C7465 
- 8090              	.LASF8:
- 8091 01e4 5F5F696E 		.ascii	"__int32_t\000"
- 8091      7433325F 
- 8091      7400
- 8092              	.LASF131:
- 8093 01ee 706C6174 		.ascii	"platform\000"
- 8093      666F726D 
- 8093      00
- 8094              	.LASF30:
- 8095 01f7 70697463 		.ascii	"pitch\000"
- 8095      6800
- 8096              	.LASF101:
- 8097 01fd 73657446 		.ascii	"setFilters\000"
- 8097      696C7465 
- 8097      727300
- 8098              	.LASF44:
- 8099 0208 75736572 		.ascii	"user_osc_param_id_t\000"
- 8099      5F6F7363 
- 8099      5F706172 
- 8099      616D5F69 
- 8099      645F7400 
- 8100              	.LASF142:
- 8101 021c 6B5F6F73 		.ascii	"k_osc_api_version\000"
- 8101      635F6170 
- 8101      695F7665 
- 8101      7273696F 
- 8101      6E00
- 8102              	.LASF103:
- 8103 022e 75706461 		.ascii	"updatePhase\000"
- 8103      74655068 
- 8103      61736500 
- 8104              	.LASF90:
- 8105 023a 665F7261 		.ascii	"f_ratio\000"
- 8105      74696F00 
- 8106              	.LASF132:
- 8107 0242 6C696D69 		.ascii	"limit\000"
- 8107      7400
- 8108              	.LASF92:
- 8109 0248 53746174 		.ascii	"State\000"
- 8109      6500
- 8110              	.LASF35:
- 8111 024e 6B5F7573 		.ascii	"k_user_osc_param_id1\000"
+ 8088              	.LASF8:
+ 8089 01dd 5F5F696E 		.ascii	"__int32_t\000"
+ 8089      7433325F 
+ 8089      7400
+ 8090              	.LASF131:
+ 8091 01e7 706C6174 		.ascii	"platform\000"
+ 8091      666F726D 
+ 8091      00
+ 8092              	.LASF30:
+ 8093 01f0 70697463 		.ascii	"pitch\000"
+ 8093      6800
+ 8094              	.LASF101:
+ 8095 01f6 73657446 		.ascii	"setFilters\000"
+ 8095      696C7465 
+ 8095      727300
+ 8096              	.LASF44:
+ 8097 0201 75736572 		.ascii	"user_osc_param_id_t\000"
+ 8097      5F6F7363 
+ 8097      5F706172 
+ 8097      616D5F69 
+ 8097      645F7400 
+ 8098              	.LASF142:
+ 8099 0215 6B5F6F73 		.ascii	"k_osc_api_version\000"
+ 8099      635F6170 
+ 8099      695F7665 
+ 8099      7273696F 
+ 8099      6E00
+ 8100              	.LASF103:
+ 8101 0227 75706461 		.ascii	"updatePhase\000"
+ 8101      74655068 
+ 8101      61736500 
+ 8102              	.LASF90:
+ 8103 0233 665F7261 		.ascii	"f_ratio\000"
+ 8103      74696F00 
+ 8104              	.LASF132:
+ 8105 023b 6C696D69 		.ascii	"limit\000"
+ 8105      7400
+ 8106              	.LASF92:
+ 8107 0241 53746174 		.ascii	"State\000"
+ 8107      6500
+ 8108              	.LASF35:
+ 8109 0247 6B5F7573 		.ascii	"k_user_osc_param_id1\000"
+ 8109      65725F6F 
+ 8109      73635F70 
+ 8109      6172616D 
+ 8109      5F696431 
+ 8110              	.LASF36:
+ 8111 025c 6B5F7573 		.ascii	"k_user_osc_param_id2\000"
  8111      65725F6F 
  8111      73635F70 
  8111      6172616D 
- 8111      5F696431 
- 8112              	.LASF36:
- 8113 0263 6B5F7573 		.ascii	"k_user_osc_param_id2\000"
+ 8111      5F696432 
+ 8112              	.LASF37:
+ 8113 0271 6B5F7573 		.ascii	"k_user_osc_param_id3\000"
  8113      65725F6F 
  8113      73635F70 
  8113      6172616D 
- 8113      5F696432 
- 8114              	.LASF37:
- 8115 0278 6B5F7573 		.ascii	"k_user_osc_param_id3\000"
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 145
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 145
 
 
+ 8113      5F696433 
+ 8114              	.LASF38:
+ 8115 0286 6B5F7573 		.ascii	"k_user_osc_param_id4\000"
  8115      65725F6F 
  8115      73635F70 
  8115      6172616D 
- 8115      5F696433 
- 8116              	.LASF38:
- 8117 028d 6B5F7573 		.ascii	"k_user_osc_param_id4\000"
+ 8115      5F696434 
+ 8116              	.LASF39:
+ 8117 029b 6B5F7573 		.ascii	"k_user_osc_param_id5\000"
  8117      65725F6F 
  8117      73635F70 
  8117      6172616D 
- 8117      5F696434 
- 8118              	.LASF39:
- 8119 02a2 6B5F7573 		.ascii	"k_user_osc_param_id5\000"
+ 8117      5F696435 
+ 8118              	.LASF40:
+ 8119 02b0 6B5F7573 		.ascii	"k_user_osc_param_id6\000"
  8119      65725F6F 
  8119      73635F70 
  8119      6172616D 
- 8119      5F696435 
- 8120              	.LASF40:
- 8121 02b7 6B5F7573 		.ascii	"k_user_osc_param_id6\000"
- 8121      65725F6F 
- 8121      73635F70 
- 8121      6172616D 
- 8121      5F696436 
- 8122              	.LASF62:
- 8123 02cc 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setSODCEf\000"
- 8123      64737036 
- 8123      42695175 
- 8123      61643643 
- 8123      6F656666 
- 8124              	.LASF43:
- 8125 02ec 6B5F6E75 		.ascii	"k_num_user_osc_param_id\000"
- 8125      6D5F7573 
- 8125      65725F6F 
- 8125      73635F70 
- 8125      6172616D 
- 8126              	.LASF118:
- 8127 0304 6F73635F 		.ascii	"osc_sinf\000"
- 8127      73696E66 
- 8127      00
- 8128              	.LASF149:
- 8129 030d 74616E70 		.ascii	"tanpi_lut_f\000"
- 8129      695F6C75 
- 8129      745F6600 
- 8130              	.LASF74:
- 8131 0319 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs8setSOAP2Eff\000"
- 8131      64737036 
- 8131      42695175 
- 8131      61643643 
- 8131      6F656666 
- 8132              	.LASF126:
- 8133 033b 6F73635F 		.ascii	"osc_softclipf\000"
- 8133      736F6674 
- 8133      636C6970 
- 8133      6600
- 8134              	.LASF17:
- 8135 0349 75696E74 		.ascii	"uint32_t\000"
- 8135      33325F74 
+ 8119      5F696436 
+ 8120              	.LASF62:
+ 8121 02c5 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setSODCEf\000"
+ 8121      64737036 
+ 8121      42695175 
+ 8121      61643643 
+ 8121      6F656666 
+ 8122              	.LASF43:
+ 8123 02e5 6B5F6E75 		.ascii	"k_num_user_osc_param_id\000"
+ 8123      6D5F7573 
+ 8123      65725F6F 
+ 8123      73635F70 
+ 8123      6172616D 
+ 8124              	.LASF118:
+ 8125 02fd 6F73635F 		.ascii	"osc_sinf\000"
+ 8125      73696E66 
+ 8125      00
+ 8126              	.LASF149:
+ 8127 0306 74616E70 		.ascii	"tanpi_lut_f\000"
+ 8127      695F6C75 
+ 8127      745F6600 
+ 8128              	.LASF74:
+ 8129 0312 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs8setSOAP2Eff\000"
+ 8129      64737036 
+ 8129      42695175 
+ 8129      61643643 
+ 8129      6F656666 
+ 8130              	.LASF126:
+ 8131 0334 6F73635F 		.ascii	"osc_softclipf\000"
+ 8131      736F6674 
+ 8131      636C6970 
+ 8131      6600
+ 8132              	.LASF17:
+ 8133 0342 75696E74 		.ascii	"uint32_t\000"
+ 8133      33325F74 
+ 8133      00
+ 8134              	.LASF143:
+ 8135 034b 6D696469 		.ascii	"midi_to_hz_lut_f\000"
+ 8135      5F746F5F 
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 146
+
+
+ 8135      687A5F6C 
+ 8135      75745F66 
  8135      00
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 146
-
-
- 8136              	.LASF143:
- 8137 0352 6D696469 		.ascii	"midi_to_hz_lut_f\000"
- 8137      5F746F5F 
- 8137      687A5F6C 
- 8137      75745F66 
- 8137      00
- 8138              	.LASF0:
- 8139 0363 666C6F61 		.ascii	"float\000"
- 8139      7400
- 8140              	.LASF139:
- 8141 0369 696E6465 		.ascii	"index\000"
- 8141      7800
- 8142              	.LASF25:
- 8143 036f 6B5F7573 		.ascii	"k_user_module_delfx\000"
- 8143      65725F6D 
- 8143      6F64756C 
- 8143      655F6465 
- 8143      6C667800 
- 8144              	.LASF147:
- 8145 0383 77745F70 		.ascii	"wt_par_lut_f\000"
- 8145      61725F6C 
- 8145      75745F66 
- 8145      00
- 8146              	.LASF13:
- 8147 0390 6C6F6E67 		.ascii	"long long unsigned int\000"
- 8147      206C6F6E 
- 8147      6720756E 
- 8147      7369676E 
- 8147      65642069 
- 8148              	.LASF6:
- 8149 03a7 5F5F7569 		.ascii	"__uint16_t\000"
- 8149      6E743136 
- 8149      5F7400
- 8150              	.LASF52:
- 8151 03b2 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setFODCEf\000"
+ 8136              	.LASF0:
+ 8137 035c 666C6F61 		.ascii	"float\000"
+ 8137      7400
+ 8138              	.LASF139:
+ 8139 0362 696E6465 		.ascii	"index\000"
+ 8139      7800
+ 8140              	.LASF25:
+ 8141 0368 6B5F7573 		.ascii	"k_user_module_delfx\000"
+ 8141      65725F6D 
+ 8141      6F64756C 
+ 8141      655F6465 
+ 8141      6C667800 
+ 8142              	.LASF147:
+ 8143 037c 77745F70 		.ascii	"wt_par_lut_f\000"
+ 8143      61725F6C 
+ 8143      75745F66 
+ 8143      00
+ 8144              	.LASF13:
+ 8145 0389 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 8145      206C6F6E 
+ 8145      6720756E 
+ 8145      7369676E 
+ 8145      65642069 
+ 8146              	.LASF6:
+ 8147 03a0 5F5F7569 		.ascii	"__uint16_t\000"
+ 8147      6E743136 
+ 8147      5F7400
+ 8148              	.LASF52:
+ 8149 03ab 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setFODCEf\000"
+ 8149      64737036 
+ 8149      42695175 
+ 8149      61643643 
+ 8149      6F656666 
+ 8150              	.LASF72:
+ 8151 03cb 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs8setSOAP1Eff\000"
  8151      64737036 
  8151      42695175 
  8151      61643643 
  8151      6F656666 
- 8152              	.LASF72:
- 8153 03d2 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs8setSOAP1Eff\000"
- 8153      64737036 
- 8153      42695175 
- 8153      61643643 
- 8153      6F656666 
- 8154              	.LASF136:
- 8155 03f4 5F686F6F 		.ascii	"_hook_on\000"
- 8155      6B5F6F6E 
- 8155      00
- 8156              	.LASF48:
- 8157 03fd 73657450 		.ascii	"setPoleHP\000"
- 8157      6F6C6548 
- 8157      5000
- 8158              	.LASF45:
- 8159 0407 75736572 		.ascii	"user_osc_param\000"
- 8159      5F6F7363 
- 8159      5F706172 
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 147
+ 8152              	.LASF136:
+ 8153 03ed 5F686F6F 		.ascii	"_hook_on\000"
+ 8153      6B5F6F6E 
+ 8153      00
+ 8154              	.LASF48:
+ 8155 03f6 73657450 		.ascii	"setPoleHP\000"
+ 8155      6F6C6548 
+ 8155      5000
+ 8156              	.LASF45:
+ 8157 0400 75736572 		.ascii	"user_osc_param\000"
+ 8157      5F6F7363 
+ 8157      5F706172 
+ 8157      616D00
+ 8158              	.LASF140:
+ 8159 040f 76616C75 		.ascii	"value\000"
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 147
 
 
- 8159      616D00
- 8160              	.LASF140:
- 8161 0416 76616C75 		.ascii	"value\000"
- 8161      6500
- 8162              	.LASF26:
- 8163 041c 6B5F7573 		.ascii	"k_user_module_revfx\000"
- 8163      65725F6D 
- 8163      6F64756C 
- 8163      655F7265 
- 8163      76667800 
- 8164              	.LASF65:
- 8165 0430 73657453 		.ascii	"setSOHP\000"
- 8165      4F485000 
- 8166              	.LASF129:
- 8167 0438 5F5F7072 		.ascii	"__priority\000"
- 8167      696F7269 
- 8167      747900
- 8168              	.LASF128:
- 8169 0443 5F5F696E 		.ascii	"__initialize_p\000"
- 8169      69746961 
- 8169      6C697A65 
- 8169      5F7000
- 8170              	.LASF57:
- 8171 0452 73657446 		.ascii	"setFOAP\000"
- 8171      4F415000 
- 8172              	.LASF80:
- 8173 045a 5F5A4E33 		.ascii	"_ZN3dsp6BiQuadC4Ev\000"
- 8173      64737036 
- 8173      42695175 
- 8173      61644334 
- 8173      457600
- 8174              	.LASF111:
- 8175 046d 636C616D 		.ascii	"clampminfsel\000"
- 8175      706D696E 
- 8175      6673656C 
- 8175      00
- 8176              	.LASF100:
- 8177 047a 5F5A4E36 		.ascii	"_ZN6MVPS1DC4Ev\000"
- 8177      4D565053 
- 8177      31444334 
- 8177      457600
- 8178              	.LASF81:
- 8179 0489 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad10process_soEf\000"
- 8179      64737036 
- 8179      42695175 
- 8179      61643130 
- 8179      70726F63 
- 8180              	.LASF31:
- 8181 04a6 6375746F 		.ascii	"cutoff\000"
- 8181      666600
- 8182              	.LASF20:
- 8183 04ad 63686172 		.ascii	"char\000"
- 8183      00
- 8184              	.LASF76:
- 8185 04b2 42695175 		.ascii	"BiQuad\000"
- 8185      616400
- 8186              	.LASF161:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 148
+ 8159      6500
+ 8160              	.LASF26:
+ 8161 0415 6B5F7573 		.ascii	"k_user_module_revfx\000"
+ 8161      65725F6D 
+ 8161      6F64756C 
+ 8161      655F7265 
+ 8161      76667800 
+ 8162              	.LASF65:
+ 8163 0429 73657453 		.ascii	"setSOHP\000"
+ 8163      4F485000 
+ 8164              	.LASF129:
+ 8165 0431 5F5F7072 		.ascii	"__priority\000"
+ 8165      696F7269 
+ 8165      747900
+ 8166              	.LASF128:
+ 8167 043c 5F5F696E 		.ascii	"__initialize_p\000"
+ 8167      69746961 
+ 8167      6C697A65 
+ 8167      5F7000
+ 8168              	.LASF57:
+ 8169 044b 73657446 		.ascii	"setFOAP\000"
+ 8169      4F415000 
+ 8170              	.LASF80:
+ 8171 0453 5F5A4E33 		.ascii	"_ZN3dsp6BiQuadC4Ev\000"
+ 8171      64737036 
+ 8171      42695175 
+ 8171      61644334 
+ 8171      457600
+ 8172              	.LASF111:
+ 8173 0466 636C616D 		.ascii	"clampminfsel\000"
+ 8173      706D696E 
+ 8173      6673656C 
+ 8173      00
+ 8174              	.LASF100:
+ 8175 0473 5F5A4E36 		.ascii	"_ZN6MVPS1DC4Ev\000"
+ 8175      4D565053 
+ 8175      31444334 
+ 8175      457600
+ 8176              	.LASF81:
+ 8177 0482 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad10process_soEf\000"
+ 8177      64737036 
+ 8177      42695175 
+ 8177      61643130 
+ 8177      70726F63 
+ 8178              	.LASF31:
+ 8179 049f 6375746F 		.ascii	"cutoff\000"
+ 8179      666600
+ 8180              	.LASF20:
+ 8181 04a6 63686172 		.ascii	"char\000"
+ 8181      00
+ 8182              	.LASF76:
+ 8183 04ab 42695175 		.ascii	"BiQuad\000"
+ 8183      616400
+ 8184              	.LASF161:
+ 8185 04b2 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs8setSOAP3Eff\000"
+ 8185      64737036 
+ 8185      42695175 
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 148
 
 
- 8187 04b9 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs8setSOAP3Eff\000"
- 8187      64737036 
- 8187      42695175 
- 8187      61643643 
- 8187      6F656666 
- 8188              	.LASF127:
- 8189 04db 636C6970 		.ascii	"clip01f\000"
- 8189      30316600 
- 8190              	.LASF137:
- 8191 04e3 5F686F6F 		.ascii	"_hook_off\000"
- 8191      6B5F6F66 
- 8191      6600
- 8192              	.LASF134:
- 8193 04ed 6672616D 		.ascii	"frames\000"
- 8193      657300
- 8194              	.LASF152:
- 8195 04f4 73636865 		.ascii	"schetzen_lut_f\000"
- 8195      747A656E 
- 8195      5F6C7574 
- 8195      5F6600
- 8196              	.LASF14:
- 8197 0503 75696E74 		.ascii	"uint8_t\000"
- 8197      385F7400 
- 8198              	.LASF87:
- 8199 050b 666C6167 		.ascii	"flags_none\000"
- 8199      735F6E6F 
- 8199      6E6500
- 8200              	.LASF104:
- 8201 0516 5F5A4E36 		.ascii	"_ZN6MVPS1D11updatePhaseEPff\000"
- 8201      4D565053 
- 8201      31443131 
- 8201      75706461 
- 8201      74655068 
- 8202              	.LASF116:
- 8203 0532 6F73635F 		.ascii	"osc_notehzf\000"
- 8203      6E6F7465 
- 8203      687A6600 
- 8204              	.LASF107:
- 8205 053e 4D756C74 		.ascii	"MultiPhaseShaper\000"
- 8205      69506861 
- 8205      73655368 
- 8205      61706572 
- 8205      00
- 8206              	.LASF148:
- 8207 054f 6C6F675F 		.ascii	"log_lut_f\000"
- 8207      6C75745F 
- 8207      6600
- 8208              	.LASF70:
- 8209 0559 73657453 		.ascii	"setSOAP1\000"
- 8209      4F415031 
- 8209      00
- 8210              	.LASF66:
- 8211 0562 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setSOHPEff\000"
- 8211      64737036 
- 8211      42695175 
- 8211      61643643 
- 8211      6F656666 
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 149
+ 8185      61643643 
+ 8185      6F656666 
+ 8186              	.LASF127:
+ 8187 04d4 636C6970 		.ascii	"clip01f\000"
+ 8187      30316600 
+ 8188              	.LASF137:
+ 8189 04dc 5F686F6F 		.ascii	"_hook_off\000"
+ 8189      6B5F6F66 
+ 8189      6600
+ 8190              	.LASF134:
+ 8191 04e6 6672616D 		.ascii	"frames\000"
+ 8191      657300
+ 8192              	.LASF152:
+ 8193 04ed 73636865 		.ascii	"schetzen_lut_f\000"
+ 8193      747A656E 
+ 8193      5F6C7574 
+ 8193      5F6600
+ 8194              	.LASF14:
+ 8195 04fc 75696E74 		.ascii	"uint8_t\000"
+ 8195      385F7400 
+ 8196              	.LASF87:
+ 8197 0504 666C6167 		.ascii	"flags_none\000"
+ 8197      735F6E6F 
+ 8197      6E6500
+ 8198              	.LASF104:
+ 8199 050f 5F5A4E36 		.ascii	"_ZN6MVPS1D11updatePhaseEPff\000"
+ 8199      4D565053 
+ 8199      31443131 
+ 8199      75706461 
+ 8199      74655068 
+ 8200              	.LASF116:
+ 8201 052b 6F73635F 		.ascii	"osc_notehzf\000"
+ 8201      6E6F7465 
+ 8201      687A6600 
+ 8202              	.LASF107:
+ 8203 0537 4D756C74 		.ascii	"MultiPhaseShaper\000"
+ 8203      69506861 
+ 8203      73655368 
+ 8203      61706572 
+ 8203      00
+ 8204              	.LASF148:
+ 8205 0548 6C6F675F 		.ascii	"log_lut_f\000"
+ 8205      6C75745F 
+ 8205      6600
+ 8206              	.LASF70:
+ 8207 0552 73657453 		.ascii	"setSOAP1\000"
+ 8207      4F415031 
+ 8207      00
+ 8208              	.LASF66:
+ 8209 055b 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setSOHPEff\000"
+ 8209      64737036 
+ 8209      42695175 
+ 8209      61643643 
+ 8209      6F656666 
+ 8210              	.LASF96:
+ 8211 057c 73657453 		.ascii	"setSOAP3\000"
+ 8211      4F415033 
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 149
 
 
- 8212              	.LASF96:
- 8213 0583 73657453 		.ascii	"setSOAP3\000"
- 8213      4F415033 
- 8213      00
- 8214              	.LASF114:
- 8215 058c 636C6970 		.ascii	"clipmaxf\000"
- 8215      6D617866 
- 8215      00
- 8216              	.LASF12:
- 8217 0595 6C6F6E67 		.ascii	"long long int\000"
- 8217      206C6F6E 
- 8217      6720696E 
- 8217      7400
- 8218              	.LASF88:
- 8219 05a3 666C6167 		.ascii	"flag_reset\000"
- 8219      5F726573 
- 8219      657400
- 8220              	.LASF157:
- 8221 05ae 433A5C6D 		.ascii	"C:\\msys64\\home\\logue-sdk\\platform\\nutekt-digit"
- 8221      73797336 
- 8221      345C686F 
- 8221      6D655C6C 
- 8221      6F677565 
- 8222 05dc 616C5C43 		.ascii	"al\\Custom-Projects\\osc\\VPS_Project\\4 - Multiple"
- 8222      7573746F 
- 8222      6D2D5072 
- 8222      6F6A6563 
- 8222      74735C6F 
- 8223 060b 20496E66 		.ascii	" Inflection Points\\mvps1d\000"
- 8223      6C656374 
- 8223      696F6E20 
- 8223      506F696E 
- 8223      74735C6D 
+ 8211      00
+ 8212              	.LASF157:
+ 8213 0585 433A5C6D 		.ascii	"C:\\msys64\\home\\logue-sdk\\platform\\nutekt-digit"
+ 8213      73797336 
+ 8213      345C686F 
+ 8213      6D655C6C 
+ 8213      6F677565 
+ 8214 05b3 616C5C43 		.ascii	"al\\Custom-Projects\\osc\\VPS_Project\\4 - Multiple"
+ 8214      7573746F 
+ 8214      6D2D5072 
+ 8214      6F6A6563 
+ 8214      74735C6F 
+ 8215 05e2 20496E66 		.ascii	" Inflection Points\\mvps1D\000"
+ 8215      6C656374 
+ 8215      696F6E20 
+ 8215      506F696E 
+ 8215      74735C6D 
+ 8216              	.LASF114:
+ 8217 05fc 636C6970 		.ascii	"clipmaxf\000"
+ 8217      6D617866 
+ 8217      00
+ 8218              	.LASF12:
+ 8219 0605 6C6F6E67 		.ascii	"long long int\000"
+ 8219      206C6F6E 
+ 8219      6720696E 
+ 8219      7400
+ 8220              	.LASF88:
+ 8221 0613 666C6167 		.ascii	"flag_reset\000"
+ 8221      5F726573 
+ 8221      657400
+ 8222              	.LASF86:
+ 8223 061e 4D565053 		.ascii	"MVPS1D\000"
+ 8223      314400
  8224              	.LASF112:
  8225 0625 636C616D 		.ascii	"clampfsel\000"
  8225      70667365 
@@ -8938,7 +8938,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8233      42695175 
  8233      61643643 
  8233      6F656666 
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 150
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 150
 
 
  8234              	.LASF51:
@@ -8998,7 +8998,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8257      00
  8258              	.LASF89:
  8259 072f 50617261 		.ascii	"Params\000"
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 151
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 151
 
 
  8259      6D7300
@@ -9058,7 +9058,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8283      65725F6D 
  8283      6F64756C 
  8283      655F6D6F 
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 152
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 152
 
 
  8283      64667800 
@@ -9118,7 +9118,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8305      4F415032 
  8305      00
  8306              	.LASF121:
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 153
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 153
 
 
  8307 08d1 6F73635F 		.ascii	"osc_tanpif\000"
@@ -9178,7 +9178,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8333      636C6500 
  8334              	.LASF55:
  8335 0975 73657446 		.ascii	"setFOHP\000"
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 154
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 154
 
 
  8335      4F485000 
@@ -9238,7 +9238,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8358              	.LASF83:
  8359 0a36 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad10process_foEf\000"
  8359      64737036 
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 155
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 155
 
 
  8359      42695175 
@@ -9298,7 +9298,7 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8383      6F656666 
  8384              	.LASF64:
  8385 0aea 5F5A4E33 		.ascii	"_ZN3dsp6BiQuad6Coeffs7setSOLPEff\000"
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 156
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 156
 
 
  8385      64737036 
@@ -9321,35 +9321,35 @@ ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 1
  8391      6174666F 
  8391      726D00
  8392              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  C:\msys64\tmp\ccZDTVJa.s 			page 157
+ARM GAS  C:\msys64\tmp\ccIChwW8.s 			page 157
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 mvps1D.cpp
-C:\msys64\tmp\ccZDTVJa.s:22     .text._ZN6MVPS1DC2Ev:00000000 $t
-C:\msys64\tmp\ccZDTVJa.s:27     .text._ZN6MVPS1DC2Ev:00000000 _ZN6MVPS1DC2Ev
-C:\msys64\tmp\ccZDTVJa.s:27     .text._ZN6MVPS1DC2Ev:00000000 _ZN6MVPS1DC1Ev
-C:\msys64\tmp\ccZDTVJa.s:122    .text:00000000 $t
-C:\msys64\tmp\ccZDTVJa.s:127    .text:00000000 _hook_init
-C:\msys64\tmp\ccZDTVJa.s:145    .text:00000002 _hook_cycle
-C:\msys64\tmp\ccZDTVJa.s:1144   .text:00000340 $d
-C:\msys64\tmp\ccZDTVJa.s:1160   .text:00000374 $t
-C:\msys64\tmp\ccZDTVJa.s:1165   .text:00000374 _hook_on
-C:\msys64\tmp\ccZDTVJa.s:1182   .text:00000380 $d
-C:\msys64\tmp\ccZDTVJa.s:1186   .text:00000384 $t
-C:\msys64\tmp\ccZDTVJa.s:1191   .text:00000384 _hook_off
-C:\msys64\tmp\ccZDTVJa.s:1208   .text:00000386 _hook_param
-C:\msys64\tmp\ccZDTVJa.s:1223   .text:00000394 $d
-C:\msys64\tmp\ccZDTVJa.s:1510   .text:00000500 $d
-C:\msys64\tmp\ccZDTVJa.s:1519   .text.startup:00000000 $t
-C:\msys64\tmp\ccZDTVJa.s:1523   .text.startup:00000000 _GLOBAL__sub_I__hook_init
-C:\msys64\tmp\ccZDTVJa.s:1544   .text.startup:0000000c $d
-C:\msys64\tmp\ccZDTVJa.s:1551   .init_array:00000000 $d
-C:\msys64\tmp\ccZDTVJa.s:1554   .bss:00000000 $d
-C:\msys64\tmp\ccZDTVJa.s:1558   .bss:00000000 _ZL6mvps1D
+C:\msys64\tmp\ccIChwW8.s:22     .text._ZN6MVPS1DC2Ev:00000000 $t
+C:\msys64\tmp\ccIChwW8.s:27     .text._ZN6MVPS1DC2Ev:00000000 _ZN6MVPS1DC2Ev
+C:\msys64\tmp\ccIChwW8.s:27     .text._ZN6MVPS1DC2Ev:00000000 _ZN6MVPS1DC1Ev
+C:\msys64\tmp\ccIChwW8.s:122    .text:00000000 $t
+C:\msys64\tmp\ccIChwW8.s:127    .text:00000000 _hook_init
+C:\msys64\tmp\ccIChwW8.s:145    .text:00000002 _hook_cycle
+C:\msys64\tmp\ccIChwW8.s:1144   .text:00000340 $d
+C:\msys64\tmp\ccIChwW8.s:1160   .text:00000374 $t
+C:\msys64\tmp\ccIChwW8.s:1165   .text:00000374 _hook_on
+C:\msys64\tmp\ccIChwW8.s:1182   .text:00000380 $d
+C:\msys64\tmp\ccIChwW8.s:1186   .text:00000384 $t
+C:\msys64\tmp\ccIChwW8.s:1191   .text:00000384 _hook_off
+C:\msys64\tmp\ccIChwW8.s:1208   .text:00000386 _hook_param
+C:\msys64\tmp\ccIChwW8.s:1223   .text:00000394 $d
+C:\msys64\tmp\ccIChwW8.s:1510   .text:00000500 $d
+C:\msys64\tmp\ccIChwW8.s:1519   .text.startup:00000000 $t
+C:\msys64\tmp\ccIChwW8.s:1523   .text.startup:00000000 _GLOBAL__sub_I__hook_init
+C:\msys64\tmp\ccIChwW8.s:1544   .text.startup:0000000c $d
+C:\msys64\tmp\ccIChwW8.s:1551   .init_array:00000000 $d
+C:\msys64\tmp\ccIChwW8.s:1554   .bss:00000000 $d
+C:\msys64\tmp\ccIChwW8.s:1558   .bss:00000000 _ZL6mvps1D
                      .debug_frame:00000010 $d
-C:\msys64\tmp\ccZDTVJa.s:1230   .text:0000039b $d
-C:\msys64\tmp\ccZDTVJa.s:1230   .text:0000039c $t
+C:\msys64\tmp\ccIChwW8.s:1230   .text:0000039b $d
+C:\msys64\tmp\ccIChwW8.s:1230   .text:0000039c $t
                            .group:00000000 _ZN6MVPS1DC5Ev
 
 UNDEFINED SYMBOLS
