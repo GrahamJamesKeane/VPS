@@ -34,13 +34,13 @@ struct VPSLJ2D {
 		float 		offset;			// Phase offset
 		
 		Params(void) :
-			w0LFO(DEFAULT),
+			w0LFO(ZEROF),
 			Amp_d(ONEF),
 			Amp_v(ONEF),
 			f_ratio(ONEF),
 			freq_shift_D(ONEF),
 			freq_shift_V(ONEF),
-			offset(ZEROF)
+			offset(DEFAULT)
 		{ }
 	};
   

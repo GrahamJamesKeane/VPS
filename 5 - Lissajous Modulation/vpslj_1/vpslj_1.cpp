@@ -124,36 +124,36 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 	
 	switch (index) {
 		case k_user_osc_param_id1:  		// User parameter 1
-			// Set base frequency of LFOs
-			p.w0LFO = value * 0.3f; 
+			// Set base frequency of LFOs (Bipolar)
+			p.w0LFO = value * 0.15f; 
 			s.flags |= VPSLJ2D::flag_LFO;
 			break;
 			
 		case k_user_osc_param_id2:			// User parameter 2
-			// Set frequency scaling of LFO-D
-			p.freq_shift_D = 1.f + (value * 0.05f);
+			// Set frequency scaling of LFO-D range [1,5](Bipolar)
+			p.freq_shift_D = 1.f + (value * 0.02f);;
 			s.flags |= VPSLJ2D::flag_LFOD;
 			break;
 			
 		case k_user_osc_param_id3:  		// User parameter 3
-			// Set frequency scaling of LFO-V
-			p.freq_shift_V = 1.f + (value * 0.05f);
+			// Set frequency scaling of LFO-V range [1,5] (Bipolar)
+			p.freq_shift_V = 1.f + (value * 0.02f);
 			s.flags |= VPSLJ2D::flag_LFOV;
 			break;
 			
 		case k_user_osc_param_id4:			// User parameter 4
-			// Set values for d amplitude
-			p.Amp_d = value * 0.01f;
+			// Set values for d amplitude [0,5] (Bipolar)
+			p.Amp_d = value * 0.025f;
 			break;
 			
 		case k_user_osc_param_id5:  		// User parameter 5
-			// Set values for v amplitude
-			p.Amp_v = value * 0.05f;
+			// Set values for v amplitude range [0,5] (Bipolar)
+			p.Amp_v = value * 0.025f;
 			break;
 			
 		case k_user_osc_param_id6:			// User parameter 6
-			// Set offset value
-			p.offset = value * 0.01f;
+			// Set offset value (Bipolar)
+			p.offset = clip01f(value * 0.005f);
 			break;
 			
 		case k_user_osc_param_shape: 		// A knob
