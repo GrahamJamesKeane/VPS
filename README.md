@@ -1,7 +1,7 @@
 # Vector Phaseshaping Synthesis (VPS) Methods
 The following programs provide VPS methods with various applications for the **Korg NTS-1 Nu:Tekt digital synthesizer**. This work is based upon the research carried out by Jari Kleimola, Victor Lazzarini, Joseph Timoney, and Vesa Välimäki that was presented in their 2011 paper “Vector Phaseshaping Synthesis“. This work represents only a partial treatment of the contents of their work and further experimentation is required to implement those methods not covered here.
 
-## [1 - Basic Phase Distortion Synthesis Example](https://github.com/GrahamJamesKeane/VPS/tree/main/1%20-%20Basic%20Phase%20Distortion)
+## [1 - Basic Phase Distortion Synthesis](https://github.com/GrahamJamesKeane/VPS/tree/main/1%20-%20Basic%20Phase%20Distortion)
 
 In order to establish a basis for VPS we will begin with the classic phase distortion technique which utilises a single inflection point with one variable.
 
